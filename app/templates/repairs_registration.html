@@ -1,0 +1,59 @@
+{% extends 'home.html' %}
+{% block body %}
+<h3>报修登记管理</h3>
+{% if data %}
+   <table border="1">
+        <thead>
+        <tr>
+            <th class="th-left">报修日期</th>
+            <th class="th-left">报修科室</th>
+            <th class="th-left">报修人</th>
+            <th class="th-left">设备品牌</th>
+            <th class="th-left">设备类型</th>
+            <th class="th-left">设备编码</th>
+            <th class="th-left">设备故障</th>
+            <th class="th-left">维修公司</th>
+            <th class="th-left">维修人</th>
+            <th class="th-left">归还日期</th>
+            <th class="th-left">归还人</th>
+            <th class="th-left">送还科室日期</th>
+            <th class="th-left">送还人</th>
+            <th class="th-left">维修状态</th>
+        </tr>
+        </thead>
+        <tbody>
+{% for row in data %}
+<tr>
+    <td>{{ row.repair_date }}</td>
+    <td>{{ row.department.name }}</td>
+    <td>{{ row.repair_registrant }}</td>
+    <td>{{ row.equipment_brand.name }}</td>
+    <td>{{ row.equipment_type.name }}</td>
+    <td>{{ row.equipment_code }}</td>
+    <td>{{ row.equipment_fault.name }}</td>
+    <td>{{ row.repair_company.name }}</td>
+    <td>{{ row.repair_man }}</td>
+    <td>{{ row.repair_return_date }}</td>
+    <td>{{ row.repair_return_man }}</td>
+    <td>{{ row.equipment_return_date }}</td>
+    <td>{{ row.repair_return_man }}</td>
+    <td>{{ row.repair_status }}</td>
+</tr>
+
+{% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+<hr>
+        <a href="{{ url_for('create_repair') }}">报修登记</a>
+        <a href="{{ url_for('create_repair') }}">报修编辑</a>   <!-- 是否限制本人操作 -->
+        <a href="{{ url_for('create_repair') }}">报修删除</a>   <!-- 是否限制本人操作 -->
+        |
+       <!--  <a href="{{ url_for('create_repair') }}">报修确认</a>   <!-- 由维修方或专人确认报修，确认后不可修改 -->
+       <!--  <a href="{{ url_for('create_repair') }}">报修取消</a>   <!-- 由维修方或专人取消确认报修，即可再次修改 -->
+      <!--   <a href="{{ url_for('repair_return') }}">报修归还</a>   <!-- 本科人员确认修好后操作 -->
+     <!--    <a href="{{ url_for('repair_return') }}">取消报修归还</a>   <!-- 考虑短期内同一故障再出现，返修 -->
+      <!--   <a href="{{ url_for('equipment_return') }}">设备归还</a>    <!-- 本科人员或维修方归还科室 -->
+      <!--   <a href="{{ url_for('equipment_return') }}">取消设备归还</a>   <!-- 考虑短期内同一故障再出现，返修 -->
+<hr>
+{% endblock %}

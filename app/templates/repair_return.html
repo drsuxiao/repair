@@ -1,0 +1,13 @@
+{% extends 'home.html' %}
+{% block body %}
+  {% from "_field.html" import render_field %}
+<h3>维修归还管理</h3>
+  <form method="POST" action="{{ url_for('repair_return') }}">
+    {{ form.hidden_tag() }}
+    <table>
+        {{ render_field(form.repair_return_date) }}
+        {{ render_field(form.repair_return_man) }}
+    </table>
+    <div>{{ form.save }}</div>
+  </form>
+{% endblock %}
