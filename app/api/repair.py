@@ -1,4 +1,4 @@
-from flask import jsonify, abort, make_response, request, url_for
+from flask import jsonify, abort, make_response, request
 from app import app, db
 from app.models import User, Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, EquipmentRepair
 from datetime import datetime
@@ -85,7 +85,8 @@ def update_equipment_repair(id):
 
 @app.route('/repair/api/v1.0/equipment_repairs', methods=['GET'])
 def get_equipment_repairs():
-    return myreponse(get_data_by_model(EquipmentRepair))
+    (data, total) = get_data_by_model(EquipmentRepair)
+    return myreponse(data, total)
 
 
 @app.route('/repair/api/v1.0/equipment_repairs/<int:id>', methods=['DELETE'])
@@ -158,10 +159,11 @@ def get_data_by_code(model, code):
 
 def get_data_by_model(model):
     rows = model.query.all()
+    total = model.query.count()
     if not rows:
         abort(400)
     data = [row.to_json() for row in rows]
-    return data
+    return data, total
 
 
 def update_data_by_code(model, code):
@@ -202,8 +204,8 @@ def delete_data_by_code(model, code):
     return row.to_json()
 
 
-def myreponse(data='success'):
-    return jsonify({'status': 201, 'data': data, 'msg': ''})
+def myreponse(data='success', total=0):
+    return jsonify({'status': 201, 'total': total, 'rows': data, 'msg': ''})
 
 
 @app.route('/repair/api/v1.0/departments/<code>', methods=['GET'])

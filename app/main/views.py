@@ -7,7 +7,7 @@ from app.models import EquipmentRepair, Department, EquipmentFault, EquipmentTyp
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('home.html')
+    return render_template('index.html')
 
 
 @app.route('/repair/repairs_registration', methods=['GET', 'POST'])

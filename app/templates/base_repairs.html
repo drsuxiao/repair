@@ -1,0 +1,311 @@
+{%extends "base.html"%}
+<!-- 主体内容 -->
+{% block title %}设备维修管理{% endblock %}
+
+{% block content %}
+<!-- 搜素面板 -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion"  href="#pn_query">
+                查询框
+            </a>
+        </h4>
+    </div>
+    <div id="pn_query" class="panel-collapse collapse in">
+        <div class="panel-body">
+                <div class="form-inline">
+                    <div class="col-md-3">
+                        <label for="repair_date">报修日期</label>
+                        <input type="text" id="repair_date" placeholder="请输入报修日期">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="dept_code">报修科室</label>
+                        <input type="text" id="dept_code" placeholder="请输入报修科室">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="repair_registrant">报修人</label>
+                        <input type="text" id="repair_registrant" placeholder="请输入报修人">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="brand_code">设备品牌</label>
+                        <input type="text" id="brand_code" placeholder="请输入设备品牌">
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <label for="type_code" class="col-md-1">设备类型</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="type_code" placeholder="请输入设备类型"></div>
+
+                    <label for="equipment_code" class="col-md-1">设备编码</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="equipment_code" placeholder="请输入设备编码"></div>
+
+                    <label for="fault_code" class="col-md-1">设备故障</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="fault_code" placeholder="请输入设备故障"></div>
+
+                    <label for="com_code" class="col-md-1">维修公司</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="com_code" placeholder="请输入维修公司"></div>
+                </div>
+                <div class="form-inline">
+                    <label for="repair_man" class="col-md-1">维修人</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="repair_man" placeholder="请输入维修人"></div>
+
+                    <label for="repair_return_date" class="col-md-1">维修归还日期</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="repair_return_date" placeholder="请输入维修归还日期"></div>
+
+                    <label for="repair_return_man" class="col-md-1">维修归还人</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="repair_return_man" placeholder="请输入维修归还人"></div>
+
+                    <label for="equipment_return_date" class="col-md-1">归还科室日期</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="equipment_return_date" placeholder="请输入归还科室日期">
+
+                    <label for="equipment_return_man" class="col-md-1">归还科室人</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="equipment_return_man" placeholder="请输入归还科室人"></div>
+                </div>
+                <div class="form-inline">
+                    <label for="repair_status" class="col-md-1">维修进度</label>
+                    <div class="col-md-2"><input type="text" class="form-control" id="repair_status" placeholder="请输入维修进度"></div>
+
+                    <button class="btn btn-default" id="btn_query">查询</button>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- 数据表 -->
+<div class=table-responsive">   <!-- 自适应列宽，高度  -->
+    <table id="table_repairs" class="table text-nowrap"></table>
+</div>
+
+<!-- 工具容器 -->
+<div id="toolbar" class="btn-group">{% block function %}{% endblock %}</div>
+
+{% endblock %}
+
+
+{% block script %}
+//表格初始化
+initTable();
+//表格初始化
+function initTable() {
+    //先销毁表格
+     $("#table_repairs").bootstrapTable({
+        //表格高度
+        //height: getHeight()-300,
+        //服务器数据的请求方式 'get' 或 'post'。
+        method: 'get',
+        //设置为 true 会有隔行变色效果
+        striped: true,
+        //设置为 true 会在表格底部显示分页条。
+        pagination: true,
+        //请求后台的URL
+        url: '/repair/api/v1.0/equipment_repairs',
+        //服务器返回的数据类型。
+        dataType: 'json',
+        //工具按钮用哪个容器
+        toolbar: '#toolbar',
+        //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性
+        cache: false,
+        //设置为 true 启用分页条无限循环的功能
+        paginationLoop: false,
+        //设置在哪里进行分页，可选值为 'client' 或者 'server'。设置 'server'时，必须设置服务器数据地址（url）或者重写ajax方法
+        sidePagination: 'server',
+        //初始化加载第一页，默认第一页
+        pageNumber: 1,
+        //每页的记录行数
+        pageSize: 10,
+        //可供选择的每页的行数
+        pageList: [10,15,20, 50, 100],
+        //设置为false 将禁止所有列的排序。
+        sortable: true,
+        //设置默认排序为 name
+        sortName: 'id',
+        //定义排序方式，'asc' 或者 'desc'。
+        sortOrder: "asc",
+        //是否显示刷新按钮
+        showRefresh: true,
+        //是否显示内容列下拉框。
+        showColumns: true,
+        //显示导出插件
+        showExport: false,
+        exportDataType: "basic",
+        //是否显示右上角的搜索框
+        search: false,
+        //是否显示切换视图（table/card）按钮。
+        //showToggle:false,
+        //是否启用点击选中行
+        clickToSelect: false,
+        uniqueId: "id",                     //每一行的唯一标识，一般为主键列
+        showToggle: false,                   //是否显示详细视图和列表视图的切换按钮
+        cardView: false,                    //是否显示详细视图
+        detailView: false,                  //是否显示父子表
+        //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
+        //设置为limit可以获取limit, offset, search, sort, order
+        queryParamsType:'limit',
+        searchOnEnterKey: false,
+        //请求服务器数据
+        queryParams: function queryParams(params){
+            var param = {
+                 limit: params.limit,
+                 offset: params.offset,
+                 search: params.search,
+                 query_name: $("#query_name").val(),
+                 sort: params.sort,
+                 order: params.order
+             };
+             return param;
+        },
+        //加载成功时执行
+        onLoadSuccess: function(data){
+            console.log("加载成功");
+        },
+        //加载失败时执行
+        onLoadError: function(status){
+            console.log("加载数据失败"+status);
+        },
+        onDblClickRow: function (row, $element) {
+            var id = row.id;
+            EditViewById(id);
+            return false;
+        },
+        onCheck: function(row,$element){
+            index = $element.data('index');
+        },
+        columns: [
+        {
+           title: "全选",
+           field: "select",
+           checkbox: true,
+           width: 20,//宽度
+           //align: "center",//水平
+           //valign: "middle",
+           formatter: function (value, row, index) {
+                return row._id;
+           }
+        },{
+            field: 'id',
+            title: '维修单号',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_date',
+            title: '报修日期',
+            align: 'left',
+            valign: 'middle',
+            sortable: true,
+            formatter: function (value, row, index) {
+                      return changeDateFormat(value)
+            }
+        },{
+            field: 'repair_department',
+            title: '报修科室',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_registrant',
+            title: '报修人',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_brand',
+            title: '设备品牌',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_type',
+            title: '设备类型',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_code',
+            title: '设备编号',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_fault',
+            title: '设备故障',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_brand',
+            title: '设备品牌',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_company',
+            title: '维修公司',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_man',
+            title: '维修人',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_brand',
+            title: '设备品牌',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_return_date',
+            title: '维修归还日期',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_return_man',
+            title: '维修归还人',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_return_date',
+            title: '归还科室日期',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'equipment_return_man',
+            title: '归还科室人',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        },{
+            field: 'repair_status',
+            title: '维修进度',
+            align: 'left',
+            valign: 'middle',
+            sortable: true
+        }]
+    });
+};
+
+//转换日期格式(时间戳转换为datetime格式)
+function changeDateFormat(value) {
+    return value
+}
+
+//获取table的高度
+function getHeight() {
+    return $(window).height() - 100;
+
+};
+//操作栏的格式化
+function actionFormatter(value, row, index) {
+    var id = row.id;
+    var result = "";
+    result += "<a href='#' id='row_edit' class='btn btn-xs blue' onclick=\"EditViewById('" + String(id) + "')\" title='编辑'><span class='glyphicon glyphicon-pencil'></span></a>";
+    result += "<a href='#' id='row_remove' class='btn btn-xs red' onclick=\"DeleteById('" + String(id) + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
+    return result;
+};
+{% endblock %}
+

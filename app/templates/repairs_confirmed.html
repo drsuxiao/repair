@@ -1,5 +1,11 @@
-{% extends 'home.html' %}
-{% block body %}
+{% extends 'base_repairs.html' %}
+{% block title %}维修确认管理{% endblock %}
+{% block function %}
+ <div class="btn-group">
+    <button type="button" class="btn btn-primary">报修确认</button>
+    <button type="button" class="btn btn-primary">取消确认</button>
+  </div>
+{% endblock %}
 <h3>维修确认管理</h3>
 {% if data %}
    <table border="1">
@@ -48,4 +54,3 @@
         <a href="{{ url_for('create_repair') }}">报修确认</a>
         <a href="{{ url_for('create_repair') }}">取消确认</a>   <!-- 是否限制本人操作 -->
 <hr>
-{% endblock %}

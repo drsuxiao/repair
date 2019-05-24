@@ -1,5 +1,12 @@
-{% extends 'home.html' %}
-{% block body %}
+{% extends 'base_repairs.html' %}
+{% block title %}报修登记管理{% endblock %}
+{% block function %}
+ <div class="btn-group">
+    <button type="button" class="btn btn-primary">报修登记</button>
+    <button type="button" class="btn btn-primary">报修编辑</button>
+    <button type="button" class="btn btn-primary">报修删除</button>
+  </div>
+{% endblock %}
 <h3>报修登记管理</h3>
 {% if data %}
    <table border="1">
@@ -44,10 +51,9 @@
         </tbody>
     </table>
 {% endif %}
-<hr>
-        <a href="{{ url_for('create_repair') }}">报修登记</a>
-        <a href="{{ url_for('create_repair') }}">报修编辑</a>   <!-- 是否限制本人操作 -->
-        <a href="{{ url_for('create_repair') }}">报修删除</a>   <!-- 是否限制本人操作 -->
+        <!--<a href="{{ url_for('create_repair') }}">报修登记</a>
+        <!--<a href="{{ url_for('create_repair') }}">报修编辑</a>   <!-- 是否限制本人操作 -->
+       <!-- <a href="{{ url_for('create_repair') }}">报修删除</a>   <!-- 是否限制本人操作 -->
         |
        <!--  <a href="{{ url_for('create_repair') }}">报修确认</a>   <!-- 由维修方或专人确认报修，确认后不可修改 -->
        <!--  <a href="{{ url_for('create_repair') }}">报修取消</a>   <!-- 由维修方或专人取消确认报修，即可再次修改 -->
@@ -55,5 +61,3 @@
      <!--    <a href="{{ url_for('repair_return') }}">取消报修归还</a>   <!-- 考虑短期内同一故障再出现，返修 -->
       <!--   <a href="{{ url_for('equipment_return') }}">设备归还</a>    <!-- 本科人员或维修方归还科室 -->
       <!--   <a href="{{ url_for('equipment_return') }}">取消设备归还</a>   <!-- 考虑短期内同一故障再出现，返修 -->
-<hr>
-{% endblock %}

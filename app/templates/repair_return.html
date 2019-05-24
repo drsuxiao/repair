@@ -1,5 +1,5 @@
-{% extends 'home.html' %}
-{% block body %}
+{% extends 'index.html' %}
+{% block content %}
   {% from "_field.html" import render_field %}
 <h3>维修归还管理</h3>
   <form method="POST" action="{{ url_for('repair_return') }}">
