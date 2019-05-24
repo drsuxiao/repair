@@ -12,72 +12,82 @@
             </a>
         </h4>
     </div>
-    <div id="pn_query" class="panel-collapse collapse in table-responsive">
+    <div id="pn_query" class="panel-collapse collapse table-responsive">
         <table class="table table-condensed">
             <tr>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_date" >报修日期</td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_date" >报修日期</label></td>
                 <td style=" white-space:nowrap">
                     <div class="form-inline">
-                        <input class="form-control" style="width: 150px" type="text" id="repair_date">
-                        至<input class="form-control" style="width: 150px" type="text" id="repair_date_end">
+                        <input class="form-control input-sm" style="width: 150px" type="text" id="repair_date">
+                        至<input class="form-control input-sm" style="width: 150px" type="text" id="repair_date_end">
                     </div>
                 </td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_dept_code">报修科室</td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_dept_code">报修科室</label></td>
                 <td style=" white-space:nowrap">
-                    <select class="selectpicker form-control" data-live-search="true" id="dept_code">
+                    <select class="form-control input-sm" data-live-search="true" id="dept_code">
+                        <option value="1">广东省</option>
+                        <option value="2">广西省</option>
+                        <option value="3">福建省</option>
+                        <option value="4">湖南省</option>
+                        <option value="5">山东省</option>
+                        <option value="1">广东省</option>
+                        <option value="2">广西省</option>
+                        <option value="3">福建省</option>
+                        <option value="4">湖南省</option>
+                        <option value="5">山东省</option>
                         <option value="1">广东省</option>
                         <option value="2">广西省</option>
                         <option value="3">福建省</option>
                         <option value="4">湖南省</option>
                         <option value="5">山东省</option>
                     </select></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_brand_code">设备品牌</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="brand_code"></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_return_man">维修归还人</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="repair_return_man"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_brand_code">设备品牌</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="brand_code"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_return_man">维修归还人</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_return_man"></td>
             </tr>
             <tr>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_confirm_date">报修确认日期</td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_confirm_date">报修确认日期</label></td>
                 <td style=" white-space:nowrap">
                 <div class="form-inline">
-                    <input class="form-control" style="width: 150px" type="text" id="equipment_confirm_date">
-                    至<input class="form-control" style="width: 150px" type="text" id="equipment_confirm_date_end">
+                    <input class="form-control input-sm" style="width: 150px" type="text" id="equipment_confirm_date">
+                    至<input class="form-control input-sm" style="width: 150px" type="text" id="equipment_confirm_date_end">
                 </div>
                 </td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_registrant">报修人</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="repair_registrant"></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_type_code">设备类型</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="type_code"></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_return_man">归还科室人</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="equipment_return_man"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_registrant">报修人</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_registrant"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_type_code">设备类型</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="type_code"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_return_man">归还科室人</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="equipment_return_man"></td>
             </tr>
             <tr>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_return_date">维修归还日期</td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_return_date">维修归还日期</label></td>
                 <td style=" white-space:nowrap">
                 <div class="form-inline">
-                    <input class="form-control" style="width: 150px" type="text" id="repair_return_date">
-                    至<input class="form-control" style="width: 150px" type="text" id="repair_return_date_end">
+                    <input class="form-control input-sm" style="width: 150px" type="text" id="repair_return_date">
+                    至<input class="form-control input-sm" style="width: 150px" type="text" id="repair_return_date_end">
                 </div>
                 </td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_com_code">维修公司</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="com_code"></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_code">设备编码</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="equipment_code"></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_status">维修进度</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="repair_status"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_com_code">维修公司</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="com_code"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_code">设备编码</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="equipment_code"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_status">维修进度</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_status"></td>
             </tr>
             <tr>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_return_date">归还科室日期</td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_return_date">归还科室日期</label></td>
                 <td style=" white-space:nowrap">
                 <div class="form-inline">
-                    <input class="form-control" style="width: 150px" type="text" id="equipment_return_date">
-                    至<input class="form-control" style="width: 150px" type="text" id="equipment_return_date_end">
+                    <input class="form-control input-sm" style="width: 150px" type="text" id="equipment_return_date">
+                    至<input class="form-control input-sm" style="width: 150px" type="text" id="equipment_return_date_end">
                 </div>
                 </td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_man">维修人</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="repair_man"></td>
-                <td style=" white-space:nowrap"><input type="checkbox" id="cb_fault_code">设备故障</td>
-                <td style=" white-space:nowrap"><input class="form-control" type="text" id="fault_code"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_man">维修人</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_man"></td>
+                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_fault_code">设备故障</label></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="fault_code"></td>
                 <td style=" white-space:nowrap"></td>
                 <td style=" white-space:nowrap"><button class="btn btn-primary">查询</button> <button class="btn btn-primary">重置</button></td>
             </tr>
@@ -93,13 +103,13 @@
 {% endblock %}
 
 {% block script %}
-
+/*
 $('#dept_code').bootstrapSelect({
     url:'/repair/api/v1.0/departments',
     data: { "dept_code": "001", "dept_name": "111fkmz","id": 1},
     valueField: 'dept_code',
     textField: 'dept_name'
-});
+});*/
 
 //转换日期格式(时间戳转换为datetime格式)
 function changeDateFormat(value) {
@@ -115,7 +125,8 @@ var id_list = [
     {"start":"equipment_confirm_date", "end":"equipment_confirm_date_end"},
     {"start":"repair_return_date", "end":"repair_return_date_end"},
     {"start":"equipment_return_date", "end":"equipment_return_date_end"}
-]
+];
+
 $(id_list).each(function(){
     $("#" + this.start).datetimepicker({
         format: 'yyyy-mm-dd hh:ii',
