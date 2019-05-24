@@ -1,41 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="947feeab-bdba-4307-8452-49ae98147396" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/static/css/bootstrap-datetimepicker.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/bootstrap-select.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/bootstrap-table.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap-datetimepicker.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap-datetimepicker.zh-CN.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap-select.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap-table-export.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap-table-zh-CN.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap-table.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/base_repairs.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/api/repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/repair.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/equipment_return.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/equipment_return.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repair_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repair_return.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_return.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_comon.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_comon.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_confirmed.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_confirmed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_return.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_return.html" afterDir="false" />
-    </list>
+    <list default="true" id="947feeab-bdba-4307-8452-49ae98147396" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,123 +11,71 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="base_repairs.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+            <state relative-caret-position="350">
+              <caret line="100" column="26" lean-forward="true" selection-start-line="100" selection-start-column="26" selection-end-line="100" selection-end-column="26" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#!!top" />
                 <element signature="e#507#534#0" expanded="true" />
                 <element signature="e#641#668#0" expanded="true" />
-                <element signature="e#676#694#0" expanded="true" />
-                <element signature="e#731#758#0" expanded="true" />
-                <element signature="e#785#803#0" expanded="true" />
-                <element signature="e#825#852#0" expanded="true" />
-                <element signature="e#957#984#0" expanded="true" />
-                <element signature="e#1068#1095#0" expanded="true" />
-                <element signature="e#1213#1240#0" expanded="true" />
-                <element signature="e#1330#1357#0" expanded="true" />
-                <element signature="e#1459#1486#0" expanded="true" />
-                <element signature="e#1603#1630#0" expanded="true" />
-                <element signature="e#1761#1788#0" expanded="true" />
-                <element signature="e#1836#1855#0" expanded="true" />
-                <element signature="e#1862#1889#0" expanded="true" />
-                <element signature="e#1956#1975#0" expanded="true" />
-                <element signature="e#1967#1994#0" expanded="true" />
-                <element signature="e#2097#2124#0" expanded="true" />
-                <element signature="e#2207#2234#0" expanded="true" />
-                <element signature="e#2338#2365#0" expanded="true" />
-                <element signature="e#2448#2475#0" expanded="true" />
-                <element signature="e#2586#2613#0" expanded="true" />
-                <element signature="e#2735#2762#0" expanded="true" />
-                <element signature="e#2885#2912#0" expanded="true" />
-                <element signature="e#3000#3019#0" expanded="true" />
-                <element signature="e#2982#3009#0" expanded="true" />
-                <element signature="e#3117#3136#0" expanded="true" />
-                <element signature="e#3083#3110#0" expanded="true" />
-                <element signature="e#3223#3250#0" expanded="true" />
-                <element signature="e#3338#3365#0" expanded="true" />
-                <element signature="e#3485#3512#0" expanded="true" />
-                <element signature="e#3604#3631#0" expanded="true" />
-                <element signature="e#3658#3685#0" expanded="true" />
-                <element signature="e#3747#3774#0" expanded="true" />
-                <element signature="e#3903#3930#0" expanded="true" />
-                <element signature="e#4058#4077#0" expanded="true" />
-                <element signature="e#4003#4030#0" expanded="true" />
-                <element signature="e#4178#4197#0" expanded="true" />
-                <element signature="e#4107#4134#0" expanded="true" />
-                <element signature="e#4239#4266#0" expanded="true" />
-                <element signature="e#4350#4377#0" expanded="true" />
-                <element signature="e#4503#4530#0" expanded="true" />
-                <element signature="e#4625#4652#0" expanded="true" />
-                <element signature="e#4679#4706#0" expanded="true" />
+                <element signature="e#785#805#0" expanded="true" />
+                <element signature="e#889#909#0" expanded="true" />
+                <element signature="e#831#858#0" expanded="true" />
+                <element signature="e#930#957#0" expanded="true" />
+                <element signature="e#1039#1066#0" expanded="true" />
+                <element signature="e#1139#1166#0" expanded="true" />
+                <element signature="e#1249#1276#0" expanded="true" />
+                <element signature="e#1357#1384#0" expanded="true" />
+                <element signature="e#1509#1536#0" expanded="true" />
+                <element signature="e#1763#1790#0" expanded="true" />
+                <element signature="e#1923#1943#0" expanded="true" />
+                <element signature="e#2035#2055#0" expanded="true" />
+                <element signature="e#1818#1845#0" expanded="true" />
+                <element signature="e#1924#1951#0" expanded="true" />
+                <element signature="e#2041#2068#0" expanded="true" />
+                <element signature="e#2140#2167#0" expanded="true" />
+                <element signature="e#2249#2276#0" expanded="true" />
+                <element signature="e#2360#2387#0" expanded="true" />
+                <element signature="e#2515#2542#0" expanded="true" />
+                <element signature="e#2818#2845#0" expanded="true" />
+                <element signature="e#3092#3112#0" expanded="true" />
+                <element signature="e#3199#3219#0" expanded="true" />
+                <element signature="e#2812#2839#0" expanded="true" />
+                <element signature="e#2910#2937#0" expanded="true" />
+                <element signature="e#3018#3045#0" expanded="true" />
+                <element signature="e#3122#3149#0" expanded="true" />
+                <element signature="e#3236#3263#0" expanded="true" />
+                <element signature="e#3339#3366#0" expanded="true" />
+                <element signature="e#3487#3514#0" expanded="true" />
+                <element signature="e#3846#3873#0" expanded="true" />
+                <element signature="e#4233#4253#0" expanded="true" />
+                <element signature="e#4343#4363#0" expanded="true" />
+                <element signature="e#3793#3820#0" expanded="true" />
+                <element signature="e#3892#3919#0" expanded="true" />
+                <element signature="e#4002#4029#0" expanded="true" />
+                <element signature="e#4102#4129#0" expanded="true" />
+                <element signature="e#4180#4207#0" expanded="true" />
+                <element signature="e#4839#4866#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="manager.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manager.py">
+      <file leaf-file-name="repair.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/api/repair.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="405">
+              <caret line="215" column="20" lean-forward="true" selection-start-line="215" selection-start-column="12" selection-end-line="215" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models.py">
+      <file leaf-file-name="bootstrap-select.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/static/js/bootstrap-select.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1500">
-              <caret line="52" column="17" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-                <element signature="e#3434#3988#0" />
-                <element signature="e#4027#4587#0" />
-                <element signature="e#4625#5178#0" />
-                <element signature="e#5217#5777#0" />
-                <element signature="e#5815#6364#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="repairs_confirmed.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/repairs_confirmed.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="8" />
-              <folding>
-                <element signature="n#table#0;n#!!top" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="repairs_return.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/repairs_return.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-              <folding>
-                <element signature="n#table#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="162">
+              <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -169,10 +83,9 @@
       <file leaf-file-name="repairs_registration.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/repairs_registration.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="216">
+              <caret line="8" column="14" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="14" />
               <folding>
-                <element signature="n#div#0;n#!!top" />
                 <element signature="n#table#0;n#!!top" />
               </folding>
             </state>
@@ -182,34 +95,27 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="97" column="87" selection-start-line="97" selection-start-column="87" selection-end-line="97" selection-end-column="87" />
+            <state relative-caret-position="324">
+              <caret line="96" column="97" lean-forward="true" selection-start-line="96" selection-start-column="97" selection-end-line="96" selection-end-column="97" />
               <folding>
-                <element signature="n#div#0;n#head#0;n#html#0;n#!!top" />
-                <element signature="n#button#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="e#3927#3933#0" expanded="true" />
+                <element signature="e#4050#4056#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="repair.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/api/repair.py">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5760">
-              <caret line="195" selection-start-line="195" selection-end-line="195" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/main/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="15" column="66" selection-start-line="15" selection-start-column="66" selection-end-line="15" selection-end-column="66" />
+            <state relative-caret-position="246">
+              <caret line="36" column="13" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="13" />
               <folding>
-                <element signature="e#0#42#0" expanded="true" />
+                <element signature="e#0#58#0" expanded="true" />
+                <element signature="e#3434#3988#0" />
+                <element signature="e#4027#4587#0" />
+                <element signature="e#4625#5178#0" />
+                <element signature="e#5217#5777#0" />
+                <element signature="e#5815#6364#0" />
               </folding>
             </state>
           </provider>
@@ -234,13 +140,13 @@
       <find>407</find>
       <find>get_departments</find>
       <find>get_data_by_model</find>
-      <find>&lt;td&gt;</find>
+      <find>style=&quot;width: 125px&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>407</replace>
       <replace>406</replace>
       <replace>400</replace>
-      <replace>&lt;td style=&quot; white-space:nowrap&quot;&gt;</replace>
+      <replace>class=&quot;form-control&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -283,6 +189,7 @@
         <option value="$PROJECT_DIR$/app/templates/repairs_confirmed.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_return.html" />
         <option value="$PROJECT_DIR$/app/api/repair.py" />
+        <option value="$PROJECT_DIR$/app/static/js/bootstrap-select.js" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/templates/base_repairs.html" />
       </list>
@@ -302,7 +209,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -314,6 +220,18 @@
               <item name="repair" type="b2602c69:ProjectViewProjectNode" />
               <item name="repair" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="repair" type="b2602c69:ProjectViewProjectNode" />
+              <item name="repair" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="repair" type="b2602c69:ProjectViewProjectNode" />
+              <item name="repair" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="repair" type="b2602c69:ProjectViewProjectNode" />
@@ -333,12 +251,26 @@
               <item name="repair" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="fonts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="repair" type="b2602c69:ProjectViewProjectNode" />
+              <item name="repair" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="repair" type="b2602c69:ProjectViewProjectNode" />
+              <item name="repair" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -492,18 +424,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22566995" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21074815" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32971507" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32700136" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32824427" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32897604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.18724559" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32824427" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -512,7 +443,11 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -523,13 +458,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/main/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/repair_return.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -581,6 +509,7 @@
           <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#904#3399#0" />
             <element signature="e#3434#3988#0" />
             <element signature="e#4027#4587#0" />
             <element signature="e#4625#5178#0" />
@@ -763,7 +692,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base_index.html" />
+    <entry file="file://$PROJECT_DIR$/app/templates/base_index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="5" column="10" lean-forward="true" selection-start-line="4" selection-end-line="62" selection-end-column="14" />
+          <folding>
+            <element signature="n#div#0;n#!!top" />
+            <element signature="n#button#0;n#div#0;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
@@ -771,20 +710,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/repairs_registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" selection-start-line="3" selection-end-line="7" selection-end-column="8" />
-          <folding>
-            <element signature="n#div#0;n#!!top" />
-            <element signature="n#table#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/repairs_confirmed.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="81">
           <caret line="3" selection-start-line="3" selection-end-line="6" selection-end-column="8" />
           <folding>
             <element signature="n#table#0;n#!!top" />
@@ -794,52 +722,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/repairs_return.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="8" column="14" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        <state relative-caret-position="188">
+          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
           <folding>
             <element signature="n#table#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
+    <entry file="file://$PROJECT_DIR$/manager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
+        <state relative-caret-position="243">
+          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/api/repair.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5760">
-          <caret line="195" selection-start-line="195" selection-end-line="195" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="66" selection-start-line="15" selection-start-column="66" selection-end-line="15" selection-end-column="66" />
+        <state relative-caret-position="241">
+          <caret line="15" column="66" lean-forward="true" selection-start-line="15" selection-start-column="66" selection-end-line="15" selection-end-column="66" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1500">
-          <caret line="52" column="17" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#3434#3988#0" />
-            <element signature="e#4027#4587#0" />
-            <element signature="e#4625#5178#0" />
-            <element signature="e#5217#5777#0" />
-            <element signature="e#5815#6364#0" />
           </folding>
         </state>
       </provider>
@@ -851,79 +757,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manager.py">
+    <entry file="file://$PROJECT_DIR$/app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
+        <state relative-caret-position="351">
           <caret line="13" column="26" lean-forward="true" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#58#0" expanded="true" />
+            <element signature="e#3434#3988#0" />
+            <element signature="e#4027#4587#0" />
+            <element signature="e#4625#5178#0" />
+            <element signature="e#5217#5777#0" />
+            <element signature="e#5815#6364#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/repairs_registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="14" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="14" />
+          <folding>
+            <element signature="n#table#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="97" column="87" selection-start-line="97" selection-start-column="87" selection-end-line="97" selection-end-column="87" />
+        <state relative-caret-position="324">
+          <caret line="96" column="97" lean-forward="true" selection-start-line="96" selection-start-column="97" selection-end-line="96" selection-end-column="97" />
           <folding>
-            <element signature="n#div#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#button#0;n#div#0;n#div#0;n#div#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="e#3927#3933#0" expanded="true" />
+            <element signature="e#4050#4056#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/api/repair.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="215" column="20" lean-forward="true" selection-start-line="215" selection-start-column="12" selection-end-line="215" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/static/js/bootstrap-select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="52" column="74" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="74" />
+        <state relative-caret-position="350">
+          <caret line="100" column="26" lean-forward="true" selection-start-line="100" selection-start-column="26" selection-end-line="100" selection-end-column="26" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#!!top" />
             <element signature="e#507#534#0" expanded="true" />
             <element signature="e#641#668#0" expanded="true" />
-            <element signature="e#676#694#0" expanded="true" />
-            <element signature="e#731#758#0" expanded="true" />
-            <element signature="e#785#803#0" expanded="true" />
-            <element signature="e#825#852#0" expanded="true" />
-            <element signature="e#957#984#0" expanded="true" />
-            <element signature="e#1068#1095#0" expanded="true" />
-            <element signature="e#1213#1240#0" expanded="true" />
-            <element signature="e#1330#1357#0" expanded="true" />
-            <element signature="e#1459#1486#0" expanded="true" />
-            <element signature="e#1603#1630#0" expanded="true" />
-            <element signature="e#1761#1788#0" expanded="true" />
-            <element signature="e#1836#1855#0" expanded="true" />
-            <element signature="e#1862#1889#0" expanded="true" />
-            <element signature="e#1956#1975#0" expanded="true" />
-            <element signature="e#1967#1994#0" expanded="true" />
-            <element signature="e#2097#2124#0" expanded="true" />
-            <element signature="e#2207#2234#0" expanded="true" />
-            <element signature="e#2338#2365#0" expanded="true" />
-            <element signature="e#2448#2475#0" expanded="true" />
-            <element signature="e#2586#2613#0" expanded="true" />
-            <element signature="e#2735#2762#0" expanded="true" />
-            <element signature="e#2885#2912#0" expanded="true" />
-            <element signature="e#3000#3019#0" expanded="true" />
-            <element signature="e#2982#3009#0" expanded="true" />
-            <element signature="e#3117#3136#0" expanded="true" />
-            <element signature="e#3083#3110#0" expanded="true" />
-            <element signature="e#3223#3250#0" expanded="true" />
-            <element signature="e#3338#3365#0" expanded="true" />
-            <element signature="e#3485#3512#0" expanded="true" />
-            <element signature="e#3604#3631#0" expanded="true" />
-            <element signature="e#3658#3685#0" expanded="true" />
-            <element signature="e#3747#3774#0" expanded="true" />
-            <element signature="e#3903#3930#0" expanded="true" />
-            <element signature="e#4058#4077#0" expanded="true" />
-            <element signature="e#4003#4030#0" expanded="true" />
-            <element signature="e#4178#4197#0" expanded="true" />
-            <element signature="e#4107#4134#0" expanded="true" />
-            <element signature="e#4239#4266#0" expanded="true" />
-            <element signature="e#4350#4377#0" expanded="true" />
-            <element signature="e#4503#4530#0" expanded="true" />
-            <element signature="e#4625#4652#0" expanded="true" />
-            <element signature="e#4679#4706#0" expanded="true" />
+            <element signature="e#785#805#0" expanded="true" />
+            <element signature="e#889#909#0" expanded="true" />
+            <element signature="e#831#858#0" expanded="true" />
+            <element signature="e#930#957#0" expanded="true" />
+            <element signature="e#1039#1066#0" expanded="true" />
+            <element signature="e#1139#1166#0" expanded="true" />
+            <element signature="e#1249#1276#0" expanded="true" />
+            <element signature="e#1357#1384#0" expanded="true" />
+            <element signature="e#1509#1536#0" expanded="true" />
+            <element signature="e#1763#1790#0" expanded="true" />
+            <element signature="e#1923#1943#0" expanded="true" />
+            <element signature="e#2035#2055#0" expanded="true" />
+            <element signature="e#1818#1845#0" expanded="true" />
+            <element signature="e#1924#1951#0" expanded="true" />
+            <element signature="e#2041#2068#0" expanded="true" />
+            <element signature="e#2140#2167#0" expanded="true" />
+            <element signature="e#2249#2276#0" expanded="true" />
+            <element signature="e#2360#2387#0" expanded="true" />
+            <element signature="e#2515#2542#0" expanded="true" />
+            <element signature="e#2818#2845#0" expanded="true" />
+            <element signature="e#3092#3112#0" expanded="true" />
+            <element signature="e#3199#3219#0" expanded="true" />
+            <element signature="e#2812#2839#0" expanded="true" />
+            <element signature="e#2910#2937#0" expanded="true" />
+            <element signature="e#3018#3045#0" expanded="true" />
+            <element signature="e#3122#3149#0" expanded="true" />
+            <element signature="e#3236#3263#0" expanded="true" />
+            <element signature="e#3339#3366#0" expanded="true" />
+            <element signature="e#3487#3514#0" expanded="true" />
+            <element signature="e#3846#3873#0" expanded="true" />
+            <element signature="e#4233#4253#0" expanded="true" />
+            <element signature="e#4343#4363#0" expanded="true" />
+            <element signature="e#3793#3820#0" expanded="true" />
+            <element signature="e#3892#3919#0" expanded="true" />
+            <element signature="e#4002#4029#0" expanded="true" />
+            <element signature="e#4102#4129#0" expanded="true" />
+            <element signature="e#4180#4207#0" expanded="true" />
+            <element signature="e#4839#4866#0" expanded="true" />
           </folding>
         </state>
       </provider>
