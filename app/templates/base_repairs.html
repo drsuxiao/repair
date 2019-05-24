@@ -13,61 +13,52 @@
         </h4>
     </div>
     <div id="pn_query" class="panel-collapse collapse in">
-        <div class="panel-body">
-                <div class="form-inline">
-                    <div class="col-md-3">
-                        <label for="repair_date">报修日期</label>
-                        <input type="text" id="repair_date" placeholder="请输入报修日期">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="dept_code">报修科室</label>
-                        <input type="text" id="dept_code" placeholder="请输入报修科室">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="repair_registrant">报修人</label>
-                        <input type="text" id="repair_registrant" placeholder="请输入报修人">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="brand_code">设备品牌</label>
-                        <input type="text" id="brand_code" placeholder="请输入设备品牌">
-                    </div>
-                </div>
-                <div class="form-inline">
-                    <label for="type_code" class="col-md-1">设备类型</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="type_code" placeholder="请输入设备类型"></div>
-
-                    <label for="equipment_code" class="col-md-1">设备编码</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="equipment_code" placeholder="请输入设备编码"></div>
-
-                    <label for="fault_code" class="col-md-1">设备故障</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="fault_code" placeholder="请输入设备故障"></div>
-
-                    <label for="com_code" class="col-md-1">维修公司</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="com_code" placeholder="请输入维修公司"></div>
-                </div>
-                <div class="form-inline">
-                    <label for="repair_man" class="col-md-1">维修人</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="repair_man" placeholder="请输入维修人"></div>
-
-                    <label for="repair_return_date" class="col-md-1">维修归还日期</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="repair_return_date" placeholder="请输入维修归还日期"></div>
-
-                    <label for="repair_return_man" class="col-md-1">维修归还人</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="repair_return_man" placeholder="请输入维修归还人"></div>
-
-                    <label for="equipment_return_date" class="col-md-1">归还科室日期</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="equipment_return_date" placeholder="请输入归还科室日期">
-
-                    <label for="equipment_return_man" class="col-md-1">归还科室人</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="equipment_return_man" placeholder="请输入归还科室人"></div>
-                </div>
-                <div class="form-inline">
-                    <label for="repair_status" class="col-md-1">维修进度</label>
-                    <div class="col-md-2"><input type="text" class="form-control" id="repair_status" placeholder="请输入维修进度"></div>
-
-                    <button class="btn btn-default" id="btn_query">查询</button>
-                </div>
-        </div>
+        <table class="table table-condensed" border="0">
+            <tr>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_date"><label for="repair_date">报修日期</label></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="repair_date"></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="repair_date_end"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_brand_code"><label for="brand_code">设备品牌</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="brand_code" placeholder="请输入设备品牌"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_registrant"><label for="repair_registrant">报修人</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="repair_registrant" placeholder="请输入报修人"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_com_code"><label for="com_code" >维修公司</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="com_code" placeholder="请输入维修公司"></td>
+            </tr>
+            <tr>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_confirm_date"><label for="equipment_confirm_date">报修确认日期</label></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="equipment_confirm_date"></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="equipment_confirm_date_end"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_type_code"><label for="type_code">设备类型</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="type_code" placeholder="请输入设备类型"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_man"><label for="repair_man">维修人</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="repair_man" placeholder="请输入维修人"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_status"><label for="repair_status">维修进度</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="repair_status" placeholder="请输入维修进度"></td>
+            </tr>
+            <tr>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_return_date"><label for="repair_return_date">维修归还日期</label></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="repair_return_date"></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="repair_return_date_end"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_code"><label for="equipment_code">设备编码</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="equipment_code" placeholder="请输入设备编码"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_repair_return_man"><label for="repair_return_man">维修归还人</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="repair_return_man" placeholder="请输入维修归还人"></td>
+                <td style=" white-space:nowrap"></td>
+                <td style=" white-space:nowrap"></td>
+            </tr>
+            <tr>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_return_date"><label for="equipment_return_date">归还科室日期</label></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="equipment_return_date"></td>
+                <td style=" white-space:nowrap"><input style="width:100px" type="text" id="equipment_return_date_end"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_fault_code"><label for="fault_code">设备故障</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="fault_code" placeholder="请输入设备故障"></td>
+                <td style=" white-space:nowrap"><input type="checkbox" id="cb_equipment_return_man"><label for="equipment_return_man">归还科室人</label></td>
+                <td style=" white-space:nowrap"><input type="text" id="equipment_return_man" placeholder="请输入归还科室人"></td>
+                <td style=" white-space:nowrap"></td>
+                <td style=" white-space:nowrap"><button class="btn btn-default">查询</button><button class="btn btn-default">重置</button></td>
+            </tr>
+        </table>
     </div>
 </div>
 <!-- 数据表 -->
@@ -307,5 +298,18 @@ function actionFormatter(value, row, index) {
     result += "<a href='#' id='row_remove' class='btn btn-xs red' onclick=\"DeleteById('" + String(id) + "')\" title='删除'><span class='glyphicon glyphicon-remove'></span></a>";
     return result;
 };
+var date = new Date();
+$("#repair_date").datetimepicker({
+    format: 'yyyy-mm-dd hh:ii',
+    weekStart: 3,
+    startDate: date,
+    autoclose: true,
+    startView: 2,
+    todayBtn : true,
+    todayHighlight: true,
+    initialDate: true, //初始化日期时间
+    showMeridian: true, //是否显示上下午
+    keyboardNavigation: true //方向键改变日期
+});
 {% endblock %}
 

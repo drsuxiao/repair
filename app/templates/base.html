@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/bootstrap-table.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{url_for('static', filename='css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css"/>
     <title>{% block title %}{% endblock %}--设备维修登记系统</title>
     {% endblock %}
     <!-- 顶部导航菜单 -->
@@ -93,6 +94,8 @@
         <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table-zh-CN.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap-datetimepicker.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap-datetimepicker.zh-CN.js')}}"></script>
         {% endblock %}
     </body>
 
