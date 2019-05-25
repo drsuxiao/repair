@@ -35,7 +35,7 @@
                option.text(item[options.textField]);
                target.append(option);
            });
-           options.onLoadSuccess.call(target);
+           //options.onLoadSuccess.call(target);
        }
        target.unbind("change");
        target.on("change", function (e) {
@@ -88,4 +88,4 @@
 });
 })(jQuery);
 
-bootstrapSelect
+//bootstrapSelect
