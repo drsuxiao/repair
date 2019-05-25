@@ -96,18 +96,19 @@ $(function(){
         size: 4
     });
 
-    var select_list = [{"id":"dept_code", "url":"/repair/api/v1.0/departments"},
-        {"id":"brand_code", "url":"/repair/api/v1.0/equipment_brands"},
-        {"id":"type_code", "url":"/repair/api/v1.0/equipment_types"},
-        {"id":"fault_code", "url":"/repair/api/v1.0/equipment_faults"},
-        {"id":"com_code", "url":"/repair/api/v1.0/repair_companys"}
+    var select_list = [
+        {"id":"dept_code", "url":"/repair/api/v1.0/departments", "valuefield":"dept_code", "textfield":"dept_name"},
+        {"id":"brand_code", "url":"/repair/api/v1.0/equipment_brands", "valuefield":"brand_code", "textfield":"brand_name"},
+        {"id":"type_code", "url":"/repair/api/v1.0/equipment_types", "valuefield":"type_code", "textfield":"type_name"},
+        {"id":"fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"fault_code", "textfield":"fualt_name"},
+        {"id":"com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"com_code", "textfield":"com_name"}
     ];
     //$(id_list).each(function(){ 使用此方式就是获取不到ID的值？？？？
     $.each(select_list, function (i, item) {
         $.get(this.url,function(data,status){
             alert(item['id']);
             alert(item['url']);
-            init($("#dept_code"), data.rows);
+            init($("#"+item['id']), data.rows, item['valuefield'],item['textfield']);
           });
     });
 
@@ -155,11 +156,11 @@ $(function(){
     });
 });
 
-function init(target, data) {
+function init(target, data, valuefield, textfield) {
            $.each(data, function (i, item) {
                var option = $('<option></option>');
-               option.attr('value', item['dept_code']);
-               option.text(item['dept_name']);
+               option.attr('value', item[valuefield]);
+               option.text(item[textfield]);
                target.append(option);
            });
     target.selectpicker('refresh');
