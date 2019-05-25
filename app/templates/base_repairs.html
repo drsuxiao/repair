@@ -13,82 +13,70 @@
         </h4>
     </div>
     <div id="pn_query" class="panel-collapse collapse in table-responsive">
-        <table>
+        <table class="table table-condensed">
             <tr>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_date" >报修日期</label></td>
                 <td style=" white-space:nowrap">
                     <div class="form-inline">
-                        <input style="width: 150px" type="text" id="repair_date">
-                        至<input style="width: 150px" type="text" id="repair_date_end">
+                        <input class="form-control input-sm" style="width: 150px" type="text" id="repair_date">
+                        -<input class="form-control input-sm" style="width: 150px" type="text" id="repair_date_end">
                     </div>
                 </td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_dept_code">报修科室</label></td>
-                <td style=" white-space:nowrap"><select class="selectpicker"  id="dept_code">
-                        <option value="1">广东省</option>
-                        <option value="2">广西省</option>
-                        <option value="3">福建省</option>
-                        <option value="4">湖南省</option>
-                        <option value="5">山东省</option>
-                        <option value="1">广东省</option>
-                        <option value="2">广西省</option>
-                        <option value="3">福建省</option>
-                        <option value="4">湖南省</option>
-                        <option value="5">山东省</option>
-                        <option value="1">广东省</option>
-                        <option value="2">广西省</option>
-                        <option value="3">福建省</option>
-                        <option value="4">湖南省</option>
-                        <option value="5">山东省</option>
-                    </select></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm"  id="dept_code" title="请选择">
+                    <option value="001">网络中心</option>
+                    <option value="002">门诊办公室</option>
+                </select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_brand_code">设备品牌</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="brand_code"></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="brand_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_return_man">维修归还人</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="repair_return_man"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_return_man"></td>
             </tr>
             <tr>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_confirm_date">报修确认日期</label></td>
                 <td style=" white-space:nowrap">
                     <div class="form-inline">
-                        <input style="width: 150px" type="text" id="equipment_confirm_date">
-                        至<input style="width: 150px" type="text" id="equipment_confirm_date_end">
+                        <input class="form-control input-sm" style="width: 150px" type="text" id="equipment_confirm_date">
+                        -<input class="form-control input-sm" style="width: 150px" type="text" id="equipment_confirm_date_end">
                     </div>
                 </td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_registrant">报修人</label></td>
-                <td style=" white-space:nowrap"><input  type="text" id="repair_registrant"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_registrant"></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_type_code">设备类型</label></td>
-                <td style=" white-space:nowrap"><input  type="text" id="type_code"></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="type_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_return_man">归还科室人</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="equipment_return_man"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="equipment_return_man"></td>
             </tr>
             <tr>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_return_date">维修归还日期</label></td>
                 <td style=" white-space:nowrap">
                     <div class="form-inline">
-                        <input style="width: 150px" type="text" id="repair_return_date">
-                        至<input style="width: 150px" type="text" id="repair_return_date_end">
+                        <input class="form-control input-sm" style="width: 150px" type="text" id="repair_return_date">
+                        -<input class="form-control input-sm" style="width: 150px" type="text" id="repair_return_date_end">
                     </div>
                 </td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_com_code">维修公司</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="com_code"></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="com_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_code">设备编码</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="equipment_code"></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="equipment_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_status">维修进度</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="repair_status"></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="repair_status" title="请选择"></select></td>
             </tr>
             <tr>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_return_date">归还科室日期</label></td>
                 <td style=" white-space:nowrap">
                     <div class="form-inline">
-                        <input style="width: 150px" type="text" id="equipment_return_date">
-                        至<input style="width: 150px" type="text" id="equipment_return_date_end">
+                        <input class="form-control input-sm" style="width: 150px" type="text" id="equipment_return_date">
+                        -<input class="form-control input-sm" style="width: 150px" type="text" id="equipment_return_date_end">
                     </div>
                 </td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_man">维修人</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="repair_man"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_man"></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_fault_code">设备故障</label></td>
-                <td style=" white-space:nowrap"><input type="text" id="fault_code"></td>
+                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="fault_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"></td>
-                <td style=" white-space:nowrap"><button class="btn btn-primary">查询</button> <button class="btn btn-primary">重置</button></td>
+                <td style=" white-space:nowrap"><button class="btn btn-primary" id="query">查询</button>
+                    <button class="btn btn-primary" id="reset">重置</button></td>
             </tr>
         </table>
     </div>
@@ -102,6 +90,17 @@
 {% endblock %}
 
 {% block script %}
+$("#query").click(function(){
+    alert($("#dept_code").val());
+    alert(document.getElementById('dept_code').title);
+});
+
+$("#reset").click(function(){
+    $(".selectpicker").selectpicker('val','002')
+    //$('.selectpicker').selectpicker('refresh');  
+    //$('.selectpicker').selectpicker('render'); 
+});
+/*
 $('.selectpicker').selectpicker({
     liveSearch:true,
     container: "body",
@@ -109,14 +108,13 @@ $('.selectpicker').selectpicker({
     width: 150,
     size: 4
   });
-
-/*
+*/
 $('#dept_code').bootstrapSelect({
 url:'/repair/api/v1.0/departments',
 data: { "dept_code": "001", "dept_name": "asdfg"},
 valueField: 'dept_code',
 textField: 'dept_name'
-});*/
+});
 
 //转换日期格式(时间戳转换为datetime格式)
 function changeDateFormat(value) {
