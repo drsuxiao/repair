@@ -72,7 +72,7 @@
     <body>
         <div class="content-fluid">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-0">
                     {% block right %}
                     <div class="panel panel-default">
                         <div class="panel-body">
@@ -83,7 +83,7 @@
                     </div>
                     {% endblock %}
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-12">
                     {% block content %}{% endblock %}
                     <div id="footer">{% block footer %}&copy; Copyright 2019 by you{% endblock %}</div>
                 </div>
@@ -99,7 +99,7 @@
         <script src="{{url_for('static', filename='js/bootstrap-datetimepicker.zh-CN.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-select.min.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table-zh-CN.min.js')}}"></script>
-        <script src="{{url_for('static', filename='js/bootstrap-select.js')}}"></script>
+        <script src="{{url_for('static', filename='js/bootstrapSelect.js')}}"></script>
         {% endblock %}
     </body>
 
