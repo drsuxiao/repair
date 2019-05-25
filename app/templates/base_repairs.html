@@ -87,33 +87,99 @@
 {% endblock %}
 
 {% block script %}
+$(function(){
+    $('.selectpicker').selectpicker({
+        liveSearch:true,
+        container: "body",
+        liveSearch: true,
+        width: 200,
+        size: 4
+    });
+
+    var select_list = [{"id":"dept_code", "url":"/repair/api/v1.0/departments"},
+        {"id":"brand_code", "url":"/repair/api/v1.0/equipment_brands"},
+        {"id":"type_code", "url":"/repair/api/v1.0/equipment_types"},
+        {"id":"fault_code", "url":"/repair/api/v1.0/equipment_faults"},
+        {"id":"com_code", "url":"/repair/api/v1.0/repair_companys"}
+    ];
+    //$(id_list).each(function(){ 使用此方式就是获取不到ID的值？？？？
+    $.each(select_list, function (i, item) {
+        $.get(this.url,function(data,status){
+            alert(item['id']);
+            alert(item['url']);
+            init($("#dept_code"), data.rows);
+          });
+    });
+
+    var id_list = [
+        {"start":"repair_date", "end":"repair_date_end"},
+        {"start":"equipment_confirm_date", "end":"equipment_confirm_date_end"},
+        {"start":"repair_return_date", "end":"repair_return_date_end"},
+        {"start":"equipment_return_date", "end":"equipment_return_date_end"}
+    ];
+
+    $(id_list).each(function(){
+        $("#" + this.start).datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            weekStart: 0,
+            //startDate:new Date(),
+            autoclose: true,
+            startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
+            todayBtn : true,
+            todayHighlight: true,
+            bootcssVer:3,	//显示向左向右的箭头
+            forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
+            initialDate: new Date(),	//初始化日期.默认new Date()当前日期
+            showMeridian: true, //是否显示上下午
+            keyboardNavigation: true, //方向键改变日期
+            language: 'zh-CN' //语言
+        }).on("click",function(){
+        $("#" + this.start).datetimepicker("setEndDate",$("#" + this.end).val())});
+
+        $("#" + this.end).datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            weekStart: 0,
+            //startDate:new Date(),
+            autoclose: true,
+            startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
+            todayBtn : true,
+            todayHighlight: true,
+            bootcssVer:3,	//显示向左向右的箭头
+            forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
+            initialDate: new Date(),	//初始化日期.默认new Date()当前日期
+            showMeridian: true, //是否显示上下午
+            keyboardNavigation: true, //方向键改变日期
+            language: 'zh-CN' //语言
+        }).on("click",function(){
+        $("#" + this.end).datetimepicker("setStartDate",$("#" + this.start).val())});
+    });
+});
+
+function init(target, data) {
+           $.each(data, function (i, item) {
+               var option = $('<option></option>');
+               option.attr('value', item['dept_code']);
+               option.text(item['dept_name']);
+               target.append(option);
+           });
+    target.selectpicker('refresh');
+    target.selectpicker('render');
+};
+
 $("#query").click(function(){
     alert($("#dept_code").val());
 });
 
 $("#reset").click(function(){
-    $(".selectpicker").selectpicker('val','002');
+    $("input[type='checkbox']").each(function(){
+        this.checked = false;
+    });
+    //$("input[type='checkbox']").checked = true;
+    //$("input[type='text']").attr("value", '-');
+    //$(".selectpicker").selectpicker('val','002');
     //$('.selectpicker').selectpicker('refresh');  
     //$('.selectpicker').selectpicker('render'); 
 });
-//先初始化下拉选项，再初始化其他
-$('.selectpicker').bootstrapSelect({
-    url:'/repair/api/v1.0/departments',
-    data: [{ "dept_code": "001", "dept_name": "产科门诊"},{ "dept_code": "002", "dept_name": "门诊办"},
-           { "dept_code": "003", "dept_name": "(新阳)优生遗传门诊"},
-           { "dept_code": "004", "dept_name": "(新阳)新生儿科重症病区"}],
-    valueField: "dept_code",
-    textField: "dept_name",
-    placeholder: "请选择"
-});
-
-$('.selectpicker').selectpicker({
-    liveSearch:true,
-    container: "body",
-    liveSearch: true,
-    width: 200,
-    size: 4
-  });
 
 //转换日期格式(时间戳转换为datetime格式)
 function changeDateFormat(value) {
@@ -123,49 +189,6 @@ function changeDateFormat(value) {
     }
 };
 
-var date = new Date();
-var id_list = [
-{"start":"repair_date", "end":"repair_date_end"},
-{"start":"equipment_confirm_date", "end":"equipment_confirm_date_end"},
-{"start":"repair_return_date", "end":"repair_return_date_end"},
-{"start":"equipment_return_date", "end":"equipment_return_date_end"}
-];
-
-$(id_list).each(function(){
-$("#" + this.start).datetimepicker({
-format: 'yyyy-mm-dd hh:ii',
-weekStart: 0,
-//startDate:new Date(),
-autoclose: true,
-startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
-todayBtn : true,
-todayHighlight: true,
-bootcssVer:3,	//显示向左向右的箭头
-forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
-initialDate: new Date(),	//初始化日期.默认new Date()当前日期
-showMeridian: true, //是否显示上下午
-keyboardNavigation: true, //方向键改变日期
-language: 'zh-CN' //语言
-}).on("click",function(){
-$("#" + this.start).datetimepicker("setEndDate",$("#" + this.end).val())});
-
-$("#" + this.end).datetimepicker({
-format: 'yyyy-mm-dd hh:ii',
-weekStart: 0,
-//startDate:new Date(),
-autoclose: true,
-startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
-todayBtn : true,
-todayHighlight: true,
-bootcssVer:3,	//显示向左向右的箭头
-forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
-initialDate: new Date(),	//初始化日期.默认new Date()当前日期
-showMeridian: true, //是否显示上下午
-keyboardNavigation: true, //方向键改变日期
-language: 'zh-CN' //语言
-}).on("click",function(){
-$("#" + this.end).datetimepicker("setStartDate",$("#" + this.start).val())});
-});
 
 //表格初始化
 initTable();

@@ -35,7 +35,7 @@
                option.text(item[options.textField]);
                target.append(option);
            });
-           //options.onLoadSuccess.call(target);
+           options.onLoadSuccess.call(target);
        }
        target.unbind("change");
        target.on("change", function (e) {
@@ -83,7 +83,7 @@
    //初始化
    $(".selectpicker").each(function () {
     var target = $(this);
-    target.attr("title", $.fn.select.defaults.placeholder);
+    //target.attr("title", $.fn.select.defaults.placeholder);
     target.selectpicker();
 });
 })(jQuery);

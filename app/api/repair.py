@@ -163,7 +163,7 @@ def get_data_by_model(model):
     if not rows:
         abort(400)
     data = [row.to_json() for row in rows]
-    return data, total
+    return data
 
 
 def update_data_by_code(model, code):
