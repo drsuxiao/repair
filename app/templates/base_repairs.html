@@ -24,7 +24,7 @@
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_brand_code">设备品牌</label></td>
                 <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="brand_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_return_man">维修归还人</label></td>
-                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_return_man"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" style="width: 200px" type="text" id="repair_return_man"></td>
             </tr>  <!--  -->
             <tr>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_confirm_date">报修确认日期</label></td>
@@ -35,11 +35,11 @@
                     </tr></table>
                 </td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_registrant">报修人</label></td>
-                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_registrant"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" style="width: 200px" type="text" id="repair_registrant"></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_type_code">设备类型</label></td>
                 <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="type_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_return_man">归还科室人</label></td>
-                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="equipment_return_man"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" style="width: 200px" type="text" id="equipment_return_man"></td>
             </tr>
             <tr>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_return_date">维修归还日期</label></td>
@@ -52,7 +52,7 @@
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_com_code">维修公司</label></td>
                 <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="com_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_equipment_code">设备编码</label></td>
-                <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="equipment_code" title="请选择"></select></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" style="width: 200px" id="equipment_code"></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_status">维修进度</label></td>
                 <td style=" white-space:nowrap">
                     <select class="selectpicker form-control input-sm" id="repair_status" title="请选择">
@@ -71,7 +71,7 @@
                     </tr></table>
                 </td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_repair_man">维修人</label></td>
-                <td style=" white-space:nowrap"><input class="form-control input-sm" type="text" id="repair_man"></td>
+                <td style=" white-space:nowrap"><input class="form-control input-sm" style="width: 200px" type="text" id="repair_man"></td>
                 <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_fault_code">设备故障</label></td>
                 <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="fault_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"></td>
@@ -105,7 +105,7 @@ $(function(){
         {"id":"dept_code", "url":"/repair/api/v1.0/departments", "valuefield":"dept_code", "textfield":"dept_name"},
         {"id":"brand_code", "url":"/repair/api/v1.0/equipment_brands", "valuefield":"brand_code", "textfield":"brand_name"},
         {"id":"type_code", "url":"/repair/api/v1.0/equipment_types", "valuefield":"type_code", "textfield":"type_name"},
-        {"id":"fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"fault_code", "textfield":"fualt_name"},
+        {"id":"fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"fault_code", "textfield":"fault_name"},
         {"id":"com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"com_code", "textfield":"com_name"}
     ];
     //$(id_list).each(function(){ 使用此方式就是获取不到ID的值？？？？
@@ -173,7 +173,7 @@ function init(target, data, valuefield, textfield) {
 };
 
 $("#query").click(function(){
-    alert($("#dept_code").val());
+    //alert($("#dept_code").val());
 });
 
 $("#reset").click(function(){

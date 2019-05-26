@@ -76,9 +76,9 @@
                     {% block right %}
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <li><a href="#">报修登记管理</a></li>
-                            <li><a href="#">维修确认管理</a></li>
-                            <li><a href="#">设备归还管理</a></li>
+                            <li><a href="{{ url_for('repairs_registration') }}">报修登记管理</a></li>
+                            <li><a href="{{ url_for('repairs_confirmed') }}">维修确认管理</a></li>
+                            <li><a href="{{ url_for('repairs_return') }}">设备归还管理</a></li>
                         </div>
                     </div>
                     {% endblock %}
