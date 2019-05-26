@@ -28,11 +28,11 @@ class User(db.Model):
         }
         return json_user
 
-
+# 日期统一更为字符串类型保存，方便比较
 class EquipmentRepair(db.Model):
     __tablename__ = 'equipment_repair'
     id = db.Column(db.Integer, primary_key=True)
-    repair_date = db.Column(db.DateTime(), default=datetime.now)
+    repair_date = db.Column(db.String(20), default=datetime.now().strftime("%Y-%m-%d %H:%M"))
     # 外键，和department表对应
     dept_code = db.Column(db.String(10), db.ForeignKey('department.code'))   # 报修科室
     repair_registrant = db.Column(db.String(10))  # 报修人
@@ -46,9 +46,10 @@ class EquipmentRepair(db.Model):
     # repair_company = db.Column(db.String(30))  # 维修公司
     com_code = db.Column(db.String(10), db.ForeignKey('repair_company.code'))  # 维修公司
     repair_man = db.Column(db.String(10))  # 维修人
-    repair_return_date = db.Column(db.DateTime())  # 维修归还日期
+    repair_confirm_date = db.Column(db.String(20))  # 维修确认日期
+    repair_return_date = db.Column(db.String(20))  # 维修归还日期
     repair_return_man = db.Column(db.String(10))  # 维修归还人
-    equipment_return_date = db.Column(db.DateTime())  # 设备归还科室日期
+    equipment_return_date = db.Column(db.String(20))  # 设备归还科室日期
     equipment_return_man = db.Column(db.String(10))  # 设备归还科室人
     repair_status = db.Column(db.Integer)  # 维修状态  修好，修不好，正常
 
@@ -72,6 +73,7 @@ class EquipmentRepair(db.Model):
             'com_code': self.com_code,
             'repair_company': self.repair_company.name,
             'repair_man': self.repair_man,
+            'repair_confirm_date': self.repair_confirm_date,
             'repair_return_date': self.repair_return_date,
             'repair_return_man': self.repair_return_man,
             'equipment_return_date': self.equipment_return_date,

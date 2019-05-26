@@ -2,6 +2,8 @@ from flask import jsonify, abort, make_response, request
 from app import app, db
 from app.models import User, Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, EquipmentRepair
 from datetime import datetime
+import json
+from sqlalchemy import text
 
 
 @app.errorhandler(400)
@@ -11,7 +13,7 @@ def not_found(error):
 
 @app.route('/repair/api/v1.0/equipment_repairs', methods=['POST'])
 def new_equipment_repair():
-    repair_date = request.json.get('repair_date', datetime.now())
+    repair_date = request.json.get('repair_date', datetime.now().strftime("%Y-%m-%d %H:%M"))
     dept_code = request.json.get('dept_code')
     repair_registrant = request.json.get('repair_registrant')
     brand_code = request.json.get('brand_code')
@@ -20,6 +22,7 @@ def new_equipment_repair():
     fault_code = request.json.get('fault_code')
     com_code = request.json.get('com_code')
     repair_man = request.json.get('repair_man')
+    repair_confirm_date = request.json.get('repair_confirm_date')
     # repair_return_date = request.json.get('repair_return_date')
     # repair_return_man = request.json.get('repair_return_man')
     # equipment_return_date = request.json.get('equipment_return_date')
@@ -33,7 +36,8 @@ def new_equipment_repair():
         abort(400)  # existing user
     row = EquipmentRepair(repair_date=repair_date, dept_code=dept_code, repair_registrant=repair_registrant,
                           brand_code=brand_code, type_code=type_code, equipment_code=equipment_code,
-                          fault_code=fault_code, com_code=com_code, repair_man=repair_man, repair_status=repair_status)
+                          fault_code=fault_code, com_code=com_code, repair_man=repair_man,
+                          repair_confirm_date=repair_confirm_date, repair_status=repair_status)
     db.session.add(row)
     db.session.commit()
     return myreponse(row.to_json())
@@ -85,7 +89,27 @@ def update_equipment_repair(id):
 
 @app.route('/repair/api/v1.0/equipment_repairs', methods=['GET'])
 def get_equipment_repairs():
-    (data, total) = get_data_by_model(EquipmentRepair)
+    print(request.args.get("querystr"))
+    dict = json.loads(request.args.get("querystr"))
+    offset = request.args.get("offset")
+    limit = request.args.get("limit")
+    wherestr = "1=1"
+    for key, value in dict.items():
+        if isinstance(value, list):
+            wherestr = wherestr + ' and ' + key + '>=' + "'" + value[0] + "'" + ' and ' + key + '<=' + "'" + value[1] + "'"
+        elif key == 'equipment_code':
+            wherestr = wherestr + ' and ' + key + " like " + "'%" + value + "%'"
+        else:
+            wherestr = wherestr + ' and ' + key + "=" + "'" + value + "'"
+    print(wherestr)
+    # 分页paginate的参数page，是从1开始的，而offset是从0开始的
+    pagination = EquipmentRepair.query.filter(text(wherestr)).order_by(EquipmentRepair.id.desc()).paginate(int(offset) + 1, int(limit), False)
+    rows = pagination.items
+    total = pagination.total
+    if not rows:
+        abort(400)
+    data = [row.to_json() for row in rows]
+    # data = get_data_by_model(EquipmentRepair)
     return myreponse(data, total)
 
 
@@ -159,7 +183,7 @@ def get_data_by_code(model, code):
 
 def get_data_by_model(model):
     rows = model.query.all()
-    total = model.query.count()
+    # total = model.query.count()
     if not rows:
         abort(400)
     data = [row.to_json() for row in rows]

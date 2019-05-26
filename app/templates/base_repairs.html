@@ -171,9 +171,29 @@ function init(target, data, valuefield, textfield) {
     target.selectpicker('refresh');
     target.selectpicker('render');
 };
-
+var querystr = {};
 $("#query").click(function(){
-    //alert($("#dept_code").val());
+    var temp = {};
+    $.each($('input:checkbox:checked'),function(){
+        input_id = $(this).attr('id').substr(3);
+
+        list = new Array();
+        if(input_id.indexOf("_date") >= 0 ) {
+            list.push($("#"+input_id).val());
+            list.push($("#"+input_id+"_end").val());
+            value = list;
+        }
+        else{
+            value = $("#"+input_id).val();
+        }
+        temp[input_id] = value;
+        //alert("你选了："+$('input[type=checkbox]:checked').length+"个，其中有："+input_id+":"+value);
+    });
+    alert(JSON.stringify(temp));  //可以将json对象转换成字符串;
+    querystr = temp;
+    if (JSON.stringify(querystr) != "{}"){$("#table_repairs").bootstrapTable("refresh");}
+    else{$("#table_repairs").bootstrapTable("refresh");}
+
 });
 
 $("#reset").click(function(){
@@ -225,7 +245,7 @@ sidePagination: 'server',
 //初始化加载第一页，默认第一页
 pageNumber: 1,
 //每页的记录行数
-pageSize: 10,
+pageSize: 1,
 //可供选择的每页的行数
 pageList: [10,15,20, 50, 100],
 //设置为false 将禁止所有列的排序。
@@ -233,7 +253,7 @@ sortable: true,
 //设置默认排序为 name
 sortName: 'id',
 //定义排序方式，'asc' 或者 'desc'。
-sortOrder: "asc",
+sortOrder: "desc",
 //是否显示刷新按钮
 showRefresh: false,
 //是否显示内容列下拉框。
@@ -261,7 +281,7 @@ var param = {
 limit: params.limit,
 offset: params.offset,
 search: params.search,
-query_name: $("#query_name").val(),
+querystr: JSON.stringify(querystr),
 sort: params.sort,
 order: params.order
 };
@@ -307,7 +327,7 @@ align: 'left',
 valign: 'middle',
 sortable: true,
 formatter: function (value, row, index) {
-return changeDateFormat(value)
+    return changeDateFormat(value)
 }
 },{
 field: 'repair_department',
@@ -364,6 +384,12 @@ align: 'left',
 valign: 'middle',
 sortable: true
 },{
+field: 'repair_confirm_date',
+title: '维修确认日期',
+align: 'left',
+valign: 'middle',
+sortable: true
+},{
 field: 'equipment_brand',
 title: '设备品牌',
 align: 'left',
@@ -398,7 +424,16 @@ field: 'repair_status',
 title: '维修进度',
 align: 'left',
 valign: 'middle',
-sortable: true
+sortable: true,
+formatter: function (value, row, index) {
+    if (value == 0 ){
+        value = '未确认'}
+    else if(value == 1){
+        value = '已确认'}
+    else if(value == 2){
+        value = '已完成'}
+    return value
+}
 }]
 });
 };
