@@ -93,6 +93,9 @@ def get_equipment_repairs():
     dict = json.loads(request.args.get("querystr"))
     offset = request.args.get("offset")
     limit = request.args.get("limit")
+    sort = request.args.get('sort')
+    order = request.args.get('order')
+
     wherestr = "1=1"
     for key, value in dict.items():
         if isinstance(value, list):
@@ -102,8 +105,22 @@ def get_equipment_repairs():
         else:
             wherestr = wherestr + ' and ' + key + "=" + "'" + value + "'"
     print(wherestr)
-    # 分页paginate的参数page，是从1开始的，而offset是从0开始的
-    pagination = EquipmentRepair.query.filter(text(wherestr)).order_by(EquipmentRepair.id.desc()).paginate(int(offset) + 1, int(limit), False)
+
+    change = {'repair_department': 'dept_code', 'equipment_brand': 'brand_code', 'equipment_type': 'type_code',
+              'equipment_fault': 'fault_code', 'repair_company': 'com_code'}
+    if sort in ['repair_department', 'equipment_brand', 'equipment_type', 'equipment_fault', 'repair_company']:
+        orderbystr = change[sort] + " " + order
+    else:
+        orderbystr = sort + " " + order
+    print(orderbystr)
+
+    # 分页paginate的参数page，是第几页，而offset是记录的偏移量，需要转换
+    # 表格标题排序，根据table提交的信息进行排序，否则排序无效
+    page = (int(offset) // int(limit)) + 1
+    pagination = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr)).paginate(page, int(limit), False)
+
+    #rows = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr)).limit(int(limit)).offset(int(offset))
+    #total = EquipmentRepair.query.filter(text(wherestr)).count()
     rows = pagination.items
     total = pagination.total
     if not rows:
