@@ -86,7 +86,7 @@
 </div>
 <!-- 数据表 -->
 <div class=table-responsive">   <!-- 自适应列宽，高度  -->
-    <table id="table_repairs" class="table text-nowrap"></table>
+    <table id="table_repairs" class="table table-striped text-nowrap"></table>
 </div>
 <!-- 工具容器 -->
 <div id="toolbar">{% block function %}{% endblock %}</div>
@@ -238,7 +238,7 @@ sidePagination: 'client',
 //初始化加载第一页，默认第一页
 pageNumber: 1,
 //每页的记录行数
-pageSize: 4,
+pageSize: 5,
 //可供选择的每页的行数
 pageList: [5,10,15,20, 50, 100],
 //设置为false 将禁止所有列的排序。
@@ -255,7 +255,7 @@ showColumns: true,
 showExport: false,
 exportDataType: "basic",
 //是否显示右上角的搜索框
-search: false,
+search: true,
 //是否显示切换视图（table/card）按钮。
 //showToggle:false,
 //是否启用点击选中行
