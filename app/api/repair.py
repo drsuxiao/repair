@@ -89,21 +89,24 @@ def update_equipment_repair(id):
 
 @app.route('/repair/api/v1.0/equipment_repairs', methods=['GET'])
 def get_equipment_repairs():
-    print(request.args.get("querystr"))
-    dict = json.loads(request.args.get("querystr"))
-    offset = request.args.get("offset")
-    limit = request.args.get("limit")
-    sort = request.args.get('sort')
-    order = request.args.get('order')
+    querystr = request.args.get("querystr", '')
+    offset = request.args.get("offset", '0')
+    limit = request.args.get("limit", '10')
+    sort = request.args.get('sort', 'id')
+    order = request.args.get('order', 'desc')
 
     wherestr = "1=1"
-    for key, value in dict.items():
-        if isinstance(value, list):
-            wherestr = wherestr + ' and ' + key + '>=' + "'" + value[0] + "'" + ' and ' + key + '<=' + "'" + value[1] + "'"
-        elif key == 'equipment_code':
-            wherestr = wherestr + ' and ' + key + " like " + "'%" + value + "%'"
-        else:
-            wherestr = wherestr + ' and ' + key + "=" + "'" + value + "'"
+    if querystr:
+        print(querystr)
+        dict = json.loads(querystr)
+        for key, value in dict.items():
+            if isinstance(value, list):  # 日期字段处理
+                if value[0] and value[1]:
+                    wherestr = wherestr + ' and ' + key + '>=' + "'" + value[0] + "'" + ' and ' + key + '<=' + "'" + value[1] + "'"
+            elif key in ['equipment_code', 'repair_registrant', 'repair_man', 'repair_return_man', 'equipment_return_man']:
+                wherestr = wherestr + ' and ' + key + " like " + "'%" + value + "%'"
+            else:
+                wherestr = wherestr + ' and ' + key + "=" + "'" + value + "'"
     print(wherestr)
 
     change = {'repair_department': 'dept_code', 'equipment_brand': 'brand_code', 'equipment_type': 'type_code',

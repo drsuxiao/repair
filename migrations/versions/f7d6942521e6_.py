@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 8bed969b36c5
+Revision ID: f7d6942521e6
 Revises: 
-Create Date: 2019-05-24 23:34:33.042201
+Create Date: 2019-05-27 13:09:07.787603
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8bed969b36c5'
+revision = 'f7d6942521e6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -69,7 +69,7 @@ def upgrade():
     op.create_index(op.f('ix_users_username'), 'users', ['username'], unique=False)
     op.create_table('equipment_repair',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('repair_date', sa.DateTime(), nullable=True),
+    sa.Column('repair_date', sa.String(length=20), nullable=True),
     sa.Column('dept_code', sa.String(length=10), nullable=True),
     sa.Column('repair_registrant', sa.String(length=10), nullable=True),
     sa.Column('brand_code', sa.String(length=10), nullable=True),
@@ -78,9 +78,10 @@ def upgrade():
     sa.Column('fault_code', sa.String(length=10), nullable=True),
     sa.Column('com_code', sa.String(length=10), nullable=True),
     sa.Column('repair_man', sa.String(length=10), nullable=True),
-    sa.Column('repair_return_date', sa.DateTime(), nullable=True),
+    sa.Column('repair_confirm_date', sa.String(length=20), nullable=True),
+    sa.Column('repair_return_date', sa.String(length=20), nullable=True),
     sa.Column('repair_return_man', sa.String(length=10), nullable=True),
-    sa.Column('equipment_return_date', sa.DateTime(), nullable=True),
+    sa.Column('equipment_return_date', sa.String(length=20), nullable=True),
     sa.Column('equipment_return_man', sa.String(length=10), nullable=True),
     sa.Column('repair_status', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['brand_code'], ['equipment_brand.code'], ),
