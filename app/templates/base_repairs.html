@@ -212,8 +212,7 @@ $(function(){
 initTable();
 //表格初始化
 function initTable() {
-//先销毁表格
-// 删除表格定义
+// 删除表格定义   如缺少会导致显示内容列下拉选择无效
 $("#table_repairs").bootstrapTable('destroy');
 $("#table_repairs").bootstrapTable({
 //表格高度

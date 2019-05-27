@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="216" column="17" selection-start-line="216" selection-start-column="17" selection-end-line="216" selection-end-column="17" />
+            <state relative-caret-position="109">
+              <caret line="214" column="27" selection-start-line="214" selection-start-column="27" selection-end-line="214" selection-end-column="27" />
               <folding>
                 <element signature="e#446#473#0" expanded="true" />
                 <element signature="e#652#679#0" expanded="true" />
@@ -686,8 +686,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="216" column="17" selection-start-line="216" selection-start-column="17" selection-end-line="216" selection-end-column="17" />
+        <state relative-caret-position="109">
+          <caret line="214" column="27" selection-start-line="214" selection-start-column="27" selection-end-line="214" selection-end-column="27" />
           <folding>
             <element signature="e#446#473#0" expanded="true" />
             <element signature="e#652#679#0" expanded="true" />
