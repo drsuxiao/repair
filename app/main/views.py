@@ -16,7 +16,7 @@ def repairs_registration():
         if form.validate_on_submit():
             modal = EquipmentRepair()
             modal.repair_date = form.repair_date.data
-            modal.repair_man = form.repair_registrant.data
+            modal.repair_registrant = form.repair_registrant.data
             modal.dept_code = form.dept_code.data
             modal.brand_code = form.brand_code.data
             modal.type_code = form.type_code.data
