@@ -233,7 +233,7 @@ cache: false,
 //设置为 true 启用分页条无限循环的功能
 paginationLoop: false,
 //设置在哪里进行分页，可选值为 'client' 或者 'server'。设置 'server'时，必须设置服务器数据地址（url）或者重写ajax方法
-sidePagination: 'server',
+sidePagination: 'client',
 //初始化加载第一页，默认第一页
 pageNumber: 1,
 //每页的记录行数
@@ -277,7 +277,8 @@ queryParams: function queryParams(params){
         search: params.search,
         querystr: str,
         sort: params.sort,
-        order: params.order
+        order: params.order,
+        sidePagination: 'client'
     };
     return param;
 },

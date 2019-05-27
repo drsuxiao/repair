@@ -94,6 +94,7 @@ def get_equipment_repairs():
     limit = request.args.get("limit", '10')
     sort = request.args.get('sort', 'id')
     order = request.args.get('order', 'desc')
+    sidePagination = request.args.get('sidePagination', 'client')
 
     wherestr = "1=1"
     if querystr:
@@ -116,16 +117,20 @@ def get_equipment_repairs():
     else:
         orderbystr = sort + " " + order
     print(orderbystr)
-
     # 分页paginate的参数page，是第几页，而offset是记录的偏移量，需要转换
     # 表格标题排序，根据table提交的信息进行排序，否则排序无效
-    page = (int(offset) // int(limit)) + 1
-    pagination = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr)).paginate(page, int(limit), False)
-
+    if sidePagination == 'server':
+        page = (int(offset) // int(limit)) + 1
+        pagination = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr)).paginate(page, int(limit), False)
+        rows = pagination.items
+        total = pagination.total
+    else:
+        rows = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr))
+        total = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr)).count()
+    print(total)
     #rows = EquipmentRepair.query.filter(text(wherestr)).order_by(text(orderbystr)).limit(int(limit)).offset(int(offset))
     #total = EquipmentRepair.query.filter(text(wherestr)).count()
-    rows = pagination.items
-    total = pagination.total
+
     if not rows:
         abort(400)
     data = [row.to_json() for row in rows]
