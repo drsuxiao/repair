@@ -28,6 +28,7 @@ class User(db.Model):
         }
         return json_user
 
+
 # 日期统一更为字符串类型保存，方便比较
 class EquipmentRepair(db.Model):
     __tablename__ = 'equipment_repair'

@@ -4,7 +4,7 @@ from app.models import User, Department, EquipmentBrand, EquipmentType, Equipmen
 from datetime import datetime
 import json
 from sqlalchemy import text
-
+from app.main.forms import EquipmentBrand
 
 @app.errorhandler(400)
 def not_found(error):

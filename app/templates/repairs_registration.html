@@ -1,54 +1,124 @@
 {% extends 'base_repairs.html' %}
 {% block title %}报修登记管理{% endblock %}
 {% block function %}
-    <button type="button" class="btn btn-primary btn-sm">报修登记</button>
-    <button type="button" class="btn btn-primary btn-sm">报修编辑</button>
-    <button type="button" class="btn btn-primary btn-sm">报修删除</button>
+    <button type="button" class="btn btn-primary btn-sm" id="registration_add">报修登记</button>
+    <button type="button" class="btn btn-primary btn-sm" id="registration_edit">报修编辑</button>
+    <button type="button" class="btn btn-primary btn-sm" id="registration_delete">报修删除</button>
 {% endblock %}
-<h3>报修登记管理</h3>
-{% if data %}
-   <table border="1">
-        <thead>
-        <tr>
-            <th class="th-left">报修日期</th>
-            <th class="th-left">报修科室</th>
-            <th class="th-left">报修人</th>
-            <th class="th-left">设备品牌</th>
-            <th class="th-left">设备类型</th>
-            <th class="th-left">设备编码</th>
-            <th class="th-left">设备故障</th>
-            <th class="th-left">维修公司</th>
-            <th class="th-left">维修人</th>
-            <th class="th-left">归还日期</th>
-            <th class="th-left">归还人</th>
-            <th class="th-left">送还科室日期</th>
-            <th class="th-left">送还人</th>
-            <th class="th-left">维修状态</th>
-        </tr>
-        </thead>
-        <tbody>
-{% for row in data %}
-<tr>
-    <td>{{ row.repair_date }}</td>
-    <td>{{ row.department.name }}</td>
-    <td>{{ row.repair_registrant }}</td>
-    <td>{{ row.equipment_brand.name }}</td>
-    <td>{{ row.equipment_type.name }}</td>
-    <td>{{ row.equipment_code }}</td>
-    <td>{{ row.equipment_fault.name }}</td>
-    <td>{{ row.repair_company.name }}</td>
-    <td>{{ row.repair_man }}</td>
-    <td>{{ row.repair_return_date }}</td>
-    <td>{{ row.repair_return_man }}</td>
-    <td>{{ row.equipment_return_date }}</td>
-    <td>{{ row.repair_return_man }}</td>
-    <td>{{ row.repair_status }}</td>
-</tr>
+{% block modal %}
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
+data-backdrop="false" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_registration_label">报修登记窗</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal">
+                    {{ form.hidden_tag() }}
+                    {% for field in form if field.widget.input_type !='hidden' %}
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{ field.label }}</label>
+                        <div class="col-md-5">{{ field|safe }}</div>
+                        <div class="col-md-4">
+                            {% if field.errors %}
+                                <ul class=errors>
+                                {% for error in field.errors %}
+                                  <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
 
-{% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+<div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
+data-backdrop="false" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_delete_label">删除数据确认提示窗</h4>
+            </div>
+            <div class="modal-body">
+                <p>确认要删除所勾选数据吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+<script>
+    $("#registration_add").click(function(){
+        $("#modal_registration").modal("show");
+    });
+    $("#registration_edit").click(function(){
+        $("#modal_registration").modal("show");
+    });
+    $("#registration_delete").click(function(){
+        $("#modal_delete").modal("show");
+    });
+</script>
+<script>
+     $("#repair_date").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            weekStart: 0,
+            //startDate:new Date(),
+            autoclose: true,
+            startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
+            todayBtn : true,
+            todayHighlight: true,
+            bootcssVer:3,	//显示向左向右的箭头
+            forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
+            initialDate: new Date(),	//初始化日期.默认new Date()当前日期
+            showMeridian: true, //是否显示上下午
+            keyboardNavigation: true, //方向键改变日期
+            language: 'zh-CN' //语言
+     });
+
+</script>
+<script>
+    function InitModalForm(){
+        var list = ['repair_date','repair_registrant','dept_code','brand_code','type_code','equipment_code','fault_code','com_code'];
+        $.each(list, function(i, val){
+            //清除文本框的值,包含隐藏input
+            item = $("#"+val);
+            if (item.is("input")){
+                item.val("1");
+            }
+            else{
+                //清除选择框的值
+                item.selectpicker("val","001");
+            }
+        })
+    };
+    $("#modal_registration").on('shown.bs.modal', function () {
+        //初始化界面
+        InitModalForm();
+    })
+</script>
+{% endblock %}
+
+
+
         <!--<a href="{{ url_for('create_repair') }}">报修登记</a>
         <!--<a href="{{ url_for('create_repair') }}">报修编辑</a>   <!-- 是否限制本人操作 -->
        <!-- <a href="{{ url_for('create_repair') }}">报修删除</a>   <!-- 是否限制本人操作 -->

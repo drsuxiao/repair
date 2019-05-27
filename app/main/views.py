@@ -1,9 +1,8 @@
 from flask import request, render_template
-
 from app import app
 from app.main import forms
 from app.models import EquipmentRepair, Department, EquipmentFault, EquipmentType, EquipmentBrand, RepairCompany
-
+from app.main.forms import RepairRegistrationForm, RepairConfirmForm, RepairReturnForm, EquipmentReturnForm, BaseDataSetForm
 
 @app.route('/', methods=['GET'])
 def index():
@@ -12,8 +11,8 @@ def index():
 
 @app.route('/repair/repairs_registration', methods=['GET', 'POST'])
 def repairs_registration():
-    data = EquipmentRepair.query.all()
-    return render_template('repairs_registration.html', data=data)
+    form = RepairRegistrationForm()
+    return render_template('repairs_registration.html', form=form)
 
 
 @app.route('/repair/repairs_confirmed', methods=['GET', 'POST'])
@@ -30,7 +29,7 @@ def repairs_return():
 
 @app.route('/repair/new', methods=['GET', 'POST'])
 def create_repair():
-    form = forms.EquipmentRepairForm()
+    form = forms.RepairRegistrationForm()
     if form.validate_on_submit():
         pass
     return render_template('repair_edit.html', form=form)

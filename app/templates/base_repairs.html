@@ -11,7 +11,7 @@
     <div id="pn_query" class="panel-collapse collapse in table-responsive">
         <table class="table table-condensed">
             <tr>
-                <td style=" white-space:nowrap"><label><input type="checkbox" id="cb_query_repair_date" >报修日期</label></td>
+                <td style=" white-space:nowrap"><label class="control-label"><input type="checkbox" id="cb_query_repair_date" >报修日期</label></td>
                 <td style=" white-space:nowrap">
                     <table><tr>
                         <td style=" white-space:nowrap"><input class="form-control input-sm" style="width: 120px" type="text" id="query_repair_date" placeholder="开始日期"></td>
@@ -90,7 +90,10 @@
 </div>
 <!-- 工具容器 -->
 <div id="toolbar">{% block function %}{% endblock %}</div>
+{% block modal %}{% endblock %}
 {% endblock %}
+
+
 
 {% block script %}
 <script>
