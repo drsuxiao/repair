@@ -1,5 +1,5 @@
-from flask import request, render_template
-from app import app
+from flask import request, render_template, redirect, url_for
+from app import app, db
 from app.main import forms
 from app.models import EquipmentRepair, Department, EquipmentFault, EquipmentType, EquipmentBrand, RepairCompany
 from app.main.forms import RepairRegistrationForm, RepairConfirmForm, RepairReturnForm, EquipmentReturnForm, BaseDataSetForm
@@ -12,6 +12,21 @@ def index():
 @app.route('/repair/repairs_registration', methods=['GET', 'POST'])
 def repairs_registration():
     form = RepairRegistrationForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            modal = EquipmentRepair()
+            modal.repair_date = form.repair_date.data
+            modal.repair_man = form.repair_registrant.data
+            modal.dept_code = form.dept_code.data
+            modal.brand_code = form.brand_code.data
+            modal.type_code = form.type_code.data
+            modal.equipment_code = form.equipment_code.data
+            modal.fault_code = form.fault_code.data
+            modal.com_code = form.com_code.data
+            modal.repair_status = 0
+            db.session.add(modal)
+            db.session.commit()
+            form = RepairRegistrationForm()
     return render_template('repairs_registration.html', form=form)
 
 

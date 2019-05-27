@@ -7,8 +7,9 @@
 {% endblock %}
 {% block modal %}
 <!-- 模态框（Modal） -->
-<div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
-data-backdrop="false" data-keyboard="false">
+<form method="post" action="{{url_for('repairs_registration')}}" class="form-horizontal" role="form" id="myForm">
+    <div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
+                data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,8 +22,8 @@ data-backdrop="false" data-keyboard="false">
                     {% for field in form if field.widget.input_type !='hidden' %}
                     <div class="form-group">
                         <label class="col-md-3 control-label">{{ field.label }}</label>
-                        <div class="col-md-5">{{ field|safe }}</div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">{{ field|safe }}</div>
+                        <div class="col-md-3">
                             {% if field.errors %}
                                 <ul class=errors>
                                 {% for error in field.errors %}
@@ -37,12 +38,12 @@ data-backdrop="false" data-keyboard="false">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">保存</button>
+                <button type="submit" class="btn btn-primary" id="registration_save">保存</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
+</form>
 <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
 data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
@@ -66,6 +67,7 @@ data-backdrop="false" data-keyboard="false">
 
 {% block script %}
 {{ super() }}
+<!-- 按钮事件 -->
 <script>
     $("#registration_add").click(function(){
         $("#modal_registration").modal("show");
@@ -76,7 +78,12 @@ data-backdrop="false" data-keyboard="false">
     $("#registration_delete").click(function(){
         $("#modal_delete").modal("show");
     });
+
+    $("#registration_save").click(function(){
+
+    });
 </script>
+<!-- 日期控件 -->
 <script>
      $("#repair_date").datetimepicker({
             format: 'yyyy-mm-dd hh:ii',
@@ -95,24 +102,29 @@ data-backdrop="false" data-keyboard="false">
      });
 
 </script>
+<!-- 模态框相关事件 -->
 <script>
-    function InitModalForm(){
+    function InitModalAddForm(){
         var list = ['repair_date','repair_registrant','dept_code','brand_code','type_code','equipment_code','fault_code','com_code'];
         $.each(list, function(i, val){
             //清除文本框的值,包含隐藏input
             item = $("#"+val);
             if (item.is("input")){
-                item.val("1");
+                item.val("");
             }
             else{
                 //清除选择框的值
-                item.selectpicker("val","001");
+                item.selectpicker("val","");
             }
         })
     };
     $("#modal_registration").on('shown.bs.modal', function () {
-        //初始化界面
-        InitModalForm();
+        //初始化新增界面
+        InitModalAddForm();
+    });
+    $("#modal_registration").on('hided.bs.modal', function () {
+        //清空新增界面
+        InitModalAddForm();
     })
 </script>
 {% endblock %}
