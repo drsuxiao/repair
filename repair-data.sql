@@ -1,9 +1,9 @@
 use repair;
 
 insert into department(id,code,name) values
-(4,'004','(厢竹)产科MICU'),
-(5,'005','(厢竹)产一科'),
-(6,'006','(厢竹)新生儿科重症组');
+(1,'001','(厢竹)产科MICU'),
+(2,'002','(厢竹)产一科'),
+(3,'003','(厢竹)新生儿科重症组');
 
 insert into equipment_brand(id,code,name) values
 (1,'001','联想'),

@@ -18,7 +18,7 @@
         action = 'edit';
         var row = $("#table_repairs").bootstrapTable('getSelections');
         if (row.length == 1){
-            if(row[0].repair_status == 0){
+            if(row[0].repair_status == 0 || row[0].repair_status == null){
                 $("#modal_registration").modal("show");
             }
             else{
@@ -30,7 +30,7 @@
         action = 'delete';
         var row = $("#table_repairs").bootstrapTable('getSelections');
         if (row.length == 1){
-            if(row[0].repair_status == 0){
+            if(row[0].repair_status == 0  || row[0].repair_status == null){
                 $("#modal_delete").modal("show");
             }
             else{

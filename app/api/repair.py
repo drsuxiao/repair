@@ -72,9 +72,9 @@ def update_equipment_repair(id):
     if dept_code is None or equipment_code is None or brand_code is None \
             or type_code is None or fault_code is None or com_code is None:
         abort(414)  # missing arguments
-    if EquipmentRepair.query.filter_by(equipment_code=equipment_code, fault_code=fault_code,
-                                       com_code=com_code).first() is not None:
-        abort(400)  # existing user
+    #if EquipmentRepair.query.filter_by(equipment_code=equipment_code, fault_code=fault_code,
+                                      # com_code=com_code).first() is not None:
+      #  abort(400)  # existing user
     row.repair_date = repair_date
     row.dept_code = dept_code
     row.repair_registrant = repair_registrant
@@ -210,6 +210,92 @@ def update_equipment_repair_un_confirm(id):
     row.repair_man = ''
     row.repair_confirm_date = ''
     row.repair_status = 0
+
+    db.session.commit()
+    return myreponse(row.to_json())
+
+
+@app.route('/repair/api/v1.0/equipment_repairs_return/onekey_return/<int:id>', methods=['POST'])
+def update_equipment_repair_onekey_return(id):
+    row = EquipmentRepair.query.filter_by(id=id).first()
+    if row is None:
+        abort(400)  # existing user
+
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+    #repair_date = data_dict.get('repair_date', datetime.now())
+    #repair_registrant = data_dict.get('repair_registrant')
+    repair_return_date = request.json.get('repair_return_date')
+    repair_return_man = request.json.get('repair_return_man')
+    equipment_return_date = request.json.get('equipment_return_date')
+    equipment_return_man = request.json.get('equipment_return_man')
+    repair_status = 3
+    if repair_return_date is None or repair_return_man is None or equipment_return_date is None \
+            or equipment_return_man is None:
+        abort(414)  # missing arguments
+
+    row.repair_return_date = repair_return_date
+    row.repair_return_man = repair_return_man
+    row.equipment_return_date = equipment_return_date
+    row.equipment_return_man = equipment_return_man
+    row.repair_status = repair_status
+
+    db.session.commit()
+    return myreponse(row.to_json())
+
+
+@app.route('/repair/api/v1.0/equipment_repairs_return/repair_return/<int:id>', methods=['POST'])
+def update_equipment_repair_repair_return(id):
+    row = EquipmentRepair.query.filter_by(id=id).first()
+    if row is None:
+        abort(400)  # existing user
+
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+
+    repair_return_date = request.json.get('repair_return_date')
+    repair_return_man = request.json.get('repair_return_man')
+    # equipment_return_date = request.json.get('equipment_return_date')
+    # equipment_return_man = request.json.get('equipment_return_man')
+    repair_status = 2
+    if repair_return_date is None or repair_return_man is None:
+        abort(414)  # missing arguments
+
+    row.repair_return_date = repair_return_date
+    row.repair_return_man = repair_return_man
+    # row.equipment_return_date = equipment_return_date
+    # row.equipment_return_man = equipment_return_man
+    row.repair_status = repair_status
+
+    db.session.commit()
+    return myreponse(row.to_json())
+
+
+@app.route('/repair/api/v1.0/equipment_repairs_return/equipment_return/<int:id>', methods=['POST'])
+def update_equipment_repair_equipment_return(id):
+    row = EquipmentRepair.query.filter_by(id=id).first()
+    if row is None:
+        abort(400)  # existing user
+
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+
+    # repair_return_date = request.json.get('repair_return_date')
+    # repair_return_man = request.json.get('repair_return_man')
+    equipment_return_date = request.json.get('equipment_return_date')
+    equipment_return_man = request.json.get('equipment_return_man')
+    repair_status = 2
+    if equipment_return_date is None or equipment_return_man is None:
+        abort(414)  # missing arguments
+
+    # row.repair_return_date = repair_return_date
+    # row.repair_return_man = repair_return_man
+    row.equipment_return_date = equipment_return_date
+    row.equipment_return_man = equipment_return_man
+    row.repair_status = repair_status
 
     db.session.commit()
     return myreponse(row.to_json())
