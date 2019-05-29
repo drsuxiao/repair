@@ -55,7 +55,7 @@ data-backdrop="false" data-keyboard="false">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">确定</button>
+                <button type="button" class="btn btn-primary" id="delete_confirm">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -67,19 +67,30 @@ data-backdrop="false" data-keyboard="false">
 {{ super() }}
 <!-- 按钮事件 -->
 <script type="text/javascript">
-    //var action = '';  \\保存操作状态
-    //var cur_key = '';  \\当前选中的主键值
     $("#registration_add").click(function(){
         action = 'add';
         $("#modal_registration").modal("show");
     });
     $("#registration_edit").click(function(){
         action = 'edit';
-        $("#modal_registration").modal("show");
+        var row = $("#table_repairs").bootstrapTable('getSelections');
+        if (row.length == 1){
+            $("#modal_registration").modal("show");
+        };
     });
     $("#registration_delete").click(function(){
         action = 'delete';
-        $("#modal_delete").modal("show");
+        var row = $("#table_repairs").bootstrapTable('getSelections');
+        if (row.length == 1){
+            $("#modal_delete").modal("show");
+        };
+    });
+    $("#delete_confirm").click(function(){
+         if (action == 'delete'){
+             url = '/repair/api/v1.0/equipment_repairs/delete/' + cur_key
+             ajax_post_data(url, {});
+             $("#modal_delete").modal("hide");
+         }
     });
     //新增，编辑根据post的url来区别
     $("#registration_save").click(function(e) {
@@ -91,9 +102,7 @@ data-backdrop="false" data-keyboard="false">
                 url = '/repair/api/v1.0/equipment_repairs/add';
             } else if (action == 'edit'){
                 url = '/repair/api/v1.0/equipment_repairs/edit/' + cur_key
-            } else if (action == 'delete'){
-                url = '/repair/api/v1.0/equipment_repairs/delete/' + cur_key
-            } else{url = ''};
+            }else{url = ''};
             ajax_post_data(url, get_json_data());
         }
     });
