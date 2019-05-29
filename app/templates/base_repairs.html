@@ -76,8 +76,8 @@
                 <td style=" white-space:nowrap"><select class="selectpicker form-control input-sm" id="query_fault_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap"></td>
                 <td style=" white-space:nowrap">
-                    <button class="btn btn-primary btn-sm" id="query">查询</button>
-                    <button class="btn btn-primary btn-sm" id="reset">重置</button>
+                    <button class="btn btn-primary btn-sm" id="query_search">查询</button>
+                    <button class="btn btn-primary btn-sm" id="query_reset">重置</button>
                 </td>
             </tr>
         </table>
@@ -178,7 +178,7 @@ $(function(){
         $("#" + item.end).datetimepicker("setStartDate",$("#" + item.start).val())});
     });
     //查询按钮绑定事件
-    $("#query").click(function(){
+    $("#query_search").click(function(){
         var temp = {};
         $('input:checkbox:checked').each(function(i,val){
             input_id = val.id.substr(3);  //'cb_query_repair_date'
@@ -199,14 +199,14 @@ $(function(){
         $("#query_list").val(JSON.stringify(temp)); //赋值给隐藏控件
         $("#table_repairs").bootstrapTable("refresh");
     });
-    //重置按钮绑定事件
-    $("#reset").click(function(){
+    //重置按钮绑定事件  导致表格内容列的勾选框也去掉, 限定id=pn_query的div内重置
+    $("#query_reset").click(function(){
         //取消全选
-        $("input[type='checkbox']").removeAttr("checked");
+        $("#pn_query input[type='checkbox']").removeAttr("checked");
         //清除文本框的值,包含隐藏input
-        $("input").val("");
+        $("#pn_query input").val("");
         //清除选择框的值
-        $('.selectpicker').selectpicker("val","");
+        $('#pn_query .selectpicker').selectpicker("val","");
     });
 });
 </script>

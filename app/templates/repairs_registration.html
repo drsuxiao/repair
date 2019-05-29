@@ -7,17 +7,17 @@
 {% endblock %}
 {% block modal %}
 <!-- 模态框（Modal） -->
-<form method="post" action="{{url_for('repairs_registration')}}" class="form-horizontal" role="form" id="myForm">
+
     <div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
                 data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
+        <form class="form-horizontal" role="form"  id="form_registration" method="post"  onsubmit="return false">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="modal_registration_label">报修登记窗</h4>
             </div>
             <div class="modal-body">
-                <form role="form" class="form-horizontal">
                     {{ form.hidden_tag() }}
                     {% for field in form if field.widget.input_type !='hidden' %}
                     <div class="form-group">
@@ -34,16 +34,15 @@
                         </div>
                     </div>
                     {% endfor %}
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button type="submit" class="btn btn-primary" id="registration_save">保存</button>
             </div>
         </div><!-- /.modal-content -->
+        </form>
     </div><!-- /.modal -->
 </div>
-</form>
 <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
 data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
@@ -68,7 +67,7 @@ data-backdrop="false" data-keyboard="false">
 {% block script %}
 {{ super() }}
 <!-- 按钮事件 -->
-<script>
+<script type="text/javascript">
     $("#registration_add").click(function(){
         $("#modal_registration").modal("show");
     });
@@ -78,10 +77,38 @@ data-backdrop="false" data-keyboard="false">
     $("#registration_delete").click(function(){
         $("#modal_delete").modal("show");
     });
-
-    $("#registration_save").click(function(){
-
+    $("#registration_save").click(function(e) {
+        if ($("#repair_date").val() && $("#dept_code").val()  && $("#repair_registrant").val()  && $("#repair_registrant").val()
+                && $("#type_code").val()  && $("#equipment_code").val()  && $("#fault_code").val()  && $("#com_code").val()){
+            e.preventDefault();
+            alert($("form").serialize());
+            $.ajax({
+				type: "POST",
+				dataType: "json",
+				url:"/repair/api/v1.0/equipment_repairs",
+				data: get_json_data(),
+                timeout:30000,
+				error: function(request) {
+					alert("Connection error:"+request.error);
+				},
+				success: function(data) {
+					alert("SUCCESS!");
+					$("#modal_registration").modal("hide");     //隐藏模态框
+					$("#form_registration")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
+                    $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+				}
+			})
+        }
     });
+    function get_json_data(){
+        var d = {};
+    var t = $('form').serializeArray();
+    $.each(t, function() {
+      d[this.name] = this.value;
+    });
+    alert(JSON.stringify(d));
+        return d;
+    }
 </script>
 <!-- 日期控件 -->
 <script>
@@ -122,10 +149,7 @@ data-backdrop="false" data-keyboard="false">
         //初始化新增界面
         InitModalAddForm();
     });
-    $("#modal_registration").on('hided.bs.modal', function () {
-        //清空新增界面
-        InitModalAddForm();
-    })
+
 </script>
 {% endblock %}
 

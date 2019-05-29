@@ -25,7 +25,7 @@ class RepairRegistrationForm(FlaskForm):
                              render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备品牌
     type_code = SelectField('设备类型', validators=[DataRequired()], coerce=str,
                             render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备类型
-    equipment_code = StringField('设备编号', validators=[DataRequired()],
+    equipment_code = StringField('设备编号', validators=[Length(min=8, max=10), DataRequired()],
                                  render_kw={'class': "form-control", "style": "width: 200px"})  # 设备编号
     fault_code = SelectField('设备故障', validators=[DataRequired()], coerce=str,
                              render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备故障

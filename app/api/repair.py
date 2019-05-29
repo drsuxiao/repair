@@ -13,21 +13,24 @@ def not_found(error):
 
 @app.route('/repair/api/v1.0/equipment_repairs', methods=['POST'])
 def new_equipment_repair():
-    repair_date = request.json.get('repair_date', datetime.now().strftime("%Y-%m-%d %H:%M"))
-    dept_code = request.json.get('dept_code')
-    repair_registrant = request.json.get('repair_registrant')
-    brand_code = request.json.get('brand_code')
-    type_code = request.json.get('type_code')
-    equipment_code = request.json.get('equipment_code')
-    fault_code = request.json.get('fault_code')
-    com_code = request.json.get('com_code')
-    repair_man = request.json.get('repair_man')
-    repair_confirm_date = request.json.get('repair_confirm_date')
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+    repair_date = data_dict.get('repair_date', datetime.now().strftime("%Y-%m-%d %H:%M"))
+    dept_code = data_dict.get('dept_code')
+    repair_registrant = data_dict.get('repair_registrant')
+    brand_code = data_dict.get('brand_code')
+    type_code = data_dict.get('type_code')
+    equipment_code = data_dict.get('equipment_code')
+    fault_code = data_dict.get('fault_code')
+    com_code = data_dict.get('com_code')
+    # repair_man = data_dict.get('repair_man')
+    # repair_confirm_date = data_dict.get('repair_confirm_date')
     # repair_return_date = request.json.get('repair_return_date')
     # repair_return_man = request.json.get('repair_return_man')
     # equipment_return_date = request.json.get('equipment_return_date')
     # equipment_return_man = request.json.get('equipment_return_man')
-    repair_status = request.json.get('repair_status', 0)
+    repair_status = 0
     if dept_code is None or equipment_code is None or brand_code is None \
             or type_code is None or fault_code is None or com_code is None:
         abort(414)  # missing arguments
@@ -36,8 +39,7 @@ def new_equipment_repair():
         abort(400)  # existing user
     row = EquipmentRepair(repair_date=repair_date, dept_code=dept_code, repair_registrant=repair_registrant,
                           brand_code=brand_code, type_code=type_code, equipment_code=equipment_code,
-                          fault_code=fault_code, com_code=com_code, repair_man=repair_man,
-                          repair_confirm_date=repair_confirm_date, repair_status=repair_status)
+                          fault_code=fault_code, com_code=com_code, repair_status=repair_status)
     db.session.add(row)
     db.session.commit()
     return myreponse(row.to_json())
