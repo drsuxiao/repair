@@ -22,7 +22,7 @@
              else{
                 alert('请选择维修状态为“已确认”的报修单进行操作！');
              }
-        }else{ alert('您勾选2条或2条以上记录，每次只能处理一条记录！');}
+        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
     });
     $("#return_repair").click(function(){
         action = 'return_repair';
@@ -34,7 +34,7 @@
              else{
                 alert('请选择维修状态为“已确认”的报修单进行操作！');
              }
-        }else{ alert('您勾选2条或2条以上记录，每次只能处理一条记录！');}
+        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
     });
     $("#return_equipment").click(function(){
         action = 'return_equipment';
@@ -47,7 +47,7 @@
                 alert('请选择维修状态为“维修中”的报修单进行操作！');
              }
 
-        }else{ alert('您勾选2条或2条以上记录，每次只能处理一条记录！');}
+        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
     });
     //新增，编辑根据post的url来区别
     $("#modal_save").click(function(e) {
