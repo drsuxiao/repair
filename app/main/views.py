@@ -43,8 +43,8 @@ def repairs_confirmed():
 def repairs_return():
     form = OneKeyReturnForm()
     if request.method == 'POST':
-        if form.validate_on_submit():
-            pass
+        #if form.validate_on_submit():
+        pass
     return render_template('repairs_return.html', form=form, modal_id="modal_return", modal_title="设备归还确认窗")
 
 

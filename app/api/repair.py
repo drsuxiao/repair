@@ -224,17 +224,18 @@ def update_equipment_repair_onekey_return(id):
     data = request.form
     data_dict = data.to_dict()
     print(data_dict)
-    #repair_date = data_dict.get('repair_date', datetime.now())
-    #repair_registrant = data_dict.get('repair_registrant')
-    repair_return_date = request.json.get('repair_return_date')
-    repair_return_man = request.json.get('repair_return_man')
-    equipment_return_date = request.json.get('equipment_return_date')
-    equipment_return_man = request.json.get('equipment_return_man')
+    repair_return_date = data_dict.get('repair_return_date')
+    repair_return_man = data_dict.get('repair_return_man')
+    equipment_return_date = data_dict.get('equipment_return_date')
+    equipment_return_man = data_dict.get('equipment_return_man')
     repair_status = 3
     if repair_return_date is None or repair_return_man is None or equipment_return_date is None \
             or equipment_return_man is None:
         abort(414)  # missing arguments
-
+    print(repair_return_date)
+    print(repair_return_man)
+    print(equipment_return_date)
+    print(equipment_return_man)
     row.repair_return_date = repair_return_date
     row.repair_return_man = repair_return_man
     row.equipment_return_date = equipment_return_date
@@ -255,18 +256,14 @@ def update_equipment_repair_repair_return(id):
     data_dict = data.to_dict()
     print(data_dict)
 
-    repair_return_date = request.json.get('repair_return_date')
-    repair_return_man = request.json.get('repair_return_man')
-    # equipment_return_date = request.json.get('equipment_return_date')
-    # equipment_return_man = request.json.get('equipment_return_man')
-    repair_status = 2
+    repair_return_date = data_dict.get('repair_return_date')
+    repair_return_man = data_dict.get('repair_return_man')
+    repair_status = 20
     if repair_return_date is None or repair_return_man is None:
         abort(414)  # missing arguments
 
     row.repair_return_date = repair_return_date
     row.repair_return_man = repair_return_man
-    # row.equipment_return_date = equipment_return_date
-    # row.equipment_return_man = equipment_return_man
     row.repair_status = repair_status
 
     db.session.commit()
@@ -283,16 +280,12 @@ def update_equipment_repair_equipment_return(id):
     data_dict = data.to_dict()
     print(data_dict)
 
-    # repair_return_date = request.json.get('repair_return_date')
-    # repair_return_man = request.json.get('repair_return_man')
-    equipment_return_date = request.json.get('equipment_return_date')
-    equipment_return_man = request.json.get('equipment_return_man')
-    repair_status = 2
+    equipment_return_date = data_dict.get('equipment_return_date')
+    equipment_return_man = data_dict.get('equipment_return_man')
+    repair_status = 3
     if equipment_return_date is None or equipment_return_man is None:
         abort(414)  # missing arguments
 
-    # row.repair_return_date = repair_return_date
-    # row.repair_return_man = repair_return_man
     row.equipment_return_date = equipment_return_date
     row.equipment_return_man = equipment_return_man
     row.repair_status = repair_status

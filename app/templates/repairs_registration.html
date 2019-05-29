@@ -8,6 +8,9 @@
 
 {% block script %}
 {{ super() }}
+<script>
+    initTable();
+</script>
 <!-- 按钮事件 -->
 <script type="text/javascript">
     $("#registration_add").click(function(){
@@ -21,10 +24,10 @@
             if(row[0].repair_status == 0 || row[0].repair_status == null){
                 $("#modal_registration").modal("show");
             }
-            else{
-                alert("报修单已经确认，不能修改！！！");
-            };
-        };
+             else{
+                alert('请选择维修状态为“未确认”的报修单进行操作！');
+             }
+        }else{ alert('您勾选2条或2条以上记录，每次只能处理一条记录！');}
     });
     $("#registration_delete").click(function(){
         action = 'delete';
@@ -33,10 +36,10 @@
             if(row[0].repair_status == 0  || row[0].repair_status == null){
                 $("#modal_delete").modal("show");
             }
-            else{
-                alert("报修单已经确认，不能删除！！！");
-            };
-        };
+             else{
+                alert('请选择维修状态为“未确认”的报修单进行操作！');
+             }
+        }else{ alert('您勾选2条或2条以上记录，每次只能处理一条记录！');}
     });
     $("#delete_confirm").click(function(){
          if (action == 'delete'){

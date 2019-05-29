@@ -78,7 +78,7 @@ class EquipmentRepair(db.Model):
             'repair_return_date': self.repair_return_date,
             'repair_return_man': self.repair_return_man,
             'equipment_return_date': self.equipment_return_date,
-            'equipment_return_man': self.repair_return_man,
+            'equipment_return_man': self.equipment_return_man,
             'repair_status': self.repair_status
         }
         return json_equipment_repair
