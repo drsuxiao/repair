@@ -7,8 +7,7 @@
 {% endblock %}
 {% block modal %}
 <!-- 模态框（Modal） -->
-
-    <div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
+<div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
                 data-backdrop="false" data-keyboard="false">
     <div class="modal-dialog">
         <form class="form-horizontal" role="form"  id="form_registration" method="post"  onsubmit="return false">
@@ -68,26 +67,54 @@ data-backdrop="false" data-keyboard="false">
 {{ super() }}
 <!-- 按钮事件 -->
 <script type="text/javascript">
+    //var action = '';  \\保存操作状态
+    //var cur_key = '';  \\当前选中的主键值
     $("#registration_add").click(function(){
+        action = 'add';
         $("#modal_registration").modal("show");
     });
     $("#registration_edit").click(function(){
+        action = 'edit';
         $("#modal_registration").modal("show");
     });
     $("#registration_delete").click(function(){
+        action = 'delete';
         $("#modal_delete").modal("show");
     });
+    //新增，编辑根据post的url来区别
     $("#registration_save").click(function(e) {
         if ($("#repair_date").val() && $("#dept_code").val()  && $("#repair_registrant").val()  && $("#repair_registrant").val()
                 && $("#type_code").val()  && $("#equipment_code").val()  && $("#fault_code").val()  && $("#com_code").val()){
             e.preventDefault();
-            alert($("form").serialize());
-            $.ajax({
+            //alert($("form").serialize());
+            if (action == 'add'){
+                url = '/repair/api/v1.0/equipment_repairs/add';
+            } else if (action == 'edit'){
+                url = '/repair/api/v1.0/equipment_repairs/edit/' + cur_key
+            } else if (action == 'delete'){
+                url = '/repair/api/v1.0/equipment_repairs/delete/' + cur_key
+            } else{url = ''};
+            ajax_post_data(url, get_json_data());
+        }
+    });
+    //将提交的表单数值序列化为JSON对象
+    function get_json_data(){
+        var d = {};
+    var t = $('form').serializeArray();
+    $.each(t, function() {
+      d[this.name] = this.value;
+    });
+    //alert(JSON.stringify(d));
+        return d;
+    };
+    //提交表单数据到服务器
+    function ajax_post_data(url, data){
+         $.ajax({
 				type: "POST",
 				dataType: "json",
-				url:"/repair/api/v1.0/equipment_repairs",
-				data: get_json_data(),
-                timeout:30000,
+				url: url,
+				data: data,  //json对象，非json字符串
+				timeout:30000,
 				error: function(request) {
 					alert("Connection error:"+request.error);
 				},
@@ -98,17 +125,7 @@ data-backdrop="false" data-keyboard="false">
                     $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
 				}
 			})
-        }
-    });
-    function get_json_data(){
-        var d = {};
-    var t = $('form').serializeArray();
-    $.each(t, function() {
-      d[this.name] = this.value;
-    });
-    alert(JSON.stringify(d));
-        return d;
-    }
+    };
 </script>
 <!-- 日期控件 -->
 <script>
@@ -132,19 +149,41 @@ data-backdrop="false" data-keyboard="false">
 <!-- 模态框相关事件 -->
 <script>
     function InitModalAddForm(){
-        var list = ['repair_date','repair_registrant','dept_code','brand_code','type_code','equipment_code','fault_code','com_code'];
-        $.each(list, function(i, val){
+        if (action == 'add'){
             //清除文本框的值,包含隐藏input
-            item = $("#"+val);
-            if (item.is("input")){
-                item.val("");
-            }
-            else{
-                //清除选择框的值
-                item.selectpicker("val","");
-            }
-        })
+            $("#modal_registration input").val("");
+            //清除选择框的值
+            $('#modal_registration .selectpicker').selectpicker("val","");
+        }
+        else if (action == 'edit'){
+            var row = $("#table_repairs").bootstrapTable('getSelections');
+            alert(JSON.stringify(row[0]));
+            if (row.length == 1){
+                var edit_date = row[0];
+                $("#modal_registration input").each(function(item){
+                    $(this).val(edit_date[$(this).attr("id")]);
+                });
+                $('#modal_registration .selectpicker').each(function(item){
+                    $(this).selectpicker("val",edit_date[$(this).attr("id")]);
+                });
+            };
+            /*
+            var list = ['repair_date','repair_registrant','dept_code','brand_code','type_code','equipment_code','fault_code','com_code'];
+            $.each(list, function(i, val){
+                //清除文本框的值,包含隐藏input
+                item = $("#"+val);
+                if (item.is("input")){
+                    item.val(edit_date[val]);
+                }
+                else{
+                    //清除选择框的值
+                    item.selectpicker("val",edit_date[val]);
+                };
+            });
+            */
+        };
     };
+
     $("#modal_registration").on('shown.bs.modal', function () {
         //初始化新增界面
         InitModalAddForm();

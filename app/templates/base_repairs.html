@@ -211,6 +211,8 @@ $(function(){
 });
 </script>
 <script>
+    var action = '';  //保存操作状态
+    var cur_key = '';  //当前选中的主键值
 //表格初始化
 initTable();
 //表格初始化
@@ -300,7 +302,7 @@ EditViewById(id);
 return false;
 },
 onCheck: function(row,$element){
-index = $element.data('index');
+    cur_key = row.id;
 },
 columns: [
 {
