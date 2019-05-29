@@ -62,6 +62,7 @@ def update_equipment_repair(id):
     equipment_code = data_dict.get('equipment_code')
     fault_code = data_dict.get('fault_code')
     com_code = data_dict.get('com_code')
+
     # repair_man = request.json.get('repair_man')
     # repair_return_date = request.json.get('repair_return_date')
     # repair_return_man = request.json.get('repair_return_man')
@@ -82,8 +83,9 @@ def update_equipment_repair(id):
     row.equipment_code = equipment_code
     row.fault_code = fault_code
     row.com_code = com_code
+    row.repair_status = repair_status
+
     # row.repair_man = repair_man
-    # row.repair_status = repair_status
     # row.repair_return_date = repair_return_date
     # row.repair_return_man = repair_return_man
     # row.equipment_return_date = equipment_return_date
@@ -150,6 +152,65 @@ def delete_equipment_repair(id):
         abort(404)  # existing user
 
     db.session.delete(row)
+    db.session.commit()
+    return myreponse(row.to_json())
+
+
+@app.route('/repair/api/v1.0/equipment_repairs_confirm/confirm/<int:id>', methods=['POST'])
+def update_equipment_repair_confirm(id):
+    row = EquipmentRepair.query.filter_by(id=id).first()
+    if row is None:
+        abort(400)  # existing user
+
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+    #repair_date = data_dict.get('repair_date', datetime.now())
+    #repair_registrant = data_dict.get('repair_registrant')
+    dept_code = data_dict.get('dept_code')
+    brand_code = data_dict.get('brand_code')
+    type_code = data_dict.get('type_code')
+    equipment_code = data_dict.get('equipment_code')
+    fault_code = data_dict.get('fault_code')
+    com_code = data_dict.get('com_code')
+    repair_man = data_dict.get('repair_man')
+    repair_confirm_date = data_dict.get('repair_confirm_date')
+    repair_status = 1
+    if dept_code is None or equipment_code is None or brand_code is None \
+            or type_code is None or fault_code is None or com_code is None:
+        abort(414)  # missing arguments
+    #if EquipmentRepair.query.filter_by(equipment_code=equipment_code, fault_code=fault_code,
+                                      # com_code=com_code).first() is not None:
+        #abort(400)  # existing user
+    #row.repair_date = repair_date
+    #row.repair_registrant = repair_registrant
+    row.dept_code = dept_code
+    row.brand_code = brand_code
+    row.type_code = type_code
+    row.equipment_code = equipment_code
+    row.fault_code = fault_code
+    row.com_code = com_code
+    row.repair_man = repair_man
+    row.repair_confirm_date = repair_confirm_date
+    row.repair_status = repair_status
+    # row.repair_return_date = repair_return_date
+    # row.repair_return_man = repair_return_man
+    # row.equipment_return_date = equipment_return_date
+    # row.equipment_return_man = equipment_return_man
+    db.session.commit()
+    return myreponse(row.to_json())
+
+
+@app.route('/repair/api/v1.0/equipment_repairs_confirm/un_confirm/<int:id>', methods=['POST'])
+def update_equipment_repair_un_confirm(id):
+    row = EquipmentRepair.query.filter_by(id=id).first()
+    if row is None:
+        abort(400)  # existing user
+
+    row.repair_man = ''
+    row.repair_confirm_date = ''
+    row.repair_status = 0
+
     db.session.commit()
     return myreponse(row.to_json())
 

@@ -5,63 +5,6 @@
     <button type="button" class="btn btn-primary btn-sm" id="registration_edit">报修编辑</button>
     <button type="button" class="btn btn-primary btn-sm" id="registration_delete">报修删除</button>
 {% endblock %}
-{% block modal %}
-<!-- 模态框（Modal） -->
-<div class="modal fade" id="modal_registration" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
-                data-backdrop="false" data-keyboard="false">
-    <div class="modal-dialog">
-        <form class="form-horizontal" role="form"  id="form_registration" method="post"  onsubmit="return false">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="modal_registration_label">报修登记窗</h4>
-            </div>
-            <div class="modal-body">
-                    {{ form.hidden_tag() }}
-                    {% for field in form if field.widget.input_type !='hidden' %}
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">{{ field.label }}</label>
-                        <div class="col-md-6">{{ field|safe }}</div>
-                        <div class="col-md-3">
-                            {% if field.errors %}
-                                <ul class=errors>
-                                {% for error in field.errors %}
-                                  <li>{{ error }}</li>
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </div>
-                    </div>
-                    {% endfor %}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-primary" id="registration_save">保存</button>
-            </div>
-        </div><!-- /.modal-content -->
-        </form>
-    </div><!-- /.modal -->
-</div>
-<div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
-data-backdrop="false" data-keyboard="false">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="modal_delete_label">删除数据确认提示窗</h4>
-            </div>
-            <div class="modal-body">
-                <p>确认要删除所勾选数据吗？</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" id="delete_confirm">确定</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-
-{% endblock %}
 
 {% block script %}
 {{ super() }}
@@ -75,14 +18,24 @@ data-backdrop="false" data-keyboard="false">
         action = 'edit';
         var row = $("#table_repairs").bootstrapTable('getSelections');
         if (row.length == 1){
-            $("#modal_registration").modal("show");
+            if(row[0].repair_status == 0){
+                $("#modal_registration").modal("show");
+            }
+            else{
+                alert("报修单已经确认，不能修改！！！");
+            };
         };
     });
     $("#registration_delete").click(function(){
         action = 'delete';
         var row = $("#table_repairs").bootstrapTable('getSelections');
         if (row.length == 1){
-            $("#modal_delete").modal("show");
+            if(row[0].repair_status == 0){
+                $("#modal_delete").modal("show");
+            }
+            else{
+                alert("报修单已经确认，不能删除！！！");
+            };
         };
     });
     $("#delete_confirm").click(function(){
@@ -90,10 +43,11 @@ data-backdrop="false" data-keyboard="false">
              url = '/repair/api/v1.0/equipment_repairs/delete/' + cur_key
              ajax_post_data(url, {});
              $("#modal_delete").modal("hide");
-         }
+             $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+         };
     });
     //新增，编辑根据post的url来区别
-    $("#registration_save").click(function(e) {
+    $("#modal_save").click(function(e) {
         if ($("#repair_date").val() && $("#dept_code").val()  && $("#repair_registrant").val()  && $("#repair_registrant").val()
                 && $("#type_code").val()  && $("#equipment_code").val()  && $("#fault_code").val()  && $("#com_code").val()){
             e.preventDefault();
@@ -101,59 +55,16 @@ data-backdrop="false" data-keyboard="false">
             if (action == 'add'){
                 url = '/repair/api/v1.0/equipment_repairs/add';
             } else if (action == 'edit'){
-                url = '/repair/api/v1.0/equipment_repairs/edit/' + cur_key
+                url = '/repair/api/v1.0/equipment_repairs/edit/' + cur_key;
             }else{url = ''};
             ajax_post_data(url, get_json_data());
+            //if ( flag == 1){
+                $("#modal_registration").modal("hide");     //隐藏模态框
+                $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+				//$("#form_registration")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
+            //};
         }
     });
-    //将提交的表单数值序列化为JSON对象
-    function get_json_data(){
-        var d = {};
-    var t = $('form').serializeArray();
-    $.each(t, function() {
-      d[this.name] = this.value;
-    });
-    //alert(JSON.stringify(d));
-        return d;
-    };
-    //提交表单数据到服务器
-    function ajax_post_data(url, data){
-         $.ajax({
-				type: "POST",
-				dataType: "json",
-				url: url,
-				data: data,  //json对象，非json字符串
-				timeout:30000,
-				error: function(request) {
-					alert("Connection error:"+request.error);
-				},
-				success: function(data) {
-					alert("SUCCESS!");
-					$("#modal_registration").modal("hide");     //隐藏模态框
-					$("#form_registration")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
-                    $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
-				}
-			})
-    };
-</script>
-<!-- 日期控件 -->
-<script>
-     $("#repair_date").datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
-            weekStart: 0,
-            //startDate:new Date(),
-            autoclose: true,
-            startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
-            todayBtn : true,
-            todayHighlight: true,
-            bootcssVer:3,	//显示向左向右的箭头
-            forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
-            initialDate: new Date(),	//初始化日期.默认new Date()当前日期
-            showMeridian: true, //是否显示上下午
-            keyboardNavigation: true, //方向键改变日期
-            language: 'zh-CN' //语言
-     });
-
 </script>
 <!-- 模态框相关事件 -->
 <script>
@@ -166,10 +77,10 @@ data-backdrop="false" data-keyboard="false">
         }
         else if (action == 'edit'){
             var row = $("#table_repairs").bootstrapTable('getSelections');
-            alert(JSON.stringify(row[0]));
+            //alert(JSON.stringify(row[0]));
             if (row.length == 1){
                 var edit_date = row[0];
-                $("#modal_registration input").each(function(item){
+                $("#modal_registration input").each(function(){
                     $(this).val(edit_date[$(this).attr("id")]);
                 });
                 $('#modal_registration .selectpicker').each(function(item){

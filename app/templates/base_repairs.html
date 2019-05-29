@@ -90,22 +90,96 @@
 </div>
 <!-- 工具容器 -->
 <div id="toolbar">{% block function %}{% endblock %}</div>
-{% block modal %}{% endblock %}
+{% block modal %}
+<!-- 删除确认窗 -->
+<div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
+data-backdrop="false" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_delete_label">删除数据确认提示窗</h4>
+            </div>
+            <div class="modal-body">
+                <p>确认要删除所勾选数据吗？</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary btn-sm" id="delete_confirm">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+<!-- 模态框 新增、编辑窗 -->
+<div class="modal fade" id="{{ modal_id }}" tabindex="-1" role="dialog" aria-labelledby="modal_registration_label" aria-hidden="true"
+                data-backdrop="false" data-keyboard="false">
+    <div class="modal-dialog">
+        <form class="form-horizontal" role="form"  id="{{ modal_id }}" method="post"  onsubmit="return false">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="modal_registration_label">{{ modal_title }}</h4>
+            </div>
+            <div class="modal-body">
+                    {{ form.hidden_tag() }}
+                    {% for field in form if field.widget.input_type !='hidden' %}
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">{{ field.label }}</label>
+                        <div class="col-md-6">{{ field|safe }}</div>
+                        <div class="col-md-3">
+                            {% if field.errors %}
+                                <ul class=errors>
+                                {% for error in field.errors %}
+                                  <li>{{ error }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary btn-sm" id="modal_save">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal -->
+</div>
 {% endblock %}
-
-
+{% endblock %}
 
 {% block script %}
 <script>
 $(function(){
-    $("#query_list").val("")
-
+    $('.modal').draggable();   //实现模态框拖移
+    $("#query_list").val("")  //保存查询条件字符串
+    //所有下拉控件的初始化
     $('.selectpicker').selectpicker({
         liveSearch:true,
         container: "body",
         liveSearch: true,
         width: 200,
         size: 5
+    });
+    //模态框 日期控件的初始化
+    var date_list = ['repair_date','repair_confirm_date','equipment_return_date','repair_return_date'];
+    $.each(date_list, function(i, item){
+        $("#" + item).datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            weekStart: 0,
+            //startDate:new Date(),
+            autoclose: true,
+            startView: 2,  	//打开时显示的视图。0-'hour' 1-'day' 2-'month' 3-'year' 4-'decade'
+            todayBtn : true,
+            todayHighlight: true,
+            bootcssVer:3,	//显示向左向右的箭头
+            forceParse: true,  	//当输入非格式化日期时，强制格式化。默认true
+            initialDate: new Date(),	//初始化日期.默认new Date()当前日期
+            showMeridian: true, //是否显示上下午
+            keyboardNavigation: true, //方向键改变日期
+            language: 'zh-CN' //语言
+        })
     });
 
     var select_list = [
@@ -213,6 +287,7 @@ $(function(){
 <script>
     var action = '';  //保存操作状态
     var cur_key = '';  //当前选中的主键值
+    var flag = 0;  //执行操作、提交是否成功
 //表格初始化
 initTable();
 //表格初始化
@@ -298,7 +373,6 @@ console.log("加载数据失败"+status);
 },
 onDblClickRow: function (row, $element) {
 var id = row.id;
-EditViewById(id);
 return false;
 },
 onCheck: function(row,$element){
@@ -445,5 +519,34 @@ function changeDateFormat(value) {
         return date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
     }
 };
+</script>
+<script>
+        //将提交的表单数值序列化为JSON对象
+    function get_json_data(){
+        var d = {};
+    var t = $('form').serializeArray();
+    $.each(t, function() {
+      d[this.name] = this.value;
+    });
+    //alert(JSON.stringify(d));
+        return d;
+    };
+    //提交表单数据到服务器
+    function ajax_post_data(url, data){
+         $.ajax({
+				type: "POST",
+				dataType: "json",
+				url: url,
+				data: data,  //json对象，非json字符串
+				timeout:30000,
+				error: function(request) {
+					alert("Connection error:"+request.error);
+				},
+				success: function(data) {
+					alert("SUCCESS!");
+
+				}
+		 })
+    };
 </script>
 {% endblock %}

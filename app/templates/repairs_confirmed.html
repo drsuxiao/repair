@@ -1,54 +1,77 @@
 {% extends 'base_repairs.html' %}
 {% block title %}维修确认管理{% endblock %}
 {% block function %}
-    <button type="button" class="btn btn-primary btn-sm">报修确认</button>
-    <button type="button" class="btn btn-primary btn-sm">取消确认</button>
+    <button type="button" class="btn btn-primary btn-sm" id="confirmed_ok">报修确认</button>
+    <button type="button" class="btn btn-primary btn-sm" id="confirmed_cancel">取消确认</button>
 {% endblock %}
-<h3>维修确认管理</h3>
-{% if data %}
-   <table border="1">
-        <thead>
-        <tr>
-            <th class="th-left">报修日期</th>
-            <th class="th-left">报修科室</th>
-            <th class="th-left">报修人</th>
-            <th class="th-left">设备品牌</th>
-            <th class="th-left">设备类型</th>
-            <th class="th-left">设备编码</th>
-            <th class="th-left">设备故障</th>
-            <th class="th-left">维修公司</th>
-            <th class="th-left">维修人</th>
-            <th class="th-left">归还日期</th>
-            <th class="th-left">归还人</th>
-            <th class="th-left">送还科室日期</th>
-            <th class="th-left">送还人</th>
-            <th class="th-left">维修状态</th>
-        </tr>
-        </thead>
-        <tbody>
-{% for row in data %}
-<tr>
-    <td>{{ row.repair_date }}</td>
-    <td>{{ row.department.name }}</td>
-    <td>{{ row.repair_registrant }}</td>
-    <td>{{ row.equipment_brand.name }}</td>
-    <td>{{ row.equipment_type.name }}</td>
-    <td>{{ row.equipment_code }}</td>
-    <td>{{ row.equipment_fault.name }}</td>
-    <td>{{ row.repair_company.name }}</td>
-    <td>{{ row.repair_man }}</td>
-    <td>{{ row.repair_return_date }}</td>
-    <td>{{ row.repair_return_man }}</td>
-    <td>{{ row.equipment_return_date }}</td>
-    <td>{{ row.repair_return_man }}</td>
-    <td>{{ row.repair_status }}</td>
-</tr>
 
-{% endfor %}
-        </tbody>
-    </table>
-{% endif %}
-<hr>
-        <a href="{{ url_for('create_repair') }}">报修确认</a>
-        <a href="{{ url_for('create_repair') }}">取消确认</a>   <!-- 是否限制本人操作 -->
-<hr>
+{% block script %}
+{{ super() }}
+<script type="text/javascript">
+    $("#confirmed_ok").click(function(){
+        action = 'confirm';
+        var row = $("#table_repairs").bootstrapTable('getSelections');
+        if (row.length == 1){
+            $("#modal_confirmed").modal("show");
+        };
+    });
+    $("#confirmed_cancel").click(function(){
+        action = 'un_confirm';
+        var row = $("#table_repairs").bootstrapTable('getSelections');
+        if (row.length == 1){
+             $("#modal_delete").modal("show");
+        };
+    });
+    $("#delete_confirm").click(function(){
+         if (action == 'un_confirm'){
+             url = '/repair/api/v1.0/equipment_repairs_confirm/un_confirm/' + cur_key;
+             ajax_post_data(url, {'repair_man':'','repair_confirm_date':''});
+             $("#modal_delete").modal("hide");
+             $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+         }
+    });
+    //新增，编辑根据post的url来区别
+    $("#modal_save").click(function(e) {
+        if ($("#dept_code").val() && $("#type_code").val() && $("#equipment_code").val() && $("#fault_code").val() && $("#com_code").val()
+                && $("#repair_man").val() && $("#repair_confirm_date").val()){
+            e.preventDefault();
+            //alert($("form").serialize());
+            if (action == 'confirm'){
+                url = '/repair/api/v1.0/equipment_repairs_confirm/confirm/' + cur_key;
+            } else if (action == 'un_confirm'){
+                url = '/repair/api/v1.0/equipment_repairs_confirm/un_confirm/' + cur_key;
+            }else{url = ''};
+            ajax_post_data(url, get_json_data());
+            //if ( flag == 1){
+                $("#modal_confirmed").modal("hide");     //隐藏模态框
+                $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+				//$("#modal_confirmed")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
+
+            //};
+        }
+    });
+</script>
+<!-- 模态框相关事件 -->
+<script>
+    function InitModalAddForm(){
+        if (action == 'confirm'){
+            var row = $("#table_repairs").bootstrapTable('getSelections');
+            //alert(JSON.stringify(row[0]));
+            if (row.length == 1){
+                var edit_date = row[0];
+                $("#modal_confirmed input").each(function(){
+                    $(this).val(edit_date[$(this).attr("id")]);
+                });
+                $('#modal_confirmed .selectpicker').each(function(item){
+                    $(this).selectpicker("val",edit_date[$(this).attr("id")]);
+                });
+            };
+        };
+    };
+
+    $("#modal_confirmed").on('shown.bs.modal', function () {
+        //初始化新增界面
+        InitModalAddForm();
+    });
+</script>
+{% endblock %}

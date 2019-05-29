@@ -2,7 +2,7 @@ from flask import request, render_template, redirect, url_for
 from app import app, db
 from app.main import forms
 from app.models import EquipmentRepair, Department, EquipmentFault, EquipmentType, EquipmentBrand, RepairCompany
-from app.main.forms import RepairRegistrationForm, RepairConfirmForm, RepairReturnForm, EquipmentReturnForm, BaseDataSetForm
+from app.main.forms import RepairRegistrationForm, RepairConfirmForm, RepairReturnForm, EquipmentReturnForm, BaseDataSetForm, OneKeyReturnForm
 
 @app.route('/', methods=['GET'])
 def index():
@@ -27,19 +27,25 @@ def repairs_registration():
             db.session.add(modal)
             db.session.commit()
             form = RepairRegistrationForm()
-    return render_template('repairs_registration.html', form=form)
+    return render_template('repairs_registration.html', form=form, modal_id="modal_registration", modal_title="报修登记窗")
 
 
 @app.route('/repair/repairs_confirmed', methods=['GET', 'POST'])
 def repairs_confirmed():
-    data = EquipmentRepair.query.all()
-    return render_template('repairs_confirmed.html', data=data)
+    form = RepairConfirmForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            pass
+    return render_template('repairs_confirmed.html', form=form, modal_id="modal_confirmed", modal_title="维修确认窗")
 
 
 @app.route('/repair/repairs_return', methods=['GET', 'POST'])
 def repairs_return():
-    data = EquipmentRepair.query.all()
-    return render_template('repairs_return.html', data=data)
+    form = OneKeyReturnForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            pass
+    return render_template('repairs_return.html', form=form, modal_id="modal_return", modal_title="设备归还确认窗")
 
 
 @app.route('/repair/new', methods=['GET', 'POST'])
