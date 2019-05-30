@@ -98,8 +98,8 @@ class Department(db.Model):
         """
         json_department = {
             'id': self.id,
-            'dept_code': self.code,
-            'dept_name': self.name
+            'code': self.code,
+            'name': self.name
         }
         return json_department
 
@@ -118,8 +118,8 @@ class EquipmentBrand(db.Model):
         """
         json_brand = {
             'id': self.id,
-            'brand_code': self.code,
-            'brand_name': self.name
+            'code': self.code,
+            'name': self.name
         }
         return json_brand
 
@@ -138,8 +138,8 @@ class EquipmentType(db.Model):
         """
         json_type = {
             'id': self.id,
-            'type_code': self.code,
-            'type_name': self.name
+            'code': self.code,
+            'name': self.name
         }
         return json_type
 
@@ -158,8 +158,8 @@ class EquipmentFault(db.Model):
         """
         json_fault = {
             'id': self.id,
-            'fault_code': self.code,
-            'fault_name': self.name
+            'code': self.code,
+            'name': self.name
         }
         return json_fault
 
@@ -178,8 +178,8 @@ class RepairCompany(db.Model):
         """
         json_com = {
             'id': self.id,
-            'com_code': self.code,
-            'com_name': self.name
+            'code': self.code,
+            'name': self.name
         }
         return json_com
 

@@ -80,7 +80,7 @@ var cur_key = '';  //当前选中的主键值
 //表格初始化
 //initTable();
 //表格初始化
-function initTable(url) {
+function initTable(url, titles) {
     // 删除表格定义   如缺少会导致显示内容列下拉选择无效
     $("#table_database").bootstrapTable('destroy');
     $("#table_database").bootstrapTable({
@@ -177,13 +177,13 @@ function initTable(url) {
                 sortable: true
             },{
                 field: 'code',
-                title: '编码',
+                title: titles[0],
                 align: 'left',
                 valign: 'middle',
                 sortable: true
             },{
                 field: 'name',
-                title: '名称',
+                title: titles[1],
                 align: 'left',
                 valign: 'middle',
                 sortable: true

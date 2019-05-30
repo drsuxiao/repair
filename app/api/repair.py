@@ -344,8 +344,8 @@ def update_user(user_id):
     return myreponse(user.to_json())
 
 
-def get_data_by_code(model, code):
-    row = model.query.filter_by(code=code).first()
+def get_data_by_id(model, id):
+    row = model.query.filter_by(id=id).first()
     if row is None:
         abort(400)
     return row.to_json()
@@ -360,24 +360,55 @@ def get_data_by_model(model):
     return data
 
 
-def update_data_by_code(model, code):
-    row = model.query.filter_by(code=code).first()
+def update_data_by_id(model, id):
+    row = model.query.filter_by(id=id).first()
     if row is None:
         abort(400)  # existing user
 
-    code = request.json.get('code')
-    name = request.json.get('name')
-    if code is None or name is None:
+    old_code = row.code
+
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+    new_code = data_dict.get('code')
+    name = data_dict.get('name')
+    if new_code is None or name is None:
         abort(414)  # missing arguments
-    row.code = code
+    #if model.query.filter_by(code=new_code).first():
+    #    abort(404)  # exist code
+
+    if old_code != new_code and EquipmentRepair.query.filter_by(dept_code=old_code).first():
+        flag = 1
+    else:
+        flag =0
+    if flag:
+        temp = model.query.filter(model.id != id).first()
+        if temp is None:
+            abort(400)
+
+        rows = EquipmentRepair.query.filter_by(dept_code=old_code).all()
+        for d in rows:
+            d.dept_code = temp.code
+            db.session.commit()
+
+    row.code = new_code
     row.name = name
     db.session.commit()
+
+    if flag:
+        rows = EquipmentRepair.query.filter_by(dept_code=temp.code).all()
+        for d in rows:
+            d.dept_code = new_code
+            db.session.commit()
     return row.to_json()
 
 
 def add_data_by_model(model):
-    code = request.json.get('code')
-    name = request.json.get('name')
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+    code = data_dict.get('code')
+    name = data_dict.get('name')
     if code is None or name is None:
         abort(414)  # missing arguments
     if model.query.filter_by(code=code).first() is not None:
@@ -388,8 +419,8 @@ def add_data_by_model(model):
     return row.to_json()
 
 
-def delete_data_by_code(model, code):
-    row = model.query.filter_by(code=code).first()
+def delete_data_by_id(model, id):
+    row = model.query.filter_by(id=id).first()
     if row is None:
         abort(400)  # existing user
 
@@ -402,9 +433,9 @@ def myreponse(data='success', total=0):
     return jsonify({'status': 201, 'total': total, 'rows': data, 'msg': ''})
 
 
-@app.route('/repair/api/v1.0/departments/<code>', methods=['GET'])
-def get_department(code):
-    return myreponse(get_data_by_code(Department, code))
+@app.route('/repair/api/v1.0/departments/<int:id>', methods=['GET'])
+def get_department(id):
+    return myreponse(get_data_by_id(Department, id))
 
 
 @app.route('/repair/api/v1.0/departments', methods=['GET'])
@@ -412,26 +443,27 @@ def get_departments():
     return myreponse(get_data_by_model(Department))
 
 
-@app.route('/repair/api/v1.0/departments/<code>', methods=['PUT'])
-def update_department(code):
-    return myreponse(update_data_by_code(Department, code))
+@app.route('/repair/api/v1.0/departments/edit/<int:id>', methods=['POST'])
+def update_department(id):
+    return myreponse(update_data_by_id(Department, id))
 
 
-@app.route('/repair/api/v1.0/departments', methods=['POST'])
+@app.route('/repair/api/v1.0/departments/add', methods=['POST'])
 def add_department():
     return myreponse(add_data_by_model(Department))
 
 
-@app.route('/repair/api/v1.0/departments/<code>', methods=['DELETE'])
-def delete_department(code):
-    if EquipmentRepair.query.filter_by(dept_code=code).first() is not None:
+@app.route('/repair/api/v1.0/departments/delete/<int:id>', methods=['POST'])
+def delete_department(id):
+    row = Department.query.filter_by(id=id).first()
+    if EquipmentRepair.query.filter_by(dept_code=row.code).first() is not None:
         abort(400)
-    return myreponse(delete_data_by_code(Department, code))
+    return myreponse(delete_data_by_id(Department, id))
 
 
-@app.route('/repair/api/v1.0/equipment_brands/<code>', methods=['GET'])
-def get_equipment_brand(code):
-    return myreponse(get_data_by_code(EquipmentBrand, code))
+@app.route('/repair/api/v1.0/equipment_brands/<int:id>', methods=['GET'])
+def get_equipment_brand(id):
+    return myreponse(get_data_by_id(EquipmentBrand, id))
 
 
 @app.route('/repair/api/v1.0/equipment_brands', methods=['GET'])
@@ -439,26 +471,27 @@ def get_equipment_brands():
     return myreponse(get_data_by_model(EquipmentBrand))
 
 
-@app.route('/repair/api/v1.0/equipment_brands/<code>', methods=['PUT'])
-def update_equipment_brand(code):
-    return myreponse(update_data_by_code(EquipmentBrand, code))
+@app.route('/repair/api/v1.0/equipment_brands/edit/<int:id>', methods=['POST'])
+def update_equipment_brand(id):
+    return myreponse(update_data_by_id(EquipmentBrand, id))
 
 
-@app.route('/repair/api/v1.0/equipment_brands', methods=['POST'])
+@app.route('/repair/api/v1.0/equipment_brands/add', methods=['POST'])
 def add_equipment_brand():
     return myreponse(add_data_by_model(EquipmentBrand))
 
 
-@app.route('/repair/api/v1.0/equipment_brands/<code>', methods=['DELETE'])
-def delete_equipment_brand(code):
-    if EquipmentRepair.query.filter_by(brand_code=code).first() is not None:
+@app.route('/repair/api/v1.0/equipment_brands/delete/<int:id>', methods=['POST'])
+def delete_equipment_brand(id):
+    row = EquipmentBrand.query.filter_by(id=id).first()
+    if EquipmentRepair.query.filter_by(brand_code=row.code).first() is not None:
         abort(400)
-    return myreponse(delete_data_by_code(EquipmentBrand, code))
+    return myreponse(delete_data_by_id(EquipmentBrand, id))
 
 
-@app.route('/repair/api/v1.0/equipment_types/<code>', methods=['GET'])
-def get_equipment_type(code):
-    return myreponse(get_data_by_code(EquipmentType, code))
+@app.route('/repair/api/v1.0/equipment_types/<int:id>', methods=['GET'])
+def get_equipment_type(id):
+    return myreponse(get_data_by_id(EquipmentType, id))
 
 
 @app.route('/repair/api/v1.0/equipment_types', methods=['GET'])
@@ -466,26 +499,27 @@ def get_equipment_types():
     return myreponse(get_data_by_model(EquipmentType))
 
 
-@app.route('/repair/api/v1.0/equipment_types/<code>', methods=['PUT'])
-def update_equipment_type(code):
-    return myreponse(update_data_by_code(EquipmentType, code))
+@app.route('/repair/api/v1.0/equipment_types/edit/<int:id>', methods=['POST'])
+def update_equipment_type(id):
+    return myreponse(update_data_by_id(EquipmentType, id))
 
 
-@app.route('/repair/api/v1.0/equipment_types', methods=['POST'])
+@app.route('/repair/api/v1.0/equipment_types/add', methods=['POST'])
 def add_equipment_type():
     return myreponse(add_data_by_model(EquipmentType))
 
 
-@app.route('/repair/api/v1.0/equipment_types/<code>', methods=['DELETE'])
-def delete_equipment_type(code):
-    if EquipmentRepair.query.filter_by(type_code=code).first() is not None:
+@app.route('/repair/api/v1.0/equipment_types/delete/<int:id>', methods=['POST'])
+def delete_equipment_type(id):
+    row = EquipmentType.query.filter_by(id=id).first()
+    if EquipmentRepair.query.filter_by(type_code=row.code).first() is not None:
         abort(400)
-    return myreponse(delete_data_by_code(EquipmentType, code))
+    return myreponse(delete_data_by_id(EquipmentType, id))
 
 
-@app.route('/repair/api/v1.0/equipment_faults/<code>', methods=['GET'])
-def get_equipment_fault(code):
-    return myreponse(get_data_by_code(EquipmentFault, code))
+@app.route('/repair/api/v1.0/equipment_faults/<int:id>', methods=['GET'])
+def get_equipment_fault(id):
+    return myreponse(get_data_by_id(EquipmentFault, id))
 
 
 @app.route('/repair/api/v1.0/equipment_faults', methods=['GET'])
@@ -493,26 +527,27 @@ def get_equipment_faults():
     return myreponse(get_data_by_model(EquipmentFault))
 
 
-@app.route('/repair/api/v1.0/equipment_faults/<code>', methods=['PUT'])
-def update_equipment_fault(code):
-    return myreponse(update_data_by_code(EquipmentFault, code))
+@app.route('/repair/api/v1.0/equipment_faults/edit/<int:id>', methods=['POST'])
+def update_equipment_fault(id):
+    return myreponse(update_data_by_id(EquipmentFault, id))
 
 
-@app.route('/repair/api/v1.0/equipment_faults', methods=['POST'])
+@app.route('/repair/api/v1.0/equipment_faults/add', methods=['POST'])
 def add_equipment_fault():
     return myreponse(add_data_by_model(EquipmentFault))
 
 
-@app.route('/repair/api/v1.0/equipment_faults/<code>', methods=['DELETE'])
-def delete_equipment_fault(code):
-    if EquipmentRepair.query.filter_by(fault_code=code).first() is not None:
+@app.route('/repair/api/v1.0/equipment_faults/delete/<int:id>', methods=['POST'])
+def delete_equipment_fault(id):
+    row = EquipmentFault.query.filter_by(id=id).first()
+    if EquipmentRepair.query.filter_by(fault_code=row.code).first() is not None:
         abort(400)
-    return myreponse(delete_data_by_code(EquipmentFault, code))
+    return myreponse(delete_data_by_id(EquipmentFault, id))
 
 
-@app.route('/repair/api/v1.0/repair_companys/<code>', methods=['GET'])
-def get_repair_company(code):
-    return myreponse(get_data_by_code(RepairCompany, code))
+@app.route('/repair/api/v1.0/repair_companys/<int:id>', methods=['GET'])
+def get_repair_company(id):
+    return myreponse(get_data_by_id(RepairCompany, id))
 
 
 @app.route('/repair/api/v1.0/repair_companys', methods=['GET'])
@@ -520,18 +555,19 @@ def get_repair_companys():
     return myreponse(get_data_by_model(RepairCompany))
 
 
-@app.route('/repair/api/v1.0/repair_companys/<code>', methods=['PUT'])
-def update_repair_company(code):
-    return myreponse(update_data_by_code(RepairCompany, code))
+@app.route('/repair/api/v1.0/repair_companys/edit/<int:id>', methods=['POST'])
+def update_repair_company(id):
+    return myreponse(update_data_by_id(RepairCompany, id))
 
 
-@app.route('/repair/api/v1.0/repair_companys', methods=['POST'])
+@app.route('/repair/api/v1.0/repair_companys/add', methods=['POST'])
 def add_repair_company():
     return myreponse(add_data_by_model(RepairCompany))
 
 
-@app.route('/repair/api/v1.0/repair_companys/<code>', methods=['DELETE'])
-def delete_repair_company(code):
-    if EquipmentRepair.query.filter_by(com_code=code).first() is not None:
+@app.route('/repair/api/v1.0/repair_companys/delete/<int:id>', methods=['POST'])
+def delete_repair_company(id):
+    row = RepairCompany.query.filter_by(id=id).first()
+    if EquipmentRepair.query.filter_by(com_code=row.code).first() is not None:
         abort(400)
-    return myreponse(delete_data_by_code(RepairCompany, code))
+    return myreponse(delete_data_by_id(RepairCompany, id))

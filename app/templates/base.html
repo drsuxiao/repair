@@ -67,13 +67,11 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">科室维护</a></li>
-                            <li><a href="#">设备品牌维护</a></li>
-                            <li><a href="#">设备类型维护</a></li>
-                            <li><a href="#">设备故障字典维护</a></li>
-                            <li><a href="#">维修公司维护</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">业务逻辑参数设置</a></li>
+                            <li><a href="{{ url_for('show_departments')}}">科室维护</a></li>
+                            <li><a href="{{ url_for('show_equipment_brands')}}">设备品牌维护</a></li>
+                            <li><a href="{{ url_for('show_equipment_types')}}">设备类型维护</a></li>
+                            <li><a href="{{ url_for('show_equipment_faults')}}">设备故障字典维护</a></li>
+                            <li><a href="{{ url_for('show_repair_companys')}}">维修公司维护</a></li>
                         </ul>
                     </li>
                 </ul>

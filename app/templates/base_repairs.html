@@ -59,7 +59,8 @@
                         <option></option>
                         <option value="0">未确认</option>
                         <option value="1">已确认</option>
-                        <option value="2">已完成</option>
+                        <option value="2">维修中</option>
+                        <option value="3">已完成</option>
                     </select></td>
             </tr>
             <tr>
@@ -183,11 +184,11 @@ $(function(){
     });
 
     var select_list = [
-        {"id":"query_dept_code", "url":"/repair/api/v1.0/departments", "valuefield":"dept_code", "textfield":"dept_name"},
-        {"id":"query_brand_code", "url":"/repair/api/v1.0/equipment_brands", "valuefield":"brand_code", "textfield":"brand_name"},
-        {"id":"query_type_code", "url":"/repair/api/v1.0/equipment_types", "valuefield":"type_code", "textfield":"type_name"},
-        {"id":"query_fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"fault_code", "textfield":"fault_name"},
-        {"id":"query_com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"com_code", "textfield":"com_name"}
+        {"id":"query_dept_code", "url":"/repair/api/v1.0/departments", "valuefield":"code", "textfield":"name"},
+        {"id":"query_brand_code", "url":"/repair/api/v1.0/equipment_brands", "valuefield":"code", "textfield":"name"},
+        {"id":"query_type_code", "url":"/repair/api/v1.0/equipment_types", "valuefield":"code", "textfield":"name"},
+        {"id":"query_fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"code", "textfield":"name"},
+        {"id":"query_com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"code", "textfield":"name"}
     ];
 
     function init(target, data, valuefield, textfield) {

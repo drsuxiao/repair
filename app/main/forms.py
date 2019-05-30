@@ -85,11 +85,11 @@ class OneKeyReturnForm(FlaskForm):
     repair_return_date = StringField('维修归还日期', validators=[DataRequired()],
                                      render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
     repair_return_man = StringField('维修归还人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还人
+                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 维修归还人
     equipment_return_date = StringField('归还科室日期', validators=[DataRequired()],
                                         render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
     equipment_return_man = StringField('归还科室人', validators=[DataRequired()],
-                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室人
+                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 设备归还科室人
 
 
 class EquipmentReturnForm(FlaskForm):
@@ -99,7 +99,7 @@ class EquipmentReturnForm(FlaskForm):
     equipment_return_date = StringField('归还科室日期', validators=[DataRequired()],
                                         render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
     equipment_return_man = StringField('归还科室人', validators=[DataRequired()],
-                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室人
+                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 设备归还科室人
 
 
 class RepairReturnForm(FlaskForm):
@@ -109,13 +109,13 @@ class RepairReturnForm(FlaskForm):
     repair_return_date = StringField('维修归还日期', validators=[DataRequired()],
                                      render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
     repair_return_man = StringField('维修归还人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还人
+                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 维修归还人
 
 
 class BaseDataSetForm(FlaskForm):
     code = StringField('编码', validators=[DataRequired(), Length(min=3, max=10)],
-                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})
+                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})
     name = StringField('名称', validators=[DataRequired()],
-                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})
+                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})
 
 
