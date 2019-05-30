@@ -549,11 +549,12 @@ function changeDateFormat(value) {
 				data: data,  //json对象，非json字符串
 				timeout:30000,
 				error: function(request) {
-					alert("Connection error:"+request.error);
+				    ShowFailure("数据保存失败！");
+					//alert("Connection error:"+request.error);
 				},
 				success: function(data) {
-					alert("SUCCESS!");
-
+				    ShowSuccess("数据保存成功！");
+					//alert("SUCCESS!");
 				}
 		 })
     };
