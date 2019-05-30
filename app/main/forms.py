@@ -16,21 +16,21 @@ class RepairRegistrationForm(FlaskForm):
     # SelectField 这里务必注意coerce选项的添加，否则提交时，下拉表单中的内容无法通过validate_on_submit的 验证
     # Text Field类型，文本输入框，必须输入是"年-月-日"格式的日期
     repair_date = StringField('报修日期', validators=[DataRequired()],
-                              render_kw={'class': "form-control", "style": "width: 200px"})
+                              render_kw={'class': "form-control input-sm", "style": "width: 200px"})
     dept_code = SelectField('报修科室', validators=[DataRequired()], coerce=str,
-                            render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 报修科室
+                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 报修科室
     repair_registrant = StringField('报修人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control", "style": "width: 200px"})  # 报修人
+                                    render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 报修人
     brand_code = SelectField('设备品牌', validators=[DataRequired()], coerce=str,
-                             render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备品牌
+                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备品牌
     type_code = SelectField('设备类型', validators=[DataRequired()], coerce=str,
-                            render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备类型
+                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备类型
     equipment_code = StringField('设备编号', validators=[Length(min=8, max=10), DataRequired()],
-                                 render_kw={'class': "form-control", "style": "width: 200px"})  # 设备编号
+                                 render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 设备编号
     fault_code = SelectField('设备故障', validators=[DataRequired()], coerce=str,
-                             render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备故障
+                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备故障
     com_code = SelectField('维修公司', validators=[DataRequired()], coerce=str,
-                           render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 维修公司
+                           render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修公司
 
 
     # 在构造化Form实例时指定selectField的choices内容,
@@ -53,21 +53,22 @@ class RepairConfirmForm(FlaskForm):
     # SelectField 这里务必注意coerce选项的添加，否则提交时，下拉表单中的内容无法通过validate_on_submit的 验证
     # Text Field类型，文本输入框，必须输入是"年-月-日"格式的日期
     dept_code = SelectField('报修科室', validators=[DataRequired()], coerce=str,
-                            render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 报修科室
+                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 报修科室
     brand_code = SelectField('设备品牌', validators=[DataRequired()], coerce=str,
-                             render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备品牌
+                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备品牌
     type_code = SelectField('设备类型', validators=[DataRequired()], coerce=str,
-                            render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备类型
+                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备类型
     equipment_code = StringField('设备编号', validators=[Length(min=8, max=10), DataRequired()],
-                                 render_kw={'class': "form-control", "style": "width: 200px"})  # 设备编号
+                                 render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 设备编号
     fault_code = SelectField('设备故障', validators=[DataRequired()], coerce=str,
-                             render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 设备故障
-    com_code = SelectField('维修公司', validators=[DataRequired()], coerce=str,
-                           render_kw={'class': "selectpicker form-control", "style": "width: 200px", "title": "请选择"})  # 维修公司
-    repair_man = StringField('维修人', validators=[DataRequired()],
-                                      render_kw={'class': "form-control", "style": "width: 200px"})  # 维修人
+                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备故障
     repair_confirm_date = StringField('维修确认日期',validators=[DataRequired()],
-                              render_kw={'class': "form-control", "style": "width: 200px"})  # 维修确认日期
+                              render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 维修确认日期
+    com_code = SelectField('维修公司', validators=[DataRequired()], coerce=str,
+                           render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px",
+                                      "title": "请选择"})  # 维修公司
+    repair_man = StringField('维修人', validators=[DataRequired()],
+                             render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 维修人
 
 
     # 在构造化Form实例时指定selectField的choices内容,
@@ -82,23 +83,23 @@ class RepairConfirmForm(FlaskForm):
 
 class OneKeyReturnForm(FlaskForm):
     repair_return_date = StringField('维修归还日期', validators=[DataRequired()],
-                                     render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
+                                     render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
     repair_return_man = StringField('维修归还人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 维修归还人
-    equipment_return_date = StringField('设备归还科室日期', validators=[DataRequired()],
-                                        render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
-    equipment_return_man = StringField('设备归还科室人', validators=[DataRequired()],
-                                       render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 设备归还科室人
+                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还人
+    equipment_return_date = StringField('归还科室日期', validators=[DataRequired()],
+                                        render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
+    equipment_return_man = StringField('归还科室人', validators=[DataRequired()],
+                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室人
 
 
 class EquipmentReturnForm(FlaskForm):
     """
     设备归还科室确认表单
     """
-    equipment_return_date = StringField('设备归还科室日期', validators=[DataRequired()],
-                                        render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
-    equipment_return_man = StringField('设备归还科室人', validators=[DataRequired()],
-                                       render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 设备归还科室人
+    equipment_return_date = StringField('归还科室日期', validators=[DataRequired()],
+                                        render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
+    equipment_return_man = StringField('归还科室人', validators=[DataRequired()],
+                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室人
 
 
 class RepairReturnForm(FlaskForm):
@@ -106,15 +107,15 @@ class RepairReturnForm(FlaskForm):
     维修归还确认表单
     """
     repair_return_date = StringField('维修归还日期', validators=[DataRequired()],
-                                     render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
+                                     render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
     repair_return_man = StringField('维修归还人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 维修归还人
+                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还人
 
 
 class BaseDataSetForm(FlaskForm):
     code = StringField('编码', validators=[DataRequired(), Length(min=3, max=10)],
-                       render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})
+                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})
     name = StringField('名称', validators=[DataRequired()],
-                       render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})
+                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})
 
 

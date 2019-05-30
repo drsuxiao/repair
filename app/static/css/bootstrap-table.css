@@ -225,4 +225,7 @@ div.fixed-table-scroll-outer {
   overflow: hidden;
 }
 
+.table>tbody>tr>td{
+    border:0px;
+}
 /*# sourceMappingURL=bootstrap-table.css.map */

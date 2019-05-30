@@ -258,7 +258,7 @@ def update_equipment_repair_repair_return(id):
 
     repair_return_date = data_dict.get('repair_return_date')
     repair_return_man = data_dict.get('repair_return_man')
-    repair_status = 20
+    repair_status = 2
     if repair_return_date is None or repair_return_man is None:
         abort(414)  # missing arguments
 

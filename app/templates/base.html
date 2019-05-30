@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
     {% block head %}
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}--设备维修登记系统</title>
+
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/bootstrap-table.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/jquery-ui.min.css')}}" rel="stylesheet" type="text/css"/>
-    <title>{% block title %}{% endblock %}--设备维修登记系统</title>
+    <script src="{{url_for('static', filename='js/html5shiv.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/respond.min.js')}}"></script>
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <!--[endif]-->
+
     {% endblock %}
     <!-- 顶部导航菜单 -->
     {% block navbar %}
@@ -95,13 +106,16 @@
         {% block js %}
         <script src="{{url_for('static', filename='js/jquery.min.js')}}"></script>
         <script src="{{url_for('static', filename='js/jquery-ui.min.js')}}"></script>
-        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap.min.3.3.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table-zh-CN.min.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-datetimepicker.min.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-datetimepicker.zh-CN.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-select.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap-table-export.js')}}"></script>
+        <script src="{{url_for('static', filename='js/tableexport.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table-zh-CN.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/printthis.js')}}"></script>
         {% endblock %}
     </body>
 
