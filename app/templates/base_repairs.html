@@ -95,18 +95,18 @@
 <!-- 删除确认窗 -->
 <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
 data-backdrop="false" data-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 300px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="modal_delete_label">删除数据确认提示窗</h4>
+                <h4 class="modal-title" id="modal_delete_label">{{ delete_title }}</h4>
             </div>
             <div class="modal-body">
-                <p>确认要删除所勾选数据吗？</p>
+                <p>{{ delete_info }}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary btn-sm" id="delete_confirm">确定</button>
+                <button type="button" class="btn btn-success btn-sm" id="delete_confirm">确定</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
@@ -151,6 +151,9 @@ data-backdrop="false" data-keyboard="false">
 {% endblock %}
 
 {% block script %}
+<script type="text/javascript">
+   toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
+</script>
 <script>
 $(function(){
     $('.modal').draggable();   //实现模态框拖移
@@ -231,6 +234,7 @@ $(function(){
             initialDate: new Date(),	//初始化日期.默认new Date()当前日期
             showMeridian: true, //是否显示上下午
             keyboardNavigation: true, //方向键改变日期
+            showFooter: true,
             language: 'zh-CN' //语言
         }).on("click",function(){
         $("#" + item.start).datetimepicker("setEndDate",$("#" + item.end).val())});
@@ -337,15 +341,15 @@ function initTable(querystr, querytype) {
         showColumns: true,
         //显示导出插件
         showExport: true,
-        exportDataType: "basic",
+        exportDataType: "all",  //basic', 'all', 'selected'. 表示导出的模式是当前页、所有数据还是选中数据
         //是否显示右上角的搜索框
         search: true,
         //是否启用点击选中行
         clickToSelect: false,
         uniqueId: "id",                     //每一行的唯一标识，一般为主键列
-        showToggle: true,                   //是否显示详细视图和列表视图的切换按钮
+        showToggle: false,                   //是否显示详细视图和列表视图的切换按钮
         cardView: false,                    //是否显示详细视图
-        detailView: false,                  //是否显示父子表
+        detailView: true,                  //是否显示父子表
         //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
         //设置为limit可以获取limit, offset, search, sort, order
         queryParamsType:'limit',
@@ -583,12 +587,11 @@ function changeDateFormat(value) {
 				data: data,  //json对象，非json字符串
 				timeout:30000,
 				error: function(request) {
-				    ShowFailure("数据保存失败！");
+				    toastr.error('提交数据失败！');
 					//alert("Connection error:"+request.error);
 				},
 				success: function(data) {
-				    ShowSuccess("数据保存成功！");
-					//alert("SUCCESS!");
+				    toastr.success('提交数据成功');
 				}
 		 })
     };

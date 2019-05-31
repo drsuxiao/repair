@@ -15,7 +15,8 @@ def repairs_registration():
     if request.method == 'POST':
         if form.validate_on_submit():
             pass
-    return render_template('repairs_registration.html', form=form, modal_id="modal_registration", modal_title="报修登记窗")
+    return render_template('repairs_registration.html', form=form, modal_id="modal_registration", modal_title="报修登记窗"
+                           , delete_title="删除数据确认提示窗", delete_info="确定要【删除】所勾选的记录？")
 
 
 @app.route('/repair/repairs_confirmed', methods=['GET', 'POST'])
@@ -24,7 +25,8 @@ def repairs_confirmed():
     if request.method == 'POST':
         if form.validate_on_submit():
             pass
-    return render_template('repairs_confirmed.html', form=form, modal_id="modal_confirmed", modal_title="维修确认窗")
+    return render_template('repairs_confirmed.html', form=form, modal_id="modal_confirmed", modal_title="维修确认窗"
+                           , delete_title="取消确认记录确认提示窗", delete_info="确定要【取消确认】所勾选的记录？")
 
 
 @app.route('/repair/repairs_return', methods=['GET', 'POST'])

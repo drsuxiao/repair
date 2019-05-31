@@ -2,7 +2,7 @@
 {% block title %}设备归还管理{% endblock %}
 {% block function %}
     <button type="button" class="btn btn-primary btn-sm" id="return_onekey">一键归还</button>
-    <button type="button" class="btn btn-primary btn-sm"  id="return_repair">报修归还</button>
+    <button type="button" class="btn btn-primary btn-sm"  id="return_repair">维修归还</button>
     <button type="button" class="btn btn-primary btn-sm"  id="return_equipment">送还科室</button>
 {% endblock %}
 
@@ -28,9 +28,9 @@
                 $("#modal_return").modal("show");
             }
              else{
-                alert('请选择维修状态为“已确认”的报修单进行操作！');
+                toastr.info('只能【一键归还】维修进度为“已确认”的记录！');
              }
-        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
+        }else{ toastr.info('只能选择一行进行【一键归还】！');}
     });
     $("#return_repair").click(function(){
         action = 'return_repair';
@@ -40,9 +40,9 @@
                 $("#modal_return").modal("show");
             }
              else{
-                alert('请选择维修状态为“已确认”的报修单进行操作！');
+                toastr.info('只能【维修归还】维修进度为“已确认”的记录！');
              }
-        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
+        }else{ toastr.info('只能选择一行进行【维修归还】！');}
     });
     $("#return_equipment").click(function(){
         action = 'return_equipment';
@@ -52,10 +52,10 @@
                 $("#modal_return").modal("show");
             }
              else{
-                alert('请选择维修状态为“维修中”的报修单进行操作！');
+                toastr.info('只能【送还科室】维修进度为“维修中”的记录！');
              }
 
-        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
+        }else{ toastr.info('只能选择一行进行【送还科室】！');}
     });
 
     //新增，编辑根据post的url来区别
