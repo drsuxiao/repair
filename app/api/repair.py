@@ -360,46 +360,70 @@ def get_data_by_model(model):
     return data
 
 
-def update_data_by_id(model, id):
+def update_data_by_id(model, id, my_code):
     row = model.query.filter_by(id=id).first()
     if row is None:
         abort(400)  # existing user
-
     old_code = row.code
-
+    old_name = row.name
     data = request.form
     data_dict = data.to_dict()
     print(data_dict)
     new_code = data_dict.get('code')
-    name = data_dict.get('name')
-    if new_code is None or name is None:
+    new_name = data_dict.get('name')
+    if new_code is None or new_name is None:
         abort(414)  # missing arguments
-    #if model.query.filter_by(code=new_code).first():
-    #    abort(404)  # exist code
 
-    if old_code != new_code and EquipmentRepair.query.filter_by(dept_code=old_code).first():
-        flag = 1
-    else:
-        flag =0
-    if flag:
-        temp = model.query.filter(model.id != id).first()
-        if temp is None:
-            abort(400)
+    if old_code == new_code and old_name == new_name:   # 1.编码，名称没变的
+        pass
+    elif old_code == new_code and old_name != new_name:  # 2.只修改名称的
+        row.name = new_name
+        db.session.commit()
+    elif old_code != new_code:  # 3.修改编码
+        # 是否被使用
+        filterstr = '%s="%s"' % (my_code, old_code)
+        if EquipmentRepair.query.filter(text(filterstr)).first():
+            used = 1
+        else:
+            used = 0
 
-        rows = EquipmentRepair.query.filter_by(dept_code=old_code).all()
-        for d in rows:
-            d.dept_code = temp.code
+        if not used:
+            # 判断新编码是否存在冲突
+            if model.query.filter(model.id != id and model.code == new_code).first():
+                abort(400)
+            row.code = new_code
+            row.name = new_name
             db.session.commit()
+        else:
+            # 获取要更新的基础表
+            if my_code == 'dept_code':
+                table = 'department'
+            elif my_code == 'brand_code':
+                table = 'equipment_brand'
+            elif my_code == 'type_code':
+                table = 'equipment_type'
+            elif my_code == 'fault_code':
+                table = 'equipment_fault'
+            elif my_code == 'com_code':
+                table = 'repair_company'
+            else:
+                table = ''
 
-    row.code = new_code
-    row.name = name
-    db.session.commit()
+            if table:
+                # 获取临时替换的基础编码，并替换
+                temp = model.query.filter(model.id != id).first()
+                if temp is None:
+                    abort(400)
+                sql = "update equipment_repair set %s='%s' where %s='%s'" % (my_code, temp.code, my_code, old_code)
+                db.session.execute(sql)
+                # 替换已使用的基础编码后，更新基础编码
+                sql = "update %s set code='%s', name='%s' where id=%s" % (table, new_code, new_name, id)
+                db.session.execute(sql)
+                # 更新完成后，把临时编码替换成新的编码
+                sql = "update equipment_repair set %s='%s' where %s='%s'" % (my_code, new_code, my_code, temp.code)
+                db.session.execute(sql)
+                db.session.commit()
 
-    if flag:
-        rows = EquipmentRepair.query.filter_by(dept_code=temp.code).all()
-        for d in rows:
-            d.dept_code = new_code
-            db.session.commit()
     return row.to_json()
 
 
@@ -445,7 +469,7 @@ def get_departments():
 
 @app.route('/repair/api/v1.0/departments/edit/<int:id>', methods=['POST'])
 def update_department(id):
-    return myreponse(update_data_by_id(Department, id))
+    return myreponse(update_data_by_id(Department, id, 'dept_code'))
 
 
 @app.route('/repair/api/v1.0/departments/add', methods=['POST'])
@@ -473,7 +497,7 @@ def get_equipment_brands():
 
 @app.route('/repair/api/v1.0/equipment_brands/edit/<int:id>', methods=['POST'])
 def update_equipment_brand(id):
-    return myreponse(update_data_by_id(EquipmentBrand, id))
+    return myreponse(update_data_by_id(EquipmentBrand, id, 'brand_code'))
 
 
 @app.route('/repair/api/v1.0/equipment_brands/add', methods=['POST'])
@@ -501,7 +525,7 @@ def get_equipment_types():
 
 @app.route('/repair/api/v1.0/equipment_types/edit/<int:id>', methods=['POST'])
 def update_equipment_type(id):
-    return myreponse(update_data_by_id(EquipmentType, id))
+    return myreponse(update_data_by_id(EquipmentType, id, 'type_code'))
 
 
 @app.route('/repair/api/v1.0/equipment_types/add', methods=['POST'])
@@ -529,7 +553,7 @@ def get_equipment_faults():
 
 @app.route('/repair/api/v1.0/equipment_faults/edit/<int:id>', methods=['POST'])
 def update_equipment_fault(id):
-    return myreponse(update_data_by_id(EquipmentFault, id))
+    return myreponse(update_data_by_id(EquipmentFault, id, 'fault_code'))
 
 
 @app.route('/repair/api/v1.0/equipment_faults/add', methods=['POST'])
@@ -557,7 +581,7 @@ def get_repair_companys():
 
 @app.route('/repair/api/v1.0/repair_companys/edit/<int:id>', methods=['POST'])
 def update_repair_company(id):
-    return myreponse(update_data_by_id(RepairCompany, id))
+    return myreponse(update_data_by_id(RepairCompany, id, 'com_code'))
 
 
 @app.route('/repair/api/v1.0/repair_companys/add', methods=['POST'])
