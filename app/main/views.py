@@ -14,19 +14,7 @@ def repairs_registration():
     form = RepairRegistrationForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            modal = EquipmentRepair()
-            modal.repair_date = form.repair_date.data
-            modal.repair_registrant = form.repair_registrant.data
-            modal.dept_code = form.dept_code.data
-            modal.brand_code = form.brand_code.data
-            modal.type_code = form.type_code.data
-            modal.equipment_code = form.equipment_code.data
-            modal.fault_code = form.fault_code.data
-            modal.com_code = form.com_code.data
-            modal.repair_status = 0
-            db.session.add(modal)
-            db.session.commit()
-            form = RepairRegistrationForm()
+            pass
     return render_template('repairs_registration.html', form=form, modal_id="modal_registration", modal_title="报修登记窗")
 
 
@@ -43,8 +31,8 @@ def repairs_confirmed():
 def repairs_return():
     form = OneKeyReturnForm()
     if request.method == 'POST':
-        #if form.validate_on_submit():
-        pass
+        if form.validate_on_submit():
+            pass
     return render_template('repairs_return.html', form=form, modal_id="modal_return", modal_title="设备归还确认窗")
 
 

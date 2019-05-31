@@ -52,7 +52,11 @@ class EquipmentRepair(db.Model):
     repair_return_man = db.Column(db.String(10))  # 维修归还人
     equipment_return_date = db.Column(db.String(20))  # 设备归还科室日期
     equipment_return_man = db.Column(db.String(10))  # 设备归还科室人
-    repair_status = db.Column(db.Integer)  # 维修状态  修好，修不好，正常
+    repair_status = db.Column(db.Integer)  # 维修进度
+    # 新增字段
+    repair_priority = db.Column(db.String(10))  # 维修优先级
+    repair_result = db.Column(db.String(100))  # 维修结果
+    repair_remarks = db.Column(db.String(100))  # 维修备注信息
 
     def to_json(self):
         """
@@ -79,7 +83,10 @@ class EquipmentRepair(db.Model):
             'repair_return_man': self.repair_return_man,
             'equipment_return_date': self.equipment_return_date,
             'equipment_return_man': self.equipment_return_man,
-            'repair_status': self.repair_status
+            'repair_status': self.repair_status,
+            'repair_priority': self.repair_priority,
+            'repair_result': self.repair_result,
+            'repair_remarks': self.repair_remarks
         }
         return json_equipment_repair
 

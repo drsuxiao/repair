@@ -8,7 +8,7 @@
 {% block script %}
 {{ super() }}
 <script>
-    initTable();
+    initTable("repair_status < 2",'string');
 </script>
 <script type="text/javascript">
     $("#confirmed_ok").click(function(){

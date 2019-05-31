@@ -9,7 +9,7 @@
 {% block script %}
 {{ super() }}
 <script>
-    initTable();
+    initTable('','string');  //
 </script>
 <!-- 按钮事件 -->
 <script type="text/javascript">
@@ -33,7 +33,7 @@
         action = 'delete';
         var row = $("#table_repairs").bootstrapTable('getSelections');
         if (row.length == 1){
-            if(row[0].repair_status == 0  || row[0].repair_status == null){
+            if(row[0].repair_status == 0  || row[0].repair_status == null || row[0].repair_status == '-'){
                 $("#modal_delete").modal("show");
             }
              else{

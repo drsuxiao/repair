@@ -9,7 +9,7 @@
 {% block script %}
 {{ super() }}
 <script>
-    initTable();
+    initTable("repair_status = 1 or repair_status = 2",'string');
 </script>
 <script type="text/javascript">
     $("#return_onekey").click(function(){
@@ -49,25 +49,34 @@
 
         }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
     });
+
     //新增，编辑根据post的url来区别
     $("#modal_save").click(function(e) {
-        if (($("#repair_return_date").val() && $("#repair_return_man").val()) ||
-                ($("#equipment_return_date").val() && $("#equipment_return_man").val())){
+        var flag = 0;
+        if (action == 'return_onekey'){
+            url = '/repair/api/v1.0/equipment_repairs_return/onekey_return/' + cur_key;
+            if ($("#repair_return_date").val() && $("#repair_return_man").val() && $("#equipment_return_date").val()
+                  && $("#equipment_return_man").val() && $("#repair_result").val()){
+                flag = 1;
+            }
+        } else if (action == 'return_repair'){
+            url = '/repair/api/v1.0/equipment_repairs_return/repair_return/' + cur_key;
+            if ($("#repair_return_date").val() && $("#repair_return_man").val()){
+                flag = 1;
+            }
+        } else if (action == 'return_equipment'){
+            url = '/repair/api/v1.0/equipment_repairs_return/equipment_return/' + cur_key;
+            if ($("#equipment_return_date").val() && $("#equipment_return_man").val() && $("#repair_result").val()){
+                flag = 1;
+            }
+        }else{url = ''};
+        if (flag){
             e.preventDefault();
             //alert($("form").serialize());
-            if (action == 'return_onekey'){
-                url = '/repair/api/v1.0/equipment_repairs_return/onekey_return/' + cur_key;
-            } else if (action == 'return_repair'){
-                url = '/repair/api/v1.0/equipment_repairs_return/repair_return/' + cur_key;
-            } else if (action == 'return_equipment'){
-                url = '/repair/api/v1.0/equipment_repairs_return/equipment_return/' + cur_key;
-            }else{url = ''};
             ajax_post_data(url, get_json_data());
-            //if ( flag == 1){
-                $("#modal_return").modal("hide");     //隐藏模态框
-                $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
-				//$("#modal_return")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
-            //};
+            $("#modal_return").modal("hide");     //隐藏模态框
+            $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+            //$("#modal_return")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
         }
     });
 </script>
@@ -75,8 +84,8 @@
 <script>
     function InitModalAddForm(){
         //清除文本框的值,包含隐藏input
-        $("#modal_return input").val("");
-        /*
+        //$("#modal_return input").val("");
+
         var row = $("#table_repairs").bootstrapTable('getSelections');
         //alert(JSON.stringify(row[0]));
         if (row.length == 1){
@@ -85,16 +94,16 @@
                 $(this).val(edit_date[$(this).attr("id")]);
             });
         };
-        */
+
         $("div.form-group").show();
         $("div.form-group").each(function(i){
             if (action == 'return_repair'){
-                if (i > 1){
+                if (i == 2 || i == 3){
                     $(this).hide();//隐藏div
                 };
             }
             else if (action == 'return_equipment'){
-                if (i < 2){
+                if (i == 0 || i == 1){
                     $(this).hide();//隐藏div
                 };
             }

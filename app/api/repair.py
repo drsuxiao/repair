@@ -24,6 +24,8 @@ def new_equipment_repair():
     equipment_code = data_dict.get('equipment_code')
     fault_code = data_dict.get('fault_code')
     com_code = data_dict.get('com_code')
+    repair_priority = data_dict.get('repair_priority')
+    repair_remarks = data_dict.get('repair_remarks')
     # repair_man = data_dict.get('repair_man')
     # repair_confirm_date = data_dict.get('repair_confirm_date')
     # repair_return_date = request.json.get('repair_return_date')
@@ -39,7 +41,8 @@ def new_equipment_repair():
         abort(400)  # existing user
     row = EquipmentRepair(repair_date=repair_date, dept_code=dept_code, repair_registrant=repair_registrant,
                           brand_code=brand_code, type_code=type_code, equipment_code=equipment_code,
-                          fault_code=fault_code, com_code=com_code, repair_status=repair_status)
+                          fault_code=fault_code, com_code=com_code, repair_status=repair_status,
+                          repair_priority=repair_priority, repair_remarks=repair_remarks)
     db.session.add(row)
     db.session.commit()
     return myreponse(row.to_json())
@@ -62,7 +65,8 @@ def update_equipment_repair(id):
     equipment_code = data_dict.get('equipment_code')
     fault_code = data_dict.get('fault_code')
     com_code = data_dict.get('com_code')
-
+    repair_priority = data_dict.get('repair_priority')
+    repair_remarks = data_dict.get('repair_remarks')
     # repair_man = request.json.get('repair_man')
     # repair_return_date = request.json.get('repair_return_date')
     # repair_return_man = request.json.get('repair_return_man')
@@ -84,7 +88,8 @@ def update_equipment_repair(id):
     row.fault_code = fault_code
     row.com_code = com_code
     row.repair_status = repair_status
-
+    row.repair_priority = repair_priority
+    row.repair_remarks = repair_remarks
     # row.repair_man = repair_man
     # row.repair_return_date = repair_return_date
     # row.repair_return_man = repair_return_man
@@ -97,24 +102,28 @@ def update_equipment_repair(id):
 @app.route('/repair/api/v1.0/equipment_repairs', methods=['GET'])
 def get_equipment_repairs():
     querystr = request.args.get("querystr", '')
+    querytype = request.args.get("querytype", 'json')
     offset = request.args.get("offset", '0')
     limit = request.args.get("limit", '10')
     sort = request.args.get('sort', 'id')
     order = request.args.get('order', 'desc')
     sidePagination = request.args.get('sidePagination', 'client')
 
-    wherestr = "1=1"
-    if querystr:
-        print(querystr)
-        dict = json.loads(querystr)
-        for key, value in dict.items():
-            if isinstance(value, list):  # 日期字段处理
-                if value[0] and value[1]:
-                    wherestr = wherestr + ' and ' + key + '>=' + "'" + value[0] + "'" + ' and ' + key + '<=' + "'" + value[1] + "'"
-            elif key in ['equipment_code', 'repair_registrant', 'repair_man', 'repair_return_man', 'equipment_return_man']:
-                wherestr = wherestr + ' and ' + key + " like " + "'%" + value + "%'"
-            else:
-                wherestr = wherestr + ' and ' + key + "=" + "'" + value + "'"
+    if querytype == 'string':
+        wherestr = querystr
+    else:
+        wherestr = "1=1"
+        if querystr:
+            print(querystr)
+            dict = json.loads(querystr)
+            for key, value in dict.items():
+                if isinstance(value, list):  # 日期字段处理
+                    if value[0] and value[1]:
+                        wherestr = wherestr + ' and ' + key + '>=' + "'" + value[0] + "'" + ' and ' + key + '<=' + "'" + value[1] + "'"
+                elif key in ['equipment_code', 'repair_registrant', 'repair_man', 'repair_return_man', 'equipment_return_man']:
+                    wherestr = wherestr + ' and ' + key + " like " + "'%" + value + "%'"
+                else:
+                    wherestr = wherestr + ' and ' + key + "=" + "'" + value + "'"
     print(wherestr)
 
     change = {'repair_department': 'dept_code', 'equipment_brand': 'brand_code', 'equipment_type': 'type_code',
@@ -175,6 +184,7 @@ def update_equipment_repair_confirm(id):
     com_code = data_dict.get('com_code')
     repair_man = data_dict.get('repair_man')
     repair_confirm_date = data_dict.get('repair_confirm_date')
+    repair_remarks = data_dict.get('repair_remarks')
     repair_status = 1
     if dept_code is None or equipment_code is None or brand_code is None \
             or type_code is None or fault_code is None or com_code is None:
@@ -192,6 +202,7 @@ def update_equipment_repair_confirm(id):
     row.com_code = com_code
     row.repair_man = repair_man
     row.repair_confirm_date = repair_confirm_date
+    row.repair_remarks = repair_remarks
     row.repair_status = repair_status
     # row.repair_return_date = repair_return_date
     # row.repair_return_man = repair_return_man
@@ -228,19 +239,20 @@ def update_equipment_repair_onekey_return(id):
     repair_return_man = data_dict.get('repair_return_man')
     equipment_return_date = data_dict.get('equipment_return_date')
     equipment_return_man = data_dict.get('equipment_return_man')
+    repair_result = data_dict.get('repair_result')
+    repair_remarks = data_dict.get('repair_remarks')
     repair_status = 3
     if repair_return_date is None or repair_return_man is None or equipment_return_date is None \
             or equipment_return_man is None:
         abort(414)  # missing arguments
-    print(repair_return_date)
-    print(repair_return_man)
-    print(equipment_return_date)
-    print(equipment_return_man)
+
     row.repair_return_date = repair_return_date
     row.repair_return_man = repair_return_man
     row.equipment_return_date = equipment_return_date
     row.equipment_return_man = equipment_return_man
     row.repair_status = repair_status
+    row.repair_result = repair_result
+    row.repair_remarks = repair_remarks
 
     db.session.commit()
     return myreponse(row.to_json())
@@ -258,12 +270,16 @@ def update_equipment_repair_repair_return(id):
 
     repair_return_date = data_dict.get('repair_return_date')
     repair_return_man = data_dict.get('repair_return_man')
+    repair_result = data_dict.get('repair_result')
+    repair_remarks = data_dict.get('repair_remarks')
     repair_status = 2
     if repair_return_date is None or repair_return_man is None:
         abort(414)  # missing arguments
 
     row.repair_return_date = repair_return_date
     row.repair_return_man = repair_return_man
+    row.repair_remarks = repair_remarks
+    row.repair_result = repair_result
     row.repair_status = repair_status
 
     db.session.commit()
@@ -282,6 +298,8 @@ def update_equipment_repair_equipment_return(id):
 
     equipment_return_date = data_dict.get('equipment_return_date')
     equipment_return_man = data_dict.get('equipment_return_man')
+    repair_result = data_dict.get('repair_result')
+    repair_remarks = data_dict.get('repair_remarks')
     repair_status = 3
     if equipment_return_date is None or equipment_return_man is None:
         abort(414)  # missing arguments
@@ -289,6 +307,8 @@ def update_equipment_repair_equipment_return(id):
     row.equipment_return_date = equipment_return_date
     row.equipment_return_man = equipment_return_man
     row.repair_status = repair_status
+    row.repair_result = repair_result
+    row.repair_remarks = repair_remarks
 
     db.session.commit()
     return myreponse(row.to_json())
