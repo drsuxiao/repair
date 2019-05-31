@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="947feeab-bdba-4307-8452-49ae98147396" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base_database.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base_database.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base_repairs.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base_repairs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/repairs_return.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_return.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +17,8 @@
       <file leaf-file-name="base_database.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base_database.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="85" lean-forward="true" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="88" />
+            <state relative-caret-position="197">
+              <caret line="202" column="13" lean-forward="true" selection-start-line="202" selection-start-column="13" selection-end-line="202" selection-end-column="13" />
               <folding>
                 <element signature="n#div#2;n#!!top" />
                 <element signature="n#div#3;n#!!top" />
@@ -29,6 +27,19 @@
                 <element signature="n#script#1;n#!!top" />
                 <element signature="n#script#2;n#!!top" />
                 <element signature="n#script#3;n#!!top" />
+                <element signature="n#script#4;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repairs_return.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/repairs_return.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="n#script#1;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -37,23 +48,24 @@
       <file leaf-file-name="base_repairs.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="89" column="88" selection-start-line="89" selection-start-column="88" selection-end-line="89" selection-end-column="88" />
+            <state relative-caret-position="789">
+              <caret line="252" column="75" selection-start-line="251" selection-start-column="10" selection-end-line="252" selection-end-column="85" />
               <folding>
                 <element signature="n#a#0;n#div#0;n#!!top" />
                 <element signature="n#div#3;n#!!top" />
                 <element signature="n#div#4;n#!!top" />
+                <element signature="n#script#1;n#!!top" />
                 <element signature="n#script#2;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="repairs_registration.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/templates/repairs_registration.html">
+      <file leaf-file-name="repairs_confirmed.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/repairs_confirmed.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="77" column="21" lean-forward="true" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+            <state relative-caret-position="432">
+              <caret line="82" column="10" lean-forward="true" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -61,8 +73,8 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/main/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="108">
+              <caret line="86" column="13" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="22" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -158,11 +170,11 @@
         <option value="$PROJECT_DIR$/app/main/views.py" />
         <option value="$PROJECT_DIR$/app/models.py" />
         <option value="$PROJECT_DIR$/app/api/repair.py" />
-        <option value="$PROJECT_DIR$/app/templates/repairs_return.html" />
         <option value="$PROJECT_DIR$/app/main/forms.py" />
-        <option value="$PROJECT_DIR$/app/templates/base_database.html" />
         <option value="$PROJECT_DIR$/app/templates/base_repairs.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_registration.html" />
+        <option value="$PROJECT_DIR$/app/templates/base_database.html" />
+        <option value="$PROJECT_DIR$/app/templates/repairs_return.html" />
       </list>
     </option>
   </component>
@@ -597,17 +609,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/department.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-          <folding>
-            <element signature="n#script#0;n#!!top" />
-            <element signature="n#script#1;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/equipment_brand.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -662,13 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/repairs_confirmed.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
@@ -683,13 +677,6 @@
             <element signature="e#5360#5908#0" />
             <element signature="e#5946#6487#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/repairs_return.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="102" column="18" lean-forward="true" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -720,10 +707,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/repairs_registration.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="77" column="21" lean-forward="true" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/department.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="n#script#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base_database.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="85" lean-forward="true" selection-start-line="7" selection-start-column="44" selection-end-line="7" selection-end-column="88" />
+        <state relative-caret-position="197">
+          <caret line="202" column="13" lean-forward="true" selection-start-line="202" selection-start-column="13" selection-end-line="202" selection-end-column="13" />
           <folding>
             <element signature="n#div#2;n#!!top" />
             <element signature="n#div#3;n#!!top" />
@@ -732,37 +736,49 @@
             <element signature="n#script#1;n#!!top" />
             <element signature="n#script#2;n#!!top" />
             <element signature="n#script#3;n#!!top" />
+            <element signature="n#script#4;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/repairs_confirmed.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="82" column="10" lean-forward="true" selection-start-line="82" selection-start-column="10" selection-end-line="82" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="252" column="75" selection-start-line="251" selection-start-column="10" selection-end-line="252" selection-end-column="85" />
+          <folding>
+            <element signature="n#a#0;n#div#0;n#!!top" />
+            <element signature="n#div#3;n#!!top" />
+            <element signature="n#div#4;n#!!top" />
+            <element signature="n#script#1;n#!!top" />
+            <element signature="n#script#2;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/main/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="19" />
+        <state relative-caret-position="108">
+          <caret line="86" column="13" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="22" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
+    <entry file="file://$PROJECT_DIR$/app/templates/repairs_return.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="89" column="88" selection-start-line="89" selection-start-column="88" selection-end-line="89" selection-end-column="88" />
+        <state relative-caret-position="312">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
           <folding>
-            <element signature="n#a#0;n#div#0;n#!!top" />
-            <element signature="n#div#3;n#!!top" />
-            <element signature="n#div#4;n#!!top" />
-            <element signature="n#script#2;n#!!top" />
+            <element signature="n#script#1;n#!!top" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/repairs_registration.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="77" column="21" lean-forward="true" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
         </state>
       </provider>
     </entry>

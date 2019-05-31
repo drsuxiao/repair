@@ -10,6 +10,14 @@
 {{ super() }}
 <script>
     initTable("repair_status = 1 or repair_status = 2",'string');
+
+    $("#repair_return_date").on("click",function(){
+        $("#repair_return_date").datetimepicker("setEndDate",$("#equipment_return_date").val())
+    });
+    $("#equipment_return_date").on("click",function(){
+        $("#equipment_return_date").datetimepicker("setStartDate",$("#repair_return_date").val())
+    });
+
 </script>
 <script type="text/javascript">
     $("#return_onekey").click(function(){
@@ -93,6 +101,8 @@
             $("#modal_return input").each(function(){
                 $(this).val(edit_date[$(this).attr("id")]);
             });
+            $("#repair_return_date").datetimepicker("setStartDate",row[0].repair_confirm_date);
+            $("#equipment_return_date").datetimepicker("setStartDate",row[0].repair_confirm_date);
         };
 
         $("div.form-group").show();
