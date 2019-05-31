@@ -87,7 +87,7 @@
 </div>
 <!-- 数据表 -->
 <div class=table-responsive">   <!-- 自适应列宽，高度  -->
-    <table id="table_repairs" class="table table-striped text-nowrap"></table>
+    <table id="table_repairs" class="table text-nowrap"></table>
 </div>
 <!-- 工具容器 -->
 <div id="toolbar">{% block function %}{% endblock %}</div>
@@ -353,17 +353,14 @@ function initTable(querystr, querytype) {
         rowStyle: function (row, index) {
                 //这里有5个取值代表5中颜色['active', 'success', 'info', 'warning', 'danger'];
                 var strclass = "";
-                if (row.repair_status == 0) {
-                    strclass = 'active';//还有一个active
-                }
-                else if (row.repair_status == 1) {
+                if (row.repair_priority == 1 && row.repair_status != 3) {
                     strclass = 'info';
                 }
-                else if (row.repair_status == 2) {
+                else if (row.repair_priority == 2 && row.repair_status != 3) {
                     strclass = 'warning';
                 }
-                else if (row.repair_status == 3) {
-                    strclass = 'success';
+                else if (row.repair_priority == 3 && row.repair_status != 3) {
+                    strclass = 'danger';
                 }
                 else {
                     return {};

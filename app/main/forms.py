@@ -15,7 +15,7 @@ class RepairRegistrationForm(FlaskForm):
         """
     # SelectField 这里务必注意coerce选项的添加，否则提交时，下拉表单中的内容无法通过validate_on_submit的 验证
     # Text Field类型，文本输入框，必须输入是"年-月-日"格式的日期
-    repair_priority = SelectField('优先级', validators=[DataRequired()], coerce=str,
+    repair_priority = SelectField('紧急程度', validators=[DataRequired()], coerce=str,
                                   render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 优先级
     repair_date = StringField('报修日期', validators=[DataRequired()],
                               render_kw={'class': "form-control input-sm", "style": "width: 200px"})
