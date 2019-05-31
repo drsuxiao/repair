@@ -8,7 +8,14 @@
     <table id="table_database" class="table table-striped text-nowrap"></table>
 </div>
 <!-- 工具容器 -->
-<div id="toolbar">{% block function %}{% endblock %}</div>
+<div id="toolbar">
+    {% block function %}
+    <button type="button" class="btn btn-primary btn-sm" id="database_add">新增</button>
+    <button type="button" class="btn btn-primary btn-sm" id="database_edit">修改</button>
+    <button type="button" class="btn btn-primary btn-sm" id="database_delete">删除</button>
+    {% endblock %}
+</div>
+
 {% block modal %}
 <!-- 删除确认窗 -->
 <div class="modal fade" id="modal_delete" tabindex="-1" role="dialog" aria-labelledby="modal_delete_label" aria-hidden="true"
@@ -74,6 +81,7 @@ $(function(){
     $('.modal').draggable();   //实现模态框拖移
 });
 </script>
+<!-- 表格初始化 -->
 <script>
 var action = '';  //保存操作状态
 var cur_key = '';  //当前选中的主键值
@@ -192,8 +200,9 @@ function initTable(url, titles) {
     });
 };
 </script>
+<!-- 数据提交 -->
 <script>
-        //将提交的表单数值序列化为JSON对象
+    //将提交的表单数值序列化为JSON对象
     function get_json_data(){
         var d = {};
     var t = $('form').serializeArray();
@@ -221,5 +230,51 @@ function initTable(url, titles) {
 				}
 		 })
     };
+</script>
+<!-- 操作按钮事件 -->
+<script>
+        $("#database_add").click(function(){
+        action = 'add';
+        $("#modal_database").modal("show");
+    });
+    $("#database_edit").click(function(){
+        action = 'edit';
+        var row = $("#table_database").bootstrapTable('getSelections');
+        if (row.length == 1){
+            $("#modal_database").modal("show");
+        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
+    });
+    $("#database_delete").click(function(){
+        action = 'delete';
+        var row = $("#table_database").bootstrapTable('getSelections');
+        if (row.length == 1){
+            $("#modal_delete").modal("show");
+        }else{ alert('请勾选一条需要处理的记录后，再进行操作！');}
+    });
+</script>
+<!-- 模态框相关事件 -->
+<script>
+    function InitModalAddForm(){
+        if (action == 'add'){
+            //清除文本框的值,包含隐藏input
+            $("#modal_database input").val("");
+        }
+        else if (action == 'edit'){
+            var row = $("#table_database").bootstrapTable('getSelections');
+            //alert(JSON.stringify(row[0]));
+            if (row.length == 1){
+                var edit_date = row[0];
+                $("#modal_database input").each(function(){
+                    $(this).val(edit_date[$(this).attr("id")]);
+                });
+            };
+        };
+    };
+
+    $("#modal_database").on('shown.bs.modal', function () {
+        //初始化新增界面
+        InitModalAddForm();
+    });
+
 </script>
 {% endblock %}

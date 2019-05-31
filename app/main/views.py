@@ -75,29 +75,29 @@ def equipment_return():
 @app.route('/repair/departments', methods=['GET', 'POST'])
 def show_departments():
     form = BaseDataSetForm()
-    return render_template('department.html', form=form, modal_id="modal_database", modal_title="科室信息管理")
+    return render_template('department.html', form=form, modal_id="modal_database", modal_title="科室信息维护窗")
 
 
 @app.route('/repair/equipment_brands', methods=['GET', 'POST'])
 def show_equipment_brands():
     form = BaseDataSetForm()
-    return render_template('equipment_brand.html', form=form, modal_id="modal_database", modal_title="设备品牌管理")
+    return render_template('equipment_brand.html', form=form, modal_id="modal_database", modal_title="设备品牌维护窗")
 
 
 @app.route('/repair/equipment_types', methods=['GET', 'POST'])
 def show_equipment_types():
     form = BaseDataSetForm()
-    return render_template('equipment_type.html', form=form, modal_id="modal_database", modal_title="设备类型管理")
+    return render_template('equipment_type.html', form=form, modal_id="modal_database", modal_title="设备类型维护窗")
 
 
 @app.route('/repair/equipment_faults', methods=['GET', 'POST'])
 def show_equipment_faults():
     form = BaseDataSetForm()
-    return render_template('equipment_fault.html', form=form, modal_id="modal_database", modal_title="设备故障管理")
+    return render_template('equipment_fault.html', form=form, modal_id="modal_database", modal_title="设备故障维护窗")
 
 
 @app.route('/repair/repair_companys', methods=['GET', 'POST'])
 def show_repair_companys():
     form = BaseDataSetForm()
-    return render_template('repair_company.html', form=form, modal_id="modal_database", modal_title="维修公司管理")
+    return render_template('repair_company.html', form=form, modal_id="modal_database", modal_title="维修公司维护窗")
 
