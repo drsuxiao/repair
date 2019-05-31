@@ -51,8 +51,8 @@
     });
     //新增，编辑根据post的url来区别
     $("#modal_save").click(function(e) {
-        if ($("#repair_date").val() && $("#dept_code").val()  && $("#repair_registrant").val()  && $("#repair_registrant").val()
-                && $("#type_code").val()  && $("#equipment_code").val()  && $("#fault_code").val()  && $("#com_code").val()){
+        if ($("#repair_priority").val() && $("#repair_date").val() && $("#dept_code").val() && $("#repair_registrant").val() && $("#repair_registrant").val()
+                && $("#type_code").val() && $("#equipment_code").val() && $("#fault_code").val() && $("#com_code").val()){
             e.preventDefault();
             //alert($("form").serialize());
             if (action == 'add'){
