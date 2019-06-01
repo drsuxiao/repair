@@ -15,10 +15,10 @@ class RepairRegistrationForm(FlaskForm):
         """
     # SelectField 这里务必注意coerce选项的添加，否则提交时，下拉表单中的内容无法通过validate_on_submit的 验证
     # Text Field类型，文本输入框，必须输入是"年-月-日"格式的日期
-    repair_priority = SelectField('紧急程度', validators=[DataRequired()], coerce=str,
-                                  render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 优先级
     repair_date = StringField('报修日期', validators=[DataRequired()],
                               render_kw={'class': "form-control input-sm", "style": "width: 200px"})
+    repair_priority = SelectField('紧急程度', validators=[DataRequired()], coerce=str,
+                                  render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 优先级
     dept_code = SelectField('报修科室', validators=[DataRequired()], coerce=str,
                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 报修科室
     repair_registrant = StringField('报修人', validators=[DataRequired()],
@@ -54,6 +54,8 @@ class RepairConfirmForm(FlaskForm):
     """
     # SelectField 这里务必注意coerce选项的添加，否则提交时，下拉表单中的内容无法通过validate_on_submit的 验证
     # Text Field类型，文本输入框，必须输入是"年-月-日"格式的日期
+    repair_confirm_date = StringField('维修确认日期', validators=[DataRequired()],
+                                      render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 维修确认日期
     dept_code = SelectField('报修科室', validators=[DataRequired()], coerce=str,
                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 报修科室
     brand_code = SelectField('设备品牌', validators=[DataRequired()], coerce=str,
@@ -64,8 +66,6 @@ class RepairConfirmForm(FlaskForm):
                                  render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 设备编号
     fault_code = SelectField('设备故障', validators=[DataRequired()], coerce=str,
                              render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备故障
-    repair_confirm_date = StringField('维修确认日期',validators=[DataRequired()],
-                              render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 维修确认日期
     com_code = SelectField('维修公司', validators=[DataRequired()], coerce=str,
                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px",
                                       "title": "请选择"})  # 维修公司

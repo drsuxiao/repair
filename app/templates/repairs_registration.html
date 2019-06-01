@@ -10,6 +10,8 @@
 {{ super() }}
 <script>
     initTable('','string');  //
+    //$("#repair_date").attr("readonly",'readonly');
+    //$("#repair_date").removeAttr("disabled");
 </script>
 <!-- 按钮事件 -->
 <script type="text/javascript">
@@ -79,6 +81,9 @@
             $("#modal_registration input").val("");
             //清除选择框的值
             $('#modal_registration .selectpicker').selectpicker("val","");
+
+            $("#repair_date").val(currentTime());  //获取日期与时间
+            $("#repair_priority").selectpicker("val","0");
         }
         else if (action == 'edit'){
             var row = $("#table_repairs").bootstrapTable('getSelections');

@@ -57,7 +57,7 @@ def update_equipment_repair(id):
     data = request.form
     data_dict = data.to_dict()
     print(data_dict)
-    repair_date = data_dict.get('repair_date', datetime.now())
+    repair_date = data_dict.get('repair_date')
     dept_code = data_dict.get('dept_code')
     repair_registrant = data_dict.get('repair_registrant')
     brand_code = data_dict.get('brand_code')

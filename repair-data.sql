@@ -1,5 +1,5 @@
 use repair;
-
+SET SQL_SAFE_UPDATES = 0;
 insert into department(id,code,name) values
 (1,'001','(厢竹)产科MICU'),
 (2,'002','(厢竹)产一科'),

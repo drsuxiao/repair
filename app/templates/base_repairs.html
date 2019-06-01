@@ -152,7 +152,19 @@ data-backdrop="false" data-keyboard="false">
 
 {% block script %}
 <script type="text/javascript">
-   toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
+    toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
+
+function currentTime(){
+    var datetime = new Date();
+    //datetime.setTime(time);
+    var year = datetime.getFullYear();
+    var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+    var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+    var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+    var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+    var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+    return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
+}
 </script>
 <script>
 $(function(){

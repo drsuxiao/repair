@@ -79,7 +79,9 @@
                     $(this).selectpicker("val",edit_date[$(this).attr("id")]);
                 });
                 $("#repair_confirm_date").datetimepicker("setStartDate",row[0].repair_date);
+                $("#repair_confirm_date").val(currentTime());  //获取日期与时间
             };
+
         };
     };
 

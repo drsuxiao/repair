@@ -103,6 +103,8 @@
             });
             $("#repair_return_date").datetimepicker("setStartDate",row[0].repair_confirm_date);
             $("#equipment_return_date").datetimepicker("setStartDate",row[0].repair_confirm_date);
+            $("#repair_return_date").val(currentTime());  //获取日期与时间
+            $("#equipment_return_date").val(currentTime());  //获取日期与时间
         };
 
         $("div.form-group").show();
