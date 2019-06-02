@@ -55,6 +55,7 @@
                             维修数据报表<b class="caret"></b>  <!-- 下拉符号 -->
                         </a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{url_for('show_repair_detail')}}">维修数据查询</a></li>
                             <li><a href="{{url_for('show_repair_workload')}}">维修工作量统计分析</a></li>
                             <li><a href="#">设备故障统计分析</a></li>
                             <li><a href="#">设备维修耗时统计</a></li>  <!-- 总耗时、维修耗时、维修响应时间、送还科室耗时-->
@@ -83,7 +84,7 @@
     <body>
         <div class="content-fluid">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-3">
                     {% block right %}
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -104,6 +105,7 @@
                             </a>
                         </div>
                         <div class="panel-body panel-collapse collapse" id="p2">
+                            <li><a href="{{url_for('show_repair_detail')}}">维修数据查询</a></li>
                             <li><a href="{{url_for('show_repair_workload')}}">维修工作量统计分析</a></li>
                             <li><a href="{{url_for('show_repair_fault')}}">设备故障统计分析</a></li>
                             <li><a href="#">设备维修耗时统计</a></li>
@@ -124,8 +126,8 @@
                         </div>
                     </div>
                     {% endblock %}
-                </div>
-                <div class="col-md-10">
+                </div>  <!-- 增加小屏幕时的布局适应优化 -->
+                <div class="col-md-10 col-sm-9">
                     <ul class="breadcrumb">
                         <li><a href="{{ url_for('index') }}">首页</a></li>
                         <li class="active">{% block breadcrumb %}{% endblock %}</li>
