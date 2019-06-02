@@ -1,7 +1,7 @@
 {%extends "base.html"%}
 <!-- 主体内容 -->
 {% block title %}基础数据管理{% endblock %}
-
+{% block breadcrumb %}{{ modal_title }}{% endblock %}
 {% block content %}
 <!-- 数据表 -->
 <div class=table-responsive">   <!-- 自适应列宽，高度  -->
@@ -76,6 +76,7 @@ data-backdrop="false" data-keyboard="false">
 {% endblock %}
 
 {% block script %}
+{{ super() }}
 <script type="text/javascript">
    toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
 </script>

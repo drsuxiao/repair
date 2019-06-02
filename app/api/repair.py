@@ -154,6 +154,136 @@ def get_equipment_repairs():
     return myreponse(data, total)
 
 
+@app.route('/repair/api/v1.0/equipment_repairs/statistical', methods=['GET'])
+def get_equipment_repairs_workload():
+    querystr = request.args.get("querystr", '1=1')
+    selectfield = request.args.get("selectfield", '1')
+    groupbystr = request.args.get("groupbystr", '1')
+    offset = request.args.get("offset", '0')
+    limit = request.args.get("limit", '10')
+    sort = request.args.get('sort', 'item')
+    order = request.args.get('order', 'asc')
+    sidePagination = request.args.get('sidePagination', 'client')
+
+    change = {'repair_department': 'dept_code', 'equipment_brand': 'brand_code', 'equipment_type': 'type_code',
+              'equipment_fault': 'fault_code', 'repair_company': 'com_code'}
+    if sort in ['repair_department', 'equipment_brand', 'equipment_type', 'equipment_fault', 'repair_company']:
+        orderbystr = change[sort] + " " + order
+    else:
+        orderbystr = sort + " " + order
+    print(orderbystr)
+
+    # 分页paginate的参数page，是第几页，而offset是记录的偏移量，需要转换
+    # 表格标题排序，根据table提交的信息进行排序，否则排序无效
+    if sidePagination == 'server':
+        pass
+    else:
+        # 工作量统计主数据
+        #selectfield = 'left(repair_date, 4)'
+        #groupbystr = 'left(repair_date, 4)'
+        sql_str = 'SELECT %s as item, count(*) as total FROM repair.equipment_repair ' \
+                  'where %s ' \
+                  'group by %s ' \
+                  'order by %s;' % (selectfield, querystr, groupbystr, orderbystr)
+        # sqlalchemy执行sql
+        print(sql_str)
+        data_query = db.session.execute(sql_str)
+        # 获取查询到的数据条数
+        total = data_query.rowcount
+        # fetchall()遍历到所有数据
+        rows = data_query.fetchall()
+        data = [{"item": row['item'], "total": row['total']} for row in rows]
+
+    return myreponse(data, total)
+
+
+@app.route('/repair/api/v1.0/equipment_repairs/workload/first', methods=['GET'])
+def get_equipment_repairs_workload_first():
+    parentid = request.args.get("parentid", '')
+    offset = request.args.get("offset", '0')
+    limit = request.args.get("limit", '10')
+    sort = request.args.get('sort', 'item')
+    order = request.args.get('order', 'asc')
+    sidePagination = request.args.get('sidePagination', 'client')
+
+    change = {'repair_department': 'dept_code', 'equipment_brand': 'brand_code', 'equipment_type': 'type_code',
+              'equipment_fault': 'fault_code', 'repair_company': 'com_code'}
+    if sort in ['repair_department', 'equipment_brand', 'equipment_type', 'equipment_fault', 'repair_company']:
+        orderbystr = change[sort] + " " + order
+    else:
+        orderbystr = sort + " " + order
+    print(orderbystr)
+
+    # 分页paginate的参数page，是第几页，而offset是记录的偏移量，需要转换
+    # 表格标题排序，根据table提交的信息进行排序，否则排序无效
+    if sidePagination == 'server':
+        pass
+    else:
+        # 工作量统计主数据
+        selectfield = 'left(repair_date, 7)'
+        querystr = "left(repair_date, 4)='%s'" % parentid
+        groupbystr = 'left(repair_date, 7)'
+        sql_str = 'SELECT %s as item, count(*) as total FROM repair.equipment_repair ' \
+                  'where %s ' \
+                  'group by %s ' \
+                  'order by %s;' % (selectfield, querystr, groupbystr, orderbystr)
+        # sqlalchemy执行sql
+        data_query = db.session.execute(sql_str)
+        # 获取查询到的数据条数
+        total = data_query.rowcount
+        # fetchall()遍历到所有数据
+        rows = data_query.fetchall()
+        data = [{"item": row['item'], "total": row['total']} for row in rows]
+
+    return myreponse(data, total)
+
+
+@app.route('/repair/api/v1.0/equipment_repairs/statistical/basedata', methods=['GET'])
+def get_equipment_repairs_workload_detail_second():
+    #parentid = request.args.get("parentid", '')
+    querystr = request.args.get("querystr", '1=1')
+    selectfield = request.args.get("selectfield", '1')
+    groupbystr = request.args.get("groupbystr", '1')
+    tablename = request.args.get("tablename", '1')
+    offset = request.args.get("offset", '0')
+    limit = request.args.get("limit", '10')
+    sort = request.args.get('sort', 'code')
+    order = request.args.get('order', 'asc')
+    sidePagination = request.args.get('sidePagination', 'client')
+
+    change = {'repair_department': 'dept_code', 'equipment_brand': 'brand_code', 'equipment_type': 'type_code',
+              'equipment_fault': 'fault_code', 'repair_company': 'com_code'}
+    if sort in ['repair_department', 'equipment_brand', 'equipment_type', 'equipment_fault', 'repair_company']:
+        orderbystr = change[sort] + " " + order
+    else:
+        orderbystr = sort + " " + order
+    print(orderbystr)
+
+    # 分页paginate的参数page，是第几页，而offset是记录的偏移量，需要转换
+    # 表格标题排序，根据table提交的信息进行排序，否则排序无效
+    if sidePagination == 'server':
+        pass
+    else:
+        # 工作量统计主数据
+        #querystr = 'left(repair_date, 7)="%s"' % parentid
+        #groupbystr = 'dept_code'
+        #tablename = 'department'
+        sql_str = 'SELECT %s as item, count(*) as total FROM repair.equipment_repair ' \
+                  'left join %s on %s = code ' \
+                  'where %s ' \
+                  'group by %s ' \
+                  'order by %s;' % (selectfield, tablename, groupbystr, querystr, groupbystr, orderbystr)
+        # sqlalchemy执行sql
+        data_query = db.session.execute(sql_str)
+        # 获取查询到的数据条数
+        total = data_query.rowcount
+        # fetchall()遍历到所有数据
+        rows = data_query.fetchall()
+        data = [{"code": row['code'], "item": row['item'], "total": row['total']} for row in rows]
+
+    return myreponse(data, total)
+
+
 @app.route('/repair/api/v1.0/equipment_repairs/delete/<int:id>', methods=['POST'])
 def delete_equipment_repair(id):
     row = EquipmentRepair.query.filter_by(id=id).first()

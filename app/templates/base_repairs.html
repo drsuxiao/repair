@@ -1,7 +1,7 @@
 {%extends "base.html"%}
 <!-- 主体内容 -->
 {% block title %}设备维修管理{% endblock %}
-
+{% block breadcrumb %}{{ modal_title }}{% endblock %}
 {% block content %}
 <!-- 搜素面板 -->
 <div class="panel panel-default">
@@ -151,6 +151,7 @@ data-backdrop="false" data-keyboard="false">
 {% endblock %}
 
 {% block script %}
+{{ super() }}
 <script type="text/javascript">
     toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
 
@@ -361,7 +362,7 @@ function initTable(querystr, querytype) {
         uniqueId: "id",                     //每一行的唯一标识，一般为主键列
         showToggle: false,                   //是否显示详细视图和列表视图的切换按钮
         cardView: false,                    //是否显示详细视图
-        detailView: true,                  //是否显示父子表
+        detailView: false,                  //是否显示父子表
         //设置为undefined可以获取pageNumber，pageSize，searchText，sortName，sortOrder
         //设置为limit可以获取limit, offset, search, sort, order
         queryParamsType:'limit',
