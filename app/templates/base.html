@@ -12,6 +12,7 @@
     <link href="{{url_for('static', filename='css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/toastr.min.css')}}?v=1.0" rel="stylesheet" type="text/css"/>
+    <link href="{{url_for('static', filename='css/jquery-editable-select.css')}}" rel="stylesheet" type="text/css"/>
     <script src="{{url_for('static', filename='js/html5shiv.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/respond.min.js')}}"></script>
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
@@ -104,7 +105,7 @@
                                 维修数据报表
                             </a>
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="p2">
+                        <div class="panel-body panel-collapse in collapse" id="p2">
                             <li><a href="{{url_for('show_repair_detail')}}">维修数据查询</a></li>
                             <li><a href="{{url_for('show_repair_workload')}}">维修工作量统计分析</a></li>
                             <li><a href="{{url_for('show_repair_fault')}}">设备故障统计分析</a></li>
@@ -117,7 +118,7 @@
                                 基础数据维护
                             </a>
                         </div>
-                        <div class="panel-body panel-collapse collapse" id="p3">
+                        <div class="panel-body panel-collapse in collapse" id="p3">
                             <li><a href="{{ url_for('show_departments')}}">科室维护</a></li>
                             <li><a href="{{ url_for('show_equipment_brands')}}">设备品牌维护</a></li>
                             <li><a href="{{ url_for('show_equipment_types')}}">设备类型维护</a></li>
@@ -150,17 +151,49 @@
         <script src="{{url_for('static', filename='js/tableexport.js')}}"></script>
         <script src="{{url_for('static', filename='js/bootstrap-table-zh-CN.min.js')}}"></script>
         <script src="{{url_for('static', filename='js/toastr.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/jquery-editable-select.js')}}"></script>
         <!--<script src="{{url_for('static', filename='js/showtip.js')}}"></script> -->
         {% endblock %}
     </body>
-
-
 {% block script %}
 <script>
+//可编辑选择框初始化
+$('#repair_registrant').editableSelect({
+    effects: 'slide', //可选参数default、fade
+    filter: false // 不过滤，否则选中后其它选项消失
+});
+$('#repair_man').editableSelect({
+    effects: 'slide', //可选参数default、fade
+    filter: false // 不过滤，否则选中后其它选项消失
+});
+$('#repair_return_man').editableSelect({
+    effects: 'slide', //可选参数default、fade
+    filter: false // 不过滤，否则选中后其它选项消失
+});
+$('#equipment_return_man').editableSelect({
+    effects: 'slide', //可选参数default、fade
+    filter: false // 不过滤，否则选中后其它选项消失
+});
+$('#repair_result').editableSelect({
+    effects: 'slide', //可选参数default、fade
+    filter: false // 不过滤，否则选中后其它选项消失
+});
     //$("li a").click(function(){
         //alert(this.text);
         //$("ul.breadcrumb li.active").html(this.text);
     //});
+function showTabs(tabsId,url,flag) {
+    //显示标签
+    if (flag == 1){
+        $("a[href='#"+tabsId+"']").tab('show');
+        //加载页面
+        var $tabContent = $('#'+tabsId);
+        if($tabContent.length < 100) {
+            $tabContent.load(url);
+        };
+    };
+};
+
 </script>
 
 {% endblock %}

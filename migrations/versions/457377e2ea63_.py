@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: c041cc981e21
+Revision ID: 457377e2ea63
 Revises: 
-Create Date: 2019-05-31 14:49:18.466384
+Create Date: 2019-06-03 17:06:17.551761
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c041cc981e21'
+revision = '457377e2ea63'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,7 +29,7 @@ def upgrade():
     op.create_table('equipment_brand',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('code', sa.String(length=10), nullable=True),
-    sa.Column('name', sa.String(length=10), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_equipment_brand_code'), 'equipment_brand', ['code'], unique=True)
@@ -37,7 +37,7 @@ def upgrade():
     op.create_table('equipment_fault',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('code', sa.String(length=10), nullable=True),
-    sa.Column('name', sa.String(length=10), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_equipment_fault_code'), 'equipment_fault', ['code'], unique=True)
@@ -45,7 +45,7 @@ def upgrade():
     op.create_table('equipment_type',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('code', sa.String(length=10), nullable=True),
-    sa.Column('name', sa.String(length=10), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_equipment_type_code'), 'equipment_type', ['code'], unique=True)
@@ -53,11 +53,27 @@ def upgrade():
     op.create_table('repair_company',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('code', sa.String(length=10), nullable=True),
-    sa.Column('name', sa.String(length=10), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_repair_company_code'), 'repair_company', ['code'], unique=True)
     op.create_index(op.f('ix_repair_company_name'), 'repair_company', ['name'], unique=True)
+    op.create_table('repair_result',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('code', sa.String(length=10), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_index(op.f('ix_repair_result_code'), 'repair_result', ['code'], unique=True)
+    op.create_index(op.f('ix_repair_result_name'), 'repair_result', ['name'], unique=True)
+    op.create_table('repair_staff',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('code', sa.String(length=10), nullable=True),
+    sa.Column('name', sa.String(length=50), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_index(op.f('ix_repair_staff_code'), 'repair_staff', ['code'], unique=True)
+    op.create_index(op.f('ix_repair_staff_name'), 'repair_staff', ['name'], unique=True)
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('usercode', sa.String(length=10), nullable=True),
@@ -76,17 +92,17 @@ def upgrade():
     sa.Column('type_code', sa.String(length=10), nullable=True),
     sa.Column('equipment_code', sa.String(length=10), nullable=True),
     sa.Column('fault_code', sa.String(length=10), nullable=True),
-    sa.Column('com_code', sa.String(length=10), nullable=True),
-    sa.Column('repair_man', sa.String(length=10), nullable=True),
+    sa.Column('com_code', sa.String(length=20), nullable=True),
+    sa.Column('repair_man', sa.String(length=20), nullable=True),
     sa.Column('repair_confirm_date', sa.String(length=20), nullable=True),
     sa.Column('repair_return_date', sa.String(length=20), nullable=True),
     sa.Column('repair_return_man', sa.String(length=10), nullable=True),
     sa.Column('equipment_return_date', sa.String(length=20), nullable=True),
     sa.Column('equipment_return_man', sa.String(length=10), nullable=True),
     sa.Column('repair_status', sa.Integer(), nullable=True),
-    sa.Column('repair_priority', sa.Integer(), nullable=True),
-    sa.Column('repair_result', sa.String(length=200), nullable=True),
-    sa.Column('repair_remarks', sa.String(length=200), nullable=True),
+    sa.Column('repair_priority', sa.String(length=10), nullable=True),
+    sa.Column('repair_result', sa.String(length=100), nullable=True),
+    sa.Column('repair_remarks', sa.String(length=100), nullable=True),
     sa.ForeignKeyConstraint(['brand_code'], ['equipment_brand.code'], ),
     sa.ForeignKeyConstraint(['com_code'], ['repair_company.code'], ),
     sa.ForeignKeyConstraint(['dept_code'], ['department.code'], ),
@@ -103,6 +119,12 @@ def downgrade():
     op.drop_index(op.f('ix_users_username'), table_name='users')
     op.drop_index(op.f('ix_users_usercode'), table_name='users')
     op.drop_table('users')
+    op.drop_index(op.f('ix_repair_staff_name'), table_name='repair_staff')
+    op.drop_index(op.f('ix_repair_staff_code'), table_name='repair_staff')
+    op.drop_table('repair_staff')
+    op.drop_index(op.f('ix_repair_result_name'), table_name='repair_result')
+    op.drop_index(op.f('ix_repair_result_code'), table_name='repair_result')
+    op.drop_table('repair_result')
     op.drop_index(op.f('ix_repair_company_name'), table_name='repair_company')
     op.drop_index(op.f('ix_repair_company_code'), table_name='repair_company')
     op.drop_table('repair_company')

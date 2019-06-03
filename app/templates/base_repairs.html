@@ -88,7 +88,7 @@
 </div>
 <!-- 数据表 -->
 <div class=table-responsive">   <!-- 自适应列宽，高度  -->
-    <table id="table_repairs" class="table table-bordered table-striped table-condensed text-nowrap"></table>
+    <table id="table_repairs" class="table table-bordered table-striped table-condensed text-nowrap" data-reorderable-columns="true"></table>
 </div>
 <!-- 工具容器 -->
 <div id="toolbar">{% block function %}{% endblock %}</div>
@@ -149,6 +149,19 @@ data-backdrop="false" data-keyboard="false">
     </div><!-- /.modal -->
 </div>
 {% endblock %}
+<!-- 报修人列表 -->
+<datalist id="list_repair_man">
+    <option value="张三">
+    <option value="李四">
+    <option value="李四">
+    <option value="小王">
+    <option value="方式">
+    <option value="张发到">
+    <option value="李到">
+    <option value="李到">
+    <option value="白总">
+    <option value="陈总">
+</datalist>
 {% endblock %}
 
 {% block script %}
@@ -522,7 +535,7 @@ function initTable(querystr, querytype) {
                 sortable: true
             },{
                 field: 'repair_company',
-                title: '维修公司',
+                title: '维修方',
                 align: 'left',
                 valign: 'middle',
                 sortable: true
@@ -606,6 +619,8 @@ function changeDateFormat(value) {
 				},
 				success: function(data) {
 				    toastr.success('提交数据成功');
+				    $(".modal").modal("hide");     //隐藏模态框
+				    $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
 				}
 		 })
     };

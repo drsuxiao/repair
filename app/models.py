@@ -45,8 +45,8 @@ class EquipmentRepair(db.Model):
     # equipment_fault = db.Column(db.String(50))  # 设备故障
     fault_code = db.Column(db.String(10), db.ForeignKey('equipment_fault.code'))  # 设备故障
     # repair_company = db.Column(db.String(30))  # 维修公司
-    com_code = db.Column(db.String(10), db.ForeignKey('repair_company.code'))  # 维修公司
-    repair_man = db.Column(db.String(10))  # 维修人
+    com_code = db.Column(db.String(20), db.ForeignKey('repair_company.code'))  # 维修公司
+    repair_man = db.Column(db.String(20))  # 维修人
     repair_confirm_date = db.Column(db.String(20))  # 维修确认日期
     repair_return_date = db.Column(db.String(20))  # 维修归还日期
     repair_return_man = db.Column(db.String(10))  # 维修归还人
@@ -115,7 +115,7 @@ class EquipmentBrand(db.Model):
     __tablename__ = 'equipment_brand'
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(10), unique=True, index=True)
-    name = db.Column(db.String(10), unique=True, index=True)
+    name = db.Column(db.String(50), unique=True, index=True)
     # 一对多反馈
     repairs = db.relationship("EquipmentRepair", backref='equipment_brand', lazy='dynamic')
 
@@ -135,7 +135,7 @@ class EquipmentType(db.Model):
     __tablename__ = 'equipment_type'
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(10), unique=True, index=True)
-    name = db.Column(db.String(10), unique=True, index=True)
+    name = db.Column(db.String(50), unique=True, index=True)
     # 一对多反馈
     repairs = db.relationship("EquipmentRepair", backref='equipment_type', lazy='dynamic')
 
@@ -155,7 +155,7 @@ class EquipmentFault(db.Model):
     __tablename__ = 'equipment_fault'
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(10), unique=True, index=True)
-    name = db.Column(db.String(10), unique=True, index=True)
+    name = db.Column(db.String(50), unique=True, index=True)
     # 一对多反馈
     repairs = db.relationship("EquipmentRepair", backref='equipment_fault', lazy='dynamic')
 
@@ -175,7 +175,7 @@ class RepairCompany(db.Model):
     __tablename__ = 'repair_company'
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.String(10), unique=True, index=True)
-    name = db.Column(db.String(10), unique=True, index=True)
+    name = db.Column(db.String(50), unique=True, index=True)
     # 一对多反馈
     repairs = db.relationship("EquipmentRepair", backref='repair_company', lazy='dynamic')
 
@@ -191,5 +191,37 @@ class RepairCompany(db.Model):
         return json_com
 
 
+class RepairStaff(db.Model):
+    __tablename__ = 'repair_staff'
+    id = db.Column(db.Integer, primary_key=True)
+    code = db.Column(db.String(10), unique=True, index=True)
+    name = db.Column(db.String(50), unique=True, index=True)
+
+    def to_json(self):
+        """
+        完成RepairStaff数据模型到JSON格式化的序列化字典转换
+        """
+        json_staff = {
+            'id': self.id,
+            'code': self.code,
+            'name': self.name
+        }
+        return json_staff
 
 
+class RepairResult(db.Model):
+    __tablename__ = 'repair_result'
+    id = db.Column(db.Integer, primary_key=True)
+    code = db.Column(db.String(10), unique=True, index=True)
+    name = db.Column(db.String(50), unique=True, index=True)
+
+    def to_json(self):
+        """
+        完成RepairStaff数据模型到JSON格式化的序列化字典转换
+        """
+        json_staff = {
+            'id': self.id,
+            'code': self.code,
+            'name': self.name
+        }
+        return json_staff

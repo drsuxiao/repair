@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DateField, SelectField, IntegerField
 from wtforms.validators import DataRequired, Length
-from app.models import Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, User, EquipmentRepair
+from app.models import Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, User, EquipmentRepair, RepairStaff, RepairResult
 '''
 'BooleanField', 'DecimalField', 'DateField', 'DateTimeField', 'FieldList',
 'FloatField', 'FormField', 'IntegerField', 'RadioField', 'SelectField',
@@ -21,8 +21,8 @@ class RepairRegistrationForm(FlaskForm):
                                   render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 优先级
     dept_code = SelectField('报修科室', validators=[DataRequired()], coerce=str,
                             render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 报修科室
-    repair_registrant = StringField('报修人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 报修人
+    repair_registrant = SelectField('报修人', validators=[DataRequired()],
+                                    render_kw={'class': "form-control", "style": "width: 200px"})  # 报修人
     brand_code = SelectField('设备品牌', validators=[DataRequired()], coerce=str,
                              render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备品牌
     type_code = SelectField('设备类型', validators=[DataRequired()], coerce=str,
@@ -31,7 +31,7 @@ class RepairRegistrationForm(FlaskForm):
                                  render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 设备编号
     fault_code = SelectField('设备故障', validators=[DataRequired()], coerce=str,
                              render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备故障
-    com_code = SelectField('维修公司', validators=[DataRequired()], coerce=str,
+    com_code = SelectField('维修方', validators=[DataRequired()], coerce=str,
                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修公司
     repair_remarks = StringField('备注', render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 备注
     # 在构造化Form实例时指定selectField的choices内容,
@@ -46,6 +46,7 @@ class RepairRegistrationForm(FlaskForm):
                                    EquipmentFault.query.order_by(EquipmentFault.code).all()]
         self.com_code.choices = [(com.code, com.name) for com in RepairCompany.query.order_by(RepairCompany.code).all()]
         self.repair_priority.choices = [('0', '一般'), ('1', '比较急'), ('2', '非常急'), ('3', '特急')]
+        self.repair_registrant.choices = [(staff.code, staff.name) for staff in RepairStaff.query.order_by(RepairStaff.code).all()]
 
 
 class RepairConfirmForm(FlaskForm):
@@ -66,11 +67,11 @@ class RepairConfirmForm(FlaskForm):
                                  render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 设备编号
     fault_code = SelectField('设备故障', validators=[DataRequired()], coerce=str,
                              render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备故障
-    com_code = SelectField('维修公司', validators=[DataRequired()], coerce=str,
+    com_code = SelectField('维修方', validators=[DataRequired()], coerce=str,
                            render_kw={'class': "selectpicker form-control input-sm", "style": "width: 200px",
                                       "title": "请选择"})  # 维修公司
-    repair_man = StringField('维修人', validators=[DataRequired()],
-                             render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 维修人
+    repair_man = SelectField('维修人', validators=[DataRequired()],
+                             render_kw={'class': "form-control", "style": "width: 200px"})  # 维修人
     repair_remarks = StringField('备注', render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 备注
 
     # 在构造化Form实例时指定selectField的choices内容,
@@ -81,20 +82,28 @@ class RepairConfirmForm(FlaskForm):
         self.type_code.choices = [(type.code, type.name) for type in EquipmentType.query.order_by(EquipmentType.code).all()]
         self.fault_code.choices = [(fault.code, fault.name) for fault in EquipmentFault.query.order_by(EquipmentFault.code).all()]
         self.com_code.choices = [(com.code, com.name) for com in RepairCompany.query.order_by(RepairCompany.code).all()]
+        self.repair_man.choices = [(staff.code, staff.name) for staff in RepairStaff.query.order_by(RepairStaff.code).all()]
 
 
 class OneKeyReturnForm(FlaskForm):
     repair_return_date = StringField('维修归还日期', validators=[DataRequired()],
                                      render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修归还日期
-    repair_return_man = StringField('维修归还人', validators=[DataRequired()],
-                                    render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 维修归还人
+    repair_return_man = SelectField('维修归还人', validators=[DataRequired()],
+                                    render_kw={'class': "form-control", "style": "width: 200px", "title": "请输入"})  # 维修归还人
     equipment_return_date = StringField('归还科室日期', validators=[DataRequired()],
                                         render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 设备归还科室日期
-    equipment_return_man = StringField('归还科室人', validators=[DataRequired()],
-                                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 设备归还科室人
-    repair_result = StringField('维修结果', validators=[DataRequired()],
-                                render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请选择"})  # 维修结果
+    equipment_return_man = SelectField('归还科室人', validators=[DataRequired()],
+                                       render_kw={'class': "form-control", "style": "width: 200px", "title": "请输入"})  # 设备归还科室人
+    repair_result = SelectField('维修结果', validators=[DataRequired()],
+                                render_kw={'class': "form-control", "style": "width: 200px", "title": "请选择"})  # 维修结果
     repair_remarks = StringField('备注', render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 备注
+
+    # 在构造化Form实例时指定selectField的choices内容,
+    def __init__(self, *args, **kwargs):
+        super(OneKeyReturnForm, self).__init__(*args, **kwargs)
+        self.repair_return_man.choices = [(staff.code, staff.name) for staff in RepairStaff.query.order_by(RepairStaff.code).all()]
+        self.equipment_return_man.choices = [(staff.code, staff.name) for staff in RepairStaff.query.order_by(RepairStaff.code).all()]
+        self.repair_result.choices = [(result.code, result.name) for result in RepairResult.query.order_by(RepairResult.code).all()]
 
 
 class EquipmentReturnForm(FlaskForm):
@@ -107,7 +116,6 @@ class EquipmentReturnForm(FlaskForm):
                                        render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 设备归还科室人
     repair_result = StringField('维修结果', validators=[DataRequired()],
                                 render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 维修结果
-
 
 
 class RepairReturnForm(FlaskForm):
