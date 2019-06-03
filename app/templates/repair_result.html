@@ -1,0 +1,37 @@
+{% extends 'base_database.html' %}
+{% block title %}维修结果管理{% endblock %}
+
+{% block script %}
+{{ super() }}
+
+<script>
+    initTable('/repair/api/v1.0/repair_result', ['维修结果编码','维修结果名称']);
+</script>
+<!-- 按钮事件 -->
+<script type="text/javascript">
+    $("#delete_confirm").click(function(){
+         if (action == 'delete'){
+             url = '/repair/api/v1.0/repair_result/delete/' + cur_key
+             ajax_post_data(url, {});
+             $("#modal_delete").modal("hide");
+             $("#table_database").bootstrapTable("refresh");  //刷新表格数据
+         };
+    });
+    //新增，编辑根据post的url来区别
+    $("#modal_save").click(function(e) {
+        if ($("#code").val() && $("#name").val()){
+            e.preventDefault();
+            if (action == 'add'){
+                url = '/repair/api/v1.0/repair_result/add';
+            } else if (action == 'edit'){
+                url = '/repair/api/v1.0/repair_result/edit/' + cur_key;
+            }else{url = ''};
+            ajax_post_data(url, get_json_data());
+
+            $("#modal_database").modal("hide");     //隐藏模态框
+            $("#table_database").bootstrapTable("refresh");  //刷新表格数据
+            //$("#modal_database")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
+        }
+    });
+</script>
+{% endblock %}

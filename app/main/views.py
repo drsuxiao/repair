@@ -91,6 +91,15 @@ def show_repair_companys():
     form = BaseDataSetForm()
     return render_template('repair_company.html', form=form, modal_id="modal_database", modal_title="维修公司维护窗")
 
+@app.route('/repair/repair_staff', methods=['GET', 'POST'])
+def show_repair_staff():
+    form = BaseDataSetForm()
+    return render_template('repair_staff.html', form=form, modal_id="modal_database", modal_title="人员信息维护窗")
+
+@app.route('/repair/repair_result', methods=['GET', 'POST'])
+def show_repair_result():
+    form = BaseDataSetForm()
+    return render_template('repair_result.html', form=form, modal_id="modal_database", modal_title="维修结果维护窗")
 
 @app.route('/repair/equipment_repairs/detail', methods=['GET', 'POST'])
 def show_repair_detail():

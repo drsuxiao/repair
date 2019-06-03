@@ -1,6 +1,6 @@
 from flask import jsonify, abort, make_response, request
 from app import app, db
-from app.models import User, Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, EquipmentRepair
+from app.models import User, Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, EquipmentRepair, RepairResult, RepairStaff
 from datetime import datetime
 import json
 from sqlalchemy import text
@@ -577,6 +577,23 @@ def update_data_by_id(model, id, my_code):
     return row.to_json()
 
 
+def update_data_by_id_ext(model, id):
+    row = model.query.filter_by(id=id).first()
+    if row is None:
+        abort(400)  # existing user
+
+    data = request.form
+    data_dict = data.to_dict()
+    print(data_dict)
+    new_code = data_dict.get('code')
+    new_name = data_dict.get('name')
+    if new_code is None or new_name is None:
+        abort(414)  # missing arguments
+    row.code = new_code
+    row.name = new_name
+    db.session.commit()
+
+
 def add_data_by_model(model):
     data = request.form
     data_dict = data.to_dict()
@@ -745,3 +762,43 @@ def delete_repair_company(id):
     if EquipmentRepair.query.filter_by(com_code=row.code).first() is not None:
         abort(400)
     return myreponse(delete_data_by_id(RepairCompany, id))
+
+
+@app.route('/repair/api/v1.0/repair_staff', methods=['GET'])
+def get_repair_staff():
+    return myreponse(get_data_by_model(RepairStaff))
+
+
+@app.route('/repair/api/v1.0/repair_staff/edit/<int:id>', methods=['POST'])
+def update_repair_staff(id):
+    return myreponse(update_data_by_id_ext(RepairStaff, id))
+
+
+@app.route('/repair/api/v1.0/repair_staff/add', methods=['POST'])
+def add_repair_staff():
+    return myreponse(add_data_by_model(RepairStaff))
+
+
+@app.route('/repair/api/v1.0/repair_staff/delete/<int:id>', methods=['POST'])
+def delete_repair_staff(id):
+    return myreponse(delete_data_by_id(RepairStaff, id))
+
+
+@app.route('/repair/api/v1.0/repair_result', methods=['GET'])
+def get_repair_result():
+    return myreponse(get_data_by_model(RepairResult))
+
+
+@app.route('/repair/api/v1.0/repair_result/edit/<int:id>', methods=['POST'])
+def update_repair_result(id):
+    return myreponse(update_data_by_id_ext(RepairResult, id))
+
+
+@app.route('/repair/api/v1.0/repair_result/add', methods=['POST'])
+def add_repair_result():
+    return myreponse(add_data_by_model(RepairResult))
+
+
+@app.route('/repair/api/v1.0/repair_result/delete/<int:id>', methods=['POST'])
+def delete_repair_result(id):
+    return myreponse(delete_data_by_id(RepairResult, id))
