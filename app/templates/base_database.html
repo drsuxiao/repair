@@ -77,12 +77,12 @@ data-backdrop="false" data-keyboard="false">
 
 {% block script %}
 {{ super() }}
-<script type="text/javascript">
-   toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
-</script>
+
 <script>
 $(function(){
     $('.modal').draggable();   //实现模态框拖移
+    //提示信息插件 显示位置设置
+    toastr.options.positionClass = 'toast-top-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
 });
 </script>
 <!-- 表格初始化 -->
@@ -229,6 +229,9 @@ function initTable(url, titles) {
 					//alert("Connection error:"+request.error);
 				},
 				success: function(data) {
+				    $(".modal").modal("hide");     //隐藏模态框
+                    $("#table_database").bootstrapTable("refresh");  //刷新表格数据
+                    $("form")[0].reset();  //重置表单
 				    toastr.success('提交数据成功');
 				}
 		 })

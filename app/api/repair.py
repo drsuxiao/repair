@@ -4,7 +4,7 @@ from app.models import User, Department, EquipmentBrand, EquipmentType, Equipmen
 from datetime import datetime
 import json
 from sqlalchemy import text
-from app.main.forms import EquipmentBrand
+
 
 @app.errorhandler(400)
 def not_found(error):
@@ -802,3 +802,4 @@ def add_repair_result():
 @app.route('/repair/api/v1.0/repair_result/delete/<int:id>', methods=['POST'])
 def delete_repair_result(id):
     return myreponse(delete_data_by_id(RepairResult, id))
+

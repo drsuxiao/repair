@@ -1,12 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DateField, SelectField, IntegerField
+from wtforms import StringField, SelectField
 from wtforms.validators import DataRequired, Length
-from app.models import Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, User, EquipmentRepair, RepairStaff, RepairResult
-'''
-'BooleanField', 'DecimalField', 'DateField', 'DateTimeField', 'FieldList',
-'FloatField', 'FormField', 'IntegerField', 'RadioField', 'SelectField',
-'SelectMultipleField', 'StringField', 'TimeField',
-'''
+from app.models import Department, EquipmentBrand, EquipmentType, EquipmentFault, RepairCompany, RepairStaff, RepairResult
 
 
 class RepairRegistrationForm(FlaskForm):
@@ -106,6 +101,13 @@ class OneKeyReturnForm(FlaskForm):
         self.repair_result.choices = [(result.code, result.name) for result in RepairResult.query.order_by(RepairResult.code).all()]
 
 
+class BaseDataSetForm(FlaskForm):
+    code = StringField('编码', validators=[DataRequired(), Length(min=3, max=10)],
+                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})
+    name = StringField('名称', validators=[DataRequired()],
+                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})
+
+
 class EquipmentReturnForm(FlaskForm):
     """
     设备归还科室确认表单
@@ -128,12 +130,3 @@ class RepairReturnForm(FlaskForm):
                                     render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})  # 维修归还人
     repair_remarks = StringField('备注', validators=[DataRequired()],
                                  render_kw={'class': "form-control input-sm", "style": "width: 200px"})  # 备注
-
-
-class BaseDataSetForm(FlaskForm):
-    code = StringField('编码', validators=[DataRequired(), Length(min=3, max=10)],
-                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})
-    name = StringField('名称', validators=[DataRequired()],
-                       render_kw={'class': "form-control input-sm", "style": "width: 200px", "title": "请输入"})
-
-

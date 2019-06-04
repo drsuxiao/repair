@@ -9,8 +9,9 @@
 {% block script %}
 {{ super() }}
 <script>
+    //根据查询条件来初始化表格，查询条件类型为string（/json）
     initTable("repair_status = 1 or repair_status = 2",'string');
-
+    //设置日期控件的开始日期、结束日期的约束
     $("#repair_return_date").on("click",function(){
         $("#repair_return_date").datetimepicker("setEndDate",$("#equipment_return_date").val())
     });
@@ -82,9 +83,6 @@
             e.preventDefault();
             //alert($("form").serialize());
             ajax_post_data(url, get_json_data());
-            //$("#modal_return").modal("hide");     //隐藏模态框
-            //$("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
-            //$("#modal_return")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
         }
     });
 </script>

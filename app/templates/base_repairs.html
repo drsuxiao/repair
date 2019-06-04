@@ -25,7 +25,7 @@
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_brand_code">设备品牌</label></td>
                 <td style=" white-space:nowrap; border:0px;"><select class="selectpicker form-control input-sm" id="query_brand_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_return_man">维修归还人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_repair_return_man"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_repair_return_man"></select></td>
             </tr>  <!--  -->
             <tr>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_equipment_confirm_date">报修确认日期</label></td>
@@ -36,11 +36,11 @@
                     </tr></table>
                 </td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_registrant">报修人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_repair_registrant"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_repair_registrant"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_type_code">设备类型</label></td>
                 <td style=" white-space:nowrap; border:0px;"><select class="selectpicker form-control input-sm" id="query_type_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_equipment_return_man">归还科室人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_equipment_return_man"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_equipment_return_man"></select></td>
             </tr>
             <tr>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_return_date">维修归还日期</label></td>
@@ -73,7 +73,7 @@
                     </tr></table>
                 </td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_man">维修人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_repair_man"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_repair_man"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_fault_code">设备故障</label></td>
                 <td style=" white-space:nowrap; border:0px;"><select class="selectpicker form-control input-sm" id="query_fault_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap; border:0px;"></td>
@@ -166,21 +166,7 @@ data-backdrop="false" data-keyboard="false">
 
 {% block script %}
 {{ super() }}
-<script type="text/javascript">
-    toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
-
-function currentTime(){
-    var datetime = new Date();
-    //datetime.setTime(time);
-    var year = datetime.getFullYear();
-    var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
-    var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
-    var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
-    var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
-    var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
-    return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
-}
-</script>
+<!-- 界面相关控件的初始化 -->
 <script>
 $(function(){
     $('.modal').draggable();   //实现模态框拖移
@@ -213,14 +199,39 @@ $(function(){
         })
     });
 
+    //模态框 可编辑选择框初始化
+    $('#repair_registrant').editableSelect({
+        effects: 'slide', //可选参数default、fade
+        filter: false // 不过滤，否则选中后其它选项消失
+    });
+    $('#repair_man').editableSelect({
+        effects: 'slide', //可选参数default、fade
+        filter: false // 不过滤，否则选中后其它选项消失
+    });
+    $('#repair_return_man').editableSelect({
+        effects: 'slide', //可选参数default、fade
+        filter: false // 不过滤，否则选中后其它选项消失
+    });
+    $('#equipment_return_man').editableSelect({
+        effects: 'slide', //可选参数default、fade
+        filter: false // 不过滤，否则选中后其它选项消失
+    });
+    $('#repair_result').editableSelect({
+        effects: 'slide', //可选参数default、fade
+        filter: false // 不过滤，否则选中后其它选项消失
+    });
+    //查询面板 下拉选择框的动态添加数据项
     var select_list = [
         {"id":"query_dept_code", "url":"/repair/api/v1.0/departments", "valuefield":"code", "textfield":"name"},
         {"id":"query_brand_code", "url":"/repair/api/v1.0/equipment_brands", "valuefield":"code", "textfield":"name"},
         {"id":"query_type_code", "url":"/repair/api/v1.0/equipment_types", "valuefield":"code", "textfield":"name"},
         {"id":"query_fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"code", "textfield":"name"},
-        {"id":"query_com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"code", "textfield":"name"}
+        {"id":"query_com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"code", "textfield":"name"},
+        {"id":"query_repair_registrant", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"},
+        {"id":"query_repair_man", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"},
+        {"id":"query_repair_return_man", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"},
+        {"id":"query_equipment_return_man", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"}
     ];
-
     function init(target, data, valuefield, textfield) {
                 var option = $('<option></option>');
                 target.append(option);
@@ -233,20 +244,37 @@ $(function(){
         target.selectpicker('refresh');
         target.selectpicker('render');
     };
+    function init_edit_select(target, data){
+        var htm = "";
+        for ( var int = 0; int < data.length; int++) {
+            htm += "<option value='"+ data[int].name +"'>"+ data[int].name +"</option>";
+        }
+        target.html(htm);
+        target.editableSelect({
+            effects: 'slide', //设置可编辑 其它可选参数default、fade
+            filter: false //不过滤，否则选中后其它选项消失
+        });
+        target.val(data[0].name); //设置默认值
+    };
+
     //$(id_list).each(function(){ 使用此方式就是获取不到ID的值？？？？
     $.each(select_list, function (i, item) {
         $.get(item.url,function(data,status){
-            init($("#"+item['id']), data.rows, item['valuefield'],item['textfield']);
-          });
+            if(item.url != '/repair/api/v1.0/repair_staff'){
+                init($("#"+item['id']), data.rows, item['valuefield'],item['textfield']);
+            }
+            else{
+                init_edit_select($("#"+item['id']), data.rows);
+            };
+         });
     });
-
+    //查询面板 日期控件的初始化
     var id_list = [
         {"start":"query_repair_date", "end":"query_repair_date_end"},
         {"start":"query_equipment_confirm_date", "end":"query_equipment_confirm_date_end"},
         {"start":"query_repair_return_date", "end":"query_repair_return_date_end"},
         {"start":"query_equipment_return_date", "end":"query_equipment_return_date_end"}
     ];
-
     $.each(id_list, function(i, item){
         $("#" + item.start).datetimepicker({
             format: 'yyyy-mm-dd hh:ii',
@@ -283,6 +311,7 @@ $(function(){
         }).on("click",function(){
         $("#" + item.end).datetimepicker("setStartDate",$("#" + item.start).val())});
     });
+
     //查询按钮绑定事件
     $("#query_search").click(function(){
         var temp = {};
@@ -304,6 +333,7 @@ $(function(){
         });
         $("#query_list").val(JSON.stringify(temp)); //赋值给隐藏控件
         //initTable(JSON.stringify(temp),'json');
+        //alert(JSON.stringify(temp));
         $("#table_repairs").bootstrapTable("refresh");
     });
     //重置按钮绑定事件  导致表格内容列的勾选框也去掉, 限定id=pn_query的div内重置
@@ -315,6 +345,9 @@ $(function(){
         //清除选择框的值
         $('#pn_query .selectpicker').selectpicker("val","");
     });
+
+    //提示信息插件的位置设置
+    toastr.options.positionClass = 'toast-top-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
 });
 </script>
 <!-- 数据表格初始化 -->
@@ -593,7 +626,7 @@ function changeDateFormat(value) {
     }
 };
 </script>
-<!-- 表单数据获取，提交 -->
+<!-- 公共方法的定义：表单数据获取，提交 -->
 <script>
     //将提交的表单数值序列化为JSON对象
     function get_json_data(){
@@ -618,11 +651,24 @@ function changeDateFormat(value) {
 					//alert("Connection error:"+request.error);
 				},
 				success: function(data) {
-				    toastr.success('提交数据成功');
 				    $(".modal").modal("hide");     //隐藏模态框
 				    $("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
+				    toastr.success('提交数据成功');
+				    $("form")[0].reset();  //重置表单
 				}
 		 })
     };
+    //获取当前格式化时间的方法
+    function currentTime(){
+        var datetime = new Date();
+        //datetime.setTime(time);
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+        var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+        var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+        var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+        var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+        return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
+    }
 </script>
 {% endblock %}

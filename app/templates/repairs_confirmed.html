@@ -8,6 +8,7 @@
 {% block script %}
 {{ super() }}
 <script>
+    //根据查询条件来初始化表格，查询条件类型为string（/json）
     initTable("repair_status < 2",'string');
 </script>
 <script type="text/javascript">
@@ -47,20 +48,17 @@
     $("#modal_save").click(function(e) {
         if ($("#dept_code").val() && $("#type_code").val() && $("#equipment_code").val() && $("#fault_code").val() && $("#com_code").val()
                 && $("#repair_man").val() && $("#repair_confirm_date").val()){
+            //验证通过后，阻止默认的提交操作
             e.preventDefault();
             //alert($("form").serialize());
+             //设置操作对应的接口
             if (action == 'confirm'){
                 url = '/repair/api/v1.0/equipment_repairs_confirm/confirm/' + cur_key;
             } else if (action == 'un_confirm'){
                 url = '/repair/api/v1.0/equipment_repairs_confirm/un_confirm/' + cur_key;
             }else{url = ''};
+            //提交数据
             ajax_post_data(url, get_json_data());
-            //if ( flag == 1){
-                //$("#modal_confirmed").modal("hide");     //隐藏模态框
-                //$("#table_repairs").bootstrapTable("refresh");  //刷新表格数据
-				//$("#modal_confirmed")[0].reset();  //重置表单，恢复为默认值 如何解决表单重置reset is not a function 出错 问题就在于id="reset"和name="reset"，这里的reset属性覆盖了原来的reset方法
-
-            //};
         }
     });
 </script>

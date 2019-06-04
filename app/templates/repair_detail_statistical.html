@@ -25,7 +25,7 @@
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_brand_code">设备品牌</label></td>
                 <td style=" white-space:nowrap; border:0px;"><select class="selectpicker form-control input-sm" id="query_brand_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_return_man">维修归还人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_repair_return_man"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_repair_return_man"></select></td>
             </tr>  <!--  -->
             <tr>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_equipment_confirm_date">报修确认日期</label></td>
@@ -36,11 +36,11 @@
                     </tr></table>
                 </td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_registrant">报修人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_repair_registrant"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_repair_registrant"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_type_code">设备类型</label></td>
                 <td style=" white-space:nowrap; border:0px;"><select class="selectpicker form-control input-sm" id="query_type_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_equipment_return_man">归还科室人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_equipment_return_man"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_equipment_return_man"></select></td>
             </tr>
             <tr>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_return_date">维修归还日期</label></td>
@@ -73,7 +73,7 @@
                     </tr></table>
                 </td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_repair_man">维修人</label></td>
-                <td style=" white-space:nowrap; border:0px;"><input class="form-control input-sm" style="width: 200px" type="text" id="query_repair_man"></td>
+                <td style=" white-space:nowrap; border:0px;"><select class="form-control input-sm" style="width: 200px" type="text" id="query_repair_man"></select></td>
                 <td style=" white-space:nowrap; border:0px;"><label><input type="checkbox" id="cb_query_fault_code">设备故障</label></td>
                 <td style=" white-space:nowrap; border:0px;"><select class="selectpicker form-control input-sm" id="query_fault_code" title="请选择"></select></td>
                 <td style=" white-space:nowrap; border:0px;"></td>
@@ -142,14 +142,18 @@ $(function(){
         })
     });
 
+    //查询面板 下拉选择框的动态添加数据项
     var select_list = [
         {"id":"query_dept_code", "url":"/repair/api/v1.0/departments", "valuefield":"code", "textfield":"name"},
         {"id":"query_brand_code", "url":"/repair/api/v1.0/equipment_brands", "valuefield":"code", "textfield":"name"},
         {"id":"query_type_code", "url":"/repair/api/v1.0/equipment_types", "valuefield":"code", "textfield":"name"},
         {"id":"query_fault_code", "url":"/repair/api/v1.0/equipment_faults", "valuefield":"code", "textfield":"name"},
-        {"id":"query_com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"code", "textfield":"name"}
+        {"id":"query_com_code", "url":"/repair/api/v1.0/repair_companys", "valuefield":"code", "textfield":"name"},
+        {"id":"query_repair_registrant", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"},
+        {"id":"query_repair_man", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"},
+        {"id":"query_repair_return_man", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"},
+        {"id":"query_equipment_return_man", "url":"/repair/api/v1.0/repair_staff", "valuefield":"code", "textfield":"name"}
     ];
-
     function init(target, data, valuefield, textfield) {
                 var option = $('<option></option>');
                 target.append(option);
@@ -162,11 +166,29 @@ $(function(){
         target.selectpicker('refresh');
         target.selectpicker('render');
     };
+    function init_edit_select(target, data){
+        var htm = "";
+        for ( var int = 0; int < data.length; int++) {
+            htm += "<option value='"+ data[int].name +"'>"+ data[int].name +"</option>";
+        }
+        target.html(htm);
+        target.editableSelect({
+            effects: 'slide', //设置可编辑 其它可选参数default、fade
+            filter: false //不过滤，否则选中后其它选项消失
+        });
+        target.val(data[0].name); //设置默认值
+    };
+
     //$(id_list).each(function(){ 使用此方式就是获取不到ID的值？？？？
     $.each(select_list, function (i, item) {
         $.get(item.url,function(data,status){
-            init($("#"+item['id']), data.rows, item['valuefield'],item['textfield']);
-          });
+            if(item.url != '/repair/api/v1.0/repair_staff'){
+                init($("#"+item['id']), data.rows, item['valuefield'],item['textfield']);
+            }
+            else{
+                init_edit_select($("#"+item['id']), data.rows);
+            };
+         });
     });
 
     var id_list = [
