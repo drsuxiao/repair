@@ -1,7 +1,4 @@
-{%extends "base.html"%}
 <!-- 主体内容 -->
-{% block title %}维修数据查询{% endblock %}
-{% block breadcrumb %}维修数据查询{% endblock %}
 {% block content %}
 <!-- 搜素面板 -->
 <div class="panel panel-default">
@@ -94,7 +91,7 @@
 {% endblock %}
 
 {% block script %}
-{{ super() }}
+
 <script type="text/javascript">
     toastr.options.positionClass = 'toast-center-center';    //如toast-bottom-right表示下右、toast-bottom-center表示下中、toast-top-center表示上中等
 

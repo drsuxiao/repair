@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %}--设备维修登记系统</title>
+    <title>设备维修登记系统</title>
 
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{url_for('static', filename='css/bootstrap-table.css')}}" rel="stylesheet" type="text/css"/>
@@ -97,7 +97,7 @@
                             </a>
                         </div>
                         <div class="panel-body panel-collapse in collapse" id="p1">
-                            <li><a href="{{ url_for('repairs_registration') }}">报修登记管理</a></li>
+                            <li class="active"><a href="{{ url_for('repairs_registration') }}">报修登记管理</a></li>
                             <li><a href="{{ url_for('repairs_confirmed') }}">维修确认管理</a></li>
                             <li><a href="{{ url_for('repairs_return') }}">设备归还管理</a></li>
                         </div>
@@ -137,9 +137,12 @@
                 <div class="col-md-10 col-sm-9">
                     <ul class="breadcrumb">
                         <li><a href="{{ url_for('index') }}">首页</a></li>
-                        <li class="active">{% block breadcrumb %}{% endblock %}</li>
+                        <li class="active" id="top_title"></li>
                     </ul>
-                    {% block content %}{% endblock %}
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="show_page"></div>
+                    </div>
+
                     <div id="footer">{% block footer %}&copy; Copyright 2019 by you{% endblock %}</div>
                 </div>
             </div>
@@ -164,10 +167,19 @@
 
 {% block script %}
 <script>
-    //$("li a").click(function(){
-        //alert(this.text);
-        //$("ul.breadcrumb li.active").html(this.text);
-    //});
+    $(".panel-body li a").click(function(e){
+        e.preventDefault();
+        //alert($(this).attr('href'));
+        $("#top_title").text(this.text);
+        $(this).addClass("active");
+        $("#show_page").load($(this).attr('href'));
+    });
+    $(".dropdown-menu li a").click(function(e){
+        e.preventDefault();
+        //alert($(this).attr('href'));
+        $("#top_title").text(this.text);
+        $("#show_page").load($(this).attr('href'));
+    });
 function showTabs(tabsId,url,flag) {
     //显示标签
     if (flag == 1){
@@ -181,6 +193,59 @@ function showTabs(tabsId,url,flag) {
 };
 </script>
 
+<script>
+    /**
+  * 增加标签页
+  */
+ function addTab(options) {
+     //option:
+     //tabMainName:tab标签页所在的容器
+     //tabName:当前tab的名称
+     //tabTitle:当前tab的标题
+     //tabUrl:当前tab所指向的URL地址
+     var exists = checkTabIsExists(options.tabMainName, options.tabName);
+     if(exists){
+         $("#tab_a_"+options.tabName).click();
+     } else {
+         $("#"+options.tabMainName).append('<li id="tab_li_'+options.tabName+'"><a href="#tab_content_'+options.tabName+'" data-toggle="tab" id="tab_a_'+options.tabName+'"><button class="close closeTab" type="button" onclick="closeTab(this);">×</button>'+options.tabTitle+'</a></li>');
+         $("#"+options.tabContentMainName).append('<div id="tab_content_'+options.tabName+'" role="tabpanel" class="tab-pane" id="'+options.tabName+'"></div>');
+         $("#tab_a_"+options.tabName).click();
+         $("#tab_content_" + options.tabName).load(options.tabUrl);
+     }
+ }
+
+ /**
+  * 关闭标签页
+  * @param button
+  */
+ function closeTab (button) {
+
+     //通过该button找到对应li标签的id
+     var li_id = $(button).parent().parent().attr('id');
+     var id = li_id.replace("tab_li_","");
+
+     //如果关闭的是当前激活的TAB，激活他的前一个TAB
+     if ($("li.active").attr('id') == li_id) {
+         $("li.active").prev().find("a").click();
+     }
+
+     //关闭TAB
+     $("#" + li_id).remove();
+     $("#tab_content_" + id).remove();
+ };
+
+ /**
+  * 判断是否存在指定的标签页
+  * @param tabMainName
+  * @param tabName
+  * @returns {Boolean}
+  */
+ function checkTabIsExists(tabMainName, tabName){
+     var tab = $("#"+tabMainName+" #tab_li_"+tabName);
+     //console.log(tab.length)
+     return tab.length > 0;
+ }
+</script>
 {% endblock %}
 
 

@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="947feeab-bdba-4307-8452-49ae98147396" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base_database.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base_database.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/base_repairs.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base_repairs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/repair_detail_statistical.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_detail_statistical.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/repair_fault_statistical.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_fault_statistical.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/repair_taketime_statistical.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_taketime_statistical.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/repair_workload_statistical.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_workload_statistical.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,11 +19,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="repair.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/api/repair.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
+            <state relative-caret-position="20250">
               <caret line="766" column="41" selection-start-line="766" selection-start-column="29" selection-end-line="766" selection-end-column="41" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
@@ -30,15 +37,8 @@
       <file leaf-file-name="base_repairs.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="335" column="10" selection-start-line="335" selection-start-column="10" selection-end-line="335" selection-end-column="10" />
-              <folding>
-                <element signature="e#7782#8726#0" />
-                <element signature="e#8747#10665#0" />
-                <element signature="e#10696#10980#0" />
-                <element signature="e#17559#26449#0" />
-                <element signature="e#26477#28015#0" />
-              </folding>
+            <state relative-caret-position="-1917">
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -46,8 +46,39 @@
       <file leaf-file-name="repair_detail_statistical.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/repair_detail_statistical.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1701">
-              <caret line="75" column="163" selection-start-line="75" selection-start-column="163" selection-end-line="75" selection-end-column="163" />
+            <state relative-caret-position="27">
+              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repair_fault_statistical.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/repair_fault_statistical.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="27">
+              <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repair_workload_statistical.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/repair_workload_statistical.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="27">
+              <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+              <folding>
+                <element signature="n#script#0;n#!!top" />
+                <element signature="n#script#1;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="repair_taketime_statistical.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/repair_taketime_statistical.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="27">
+              <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -56,10 +87,26 @@
         <entry file="file://$PROJECT_DIR$/app/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="70" column="3" selection-start-line="70" selection-start-column="3" selection-end-line="70" selection-end-column="3" />
+              <caret line="98" column="83" lean-forward="true" selection-start-line="98" selection-start-column="83" selection-end-line="98" selection-end-column="83" />
               <folding>
-                <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-                <element signature="n#script#0;n#html#0;n#!!top" />
+                <element signature="n#head#0;n#html#0;n#!!top" />
+                <element signature="n#script#1;n#html#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_database.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/templates/base_database.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="27">
+              <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+              <folding>
+                <element signature="e#346#680#0" />
+                <element signature="e#715#1645#0" />
+                <element signature="e#916#936#0" expanded="true" />
+                <element signature="e#1666#3568#0" />
+                <element signature="e#1883#1903#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,9 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config.py" />
-        <option value="$PROJECT_DIR$/db_create.py" />
-        <option value="$PROJECT_DIR$/db_migrate.py" />
         <option value="$PROJECT_DIR$/app/errors.py" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/app/templates/_field.html" />
@@ -149,7 +193,6 @@
         <option value="$PROJECT_DIR$/app/templates/repairs_registration.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_confirmed.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_return.html" />
-        <option value="$PROJECT_DIR$/app/templates/base_database.html" />
         <option value="$PROJECT_DIR$/app/templates/repair_company.html" />
         <option value="$PROJECT_DIR$/app/templates/department.html" />
         <option value="$PROJECT_DIR$/app/templates/equipment_brand.html" />
@@ -157,6 +200,10 @@
         <option value="$PROJECT_DIR$/app/templates/equipment_type.html" />
         <option value="$PROJECT_DIR$/app/templates/repair_result.html" />
         <option value="$PROJECT_DIR$/app/templates/repair_staff.html" />
+        <option value="$PROJECT_DIR$/app/templates/base_database.html" />
+        <option value="$PROJECT_DIR$/app/templates/repair_taketime_statistical.html" />
+        <option value="$PROJECT_DIR$/app/templates/repair_workload_statistical.html" />
+        <option value="$PROJECT_DIR$/app/templates/repair_fault_statistical.html" />
         <option value="$PROJECT_DIR$/app/templates/repair_detail_statistical.html" />
         <option value="$PROJECT_DIR$/app/templates/base_repairs.html" />
         <option value="$PROJECT_DIR$/app/templates/base.html" />
@@ -177,7 +224,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -232,6 +278,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -400,8 +447,8 @@
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15279241" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49925596" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.19968387" side_tool="true" visible="true" weight="0.38604143" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8003161" visible="true" weight="0.38604143" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.20021075" side_tool="true" visible="true" weight="0.38604143" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.79978925" visible="true" weight="0.38604143" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49925596" weight="0.3289689" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -425,8 +472,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../my_web/app/templates/my_master.html" />
-    <entry file="file://$PROJECT_DIR$/../my_web/app/templates/index.html" />
     <entry file="file://$PROJECT_DIR$/app/templates/base_index.html" />
     <entry file="file://$PROJECT_DIR$/app/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -581,23 +626,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-            <element signature="e#136#877#0" />
-            <element signature="e#917#2741#0" />
-            <element signature="e#2776#3251#0" />
-            <element signature="e#3290#3770#0" />
-            <element signature="e#3808#4278#0" />
-            <element signature="e#4317#4797#0" />
-            <element signature="e#4835#5297#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/models.py" />
     <entry file="file://$PROJECT_DIR$/app/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -749,35 +778,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/repair_workload_statistical.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="304" column="14" lean-forward="true" selection-start-line="304" selection-start-column="14" selection-end-line="304" selection-end-column="14" />
-          <folding>
-            <element signature="n#script#0;n#!!top" />
-            <element signature="n#script#1;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base_database.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="234" column="45" lean-forward="true" selection-start-line="234" selection-start-column="45" selection-end-line="234" selection-end-column="45" />
-          <folding>
-            <element signature="e#346#680#0" />
-            <element signature="e#715#1645#0" />
-            <element signature="e#916#936#0" expanded="true" />
-            <element signature="e#1666#3568#0" />
-            <element signature="e#1883#1903#0" expanded="true" />
-            <element signature="e#3634#3864#0" />
-            <element signature="e#3880#7326#0" />
-            <element signature="e#8136#8815#0" />
-            <element signature="e#8833#9528#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/repair_company.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="321">
@@ -790,7 +790,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/api/repair.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="20250">
           <caret line="766" column="41" selection-start-line="766" selection-start-column="29" selection-end-line="766" selection-end-column="41" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
@@ -800,34 +800,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base_database.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <folding>
+            <element signature="e#346#680#0" />
+            <element signature="e#715#1645#0" />
+            <element signature="e#916#936#0" expanded="true" />
+            <element signature="e#1666#3568#0" />
+            <element signature="e#1883#1903#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/repair_taketime_statistical.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/repair_workload_statistical.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <folding>
+            <element signature="n#script#0;n#!!top" />
+            <element signature="n#script#1;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/repair_fault_statistical.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="19" lean-forward="true" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/repair_detail_statistical.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1701">
-          <caret line="75" column="163" selection-start-line="75" selection-start-column="163" selection-end-line="75" selection-end-column="163" />
+        <state relative-caret-position="27">
+          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="335" column="10" selection-start-line="335" selection-start-column="10" selection-end-line="335" selection-end-column="10" />
-          <folding>
-            <element signature="e#7782#8726#0" />
-            <element signature="e#8747#10665#0" />
-            <element signature="e#10696#10980#0" />
-            <element signature="e#17559#26449#0" />
-            <element signature="e#26477#28015#0" />
-          </folding>
+        <state relative-caret-position="-1917">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="70" column="3" selection-start-line="70" selection-start-column="3" selection-end-line="70" selection-end-column="3" />
+          <caret line="98" column="83" lean-forward="true" selection-start-line="98" selection-start-column="83" selection-end-line="98" selection-end-column="83" />
           <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#script#0;n#html#0;n#!!top" />
+            <element signature="n#head#0;n#html#0;n#!!top" />
+            <element signature="n#script#1;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
