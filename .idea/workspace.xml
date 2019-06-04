@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="947feeab-bdba-4307-8452-49ae98147396" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/api/repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/api/repair.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/main/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base_database.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base_database.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/base_repairs.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/base_repairs.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/department.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/equipment_brand.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/equipment_brand.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/equipment_fault.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/equipment_fault.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/equipment_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/equipment_type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repair_company.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_company.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repair_detail_statistical.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_detail_statistical.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repair_result.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_result.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repair_staff.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repair_staff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_confirmed.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_confirmed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/repairs_return.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/repairs_return.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,7 +27,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_repairs.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base_repairs.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/base_repairs.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="297">
@@ -64,6 +48,19 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1701">
               <caret line="75" column="163" selection-start-line="75" selection-start-column="163" selection-end-line="75" selection-end-column="163" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="70" column="3" selection-start-line="70" selection-start-column="3" selection-end-line="70" selection-end-column="3" />
+              <folding>
+                <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#script#0;n#html#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -149,7 +146,6 @@
         <option value="$PROJECT_DIR$/app/api/repair.py" />
         <option value="$PROJECT_DIR$/app/main/views.py" />
         <option value="$PROJECT_DIR$/app/main/forms.py" />
-        <option value="$PROJECT_DIR$/app/templates/base.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_registration.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_confirmed.html" />
         <option value="$PROJECT_DIR$/app/templates/repairs_return.html" />
@@ -163,6 +159,7 @@
         <option value="$PROJECT_DIR$/app/templates/repair_staff.html" />
         <option value="$PROJECT_DIR$/app/templates/repair_detail_statistical.html" />
         <option value="$PROJECT_DIR$/app/templates/base_repairs.html" />
+        <option value="$PROJECT_DIR$/app/templates/base.html" />
       </list>
     </option>
   </component>
@@ -700,19 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-567">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="n#div#0;n#head#0;n#html#0;n#!!top" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
-            <element signature="n#script#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/equipment_type.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
@@ -833,6 +817,17 @@
             <element signature="e#10696#10980#0" />
             <element signature="e#17559#26449#0" />
             <element signature="e#26477#28015#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="70" column="3" selection-start-line="70" selection-start-column="3" selection-end-line="70" selection-end-column="3" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#script#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
