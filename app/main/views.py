@@ -7,7 +7,12 @@ from app.main.forms import RepairRegistrationForm, RepairConfirmForm, RepairRetu
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('base.html')
+
+
+@app.route('/repair/index', methods=['GET'])
+def show_home():
+    return render_template('home.html')
 
 
 @app.route('/repair/repairs_registration', methods=['GET', 'POST'])

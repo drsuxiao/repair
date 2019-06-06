@@ -35,11 +35,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">设备维修登记系统</a>
+                <a class="navbar-brand" href="#">设备维修登记系统</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{ url_for('index') }}">首页</a></li>
+                    <li class="active"><a href="{{ url_for('show_home') }}" id="t_home">首页</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             设备维修管理<b class="caret"></b>  <!-- 下拉符号 -->
@@ -59,7 +59,7 @@
                             <li><a href="{{url_for('show_repair_detail')}}">维修数据查询</a></li>
                             <li><a href="{{url_for('show_repair_workload')}}">维修工作量统计分析</a></li>
                             <li><a href="{{url_for('show_repair_fault')}}">设备故障统计分析</a></li>
-                            <li><a href="#">设备维修耗时统计</a></li>  <!-- 总耗时、维修耗时、维修响应时间、送还科室耗时-->
+                            <li><a href="{{url_for('show_repair_fault')}}">设备维修耗时统计</a></li>  <!-- 总耗时、维修耗时、维修响应时间、送还科室耗时-->
                         </ul>
                     </li>
 
@@ -90,45 +90,44 @@
                 <!-- 左侧导航栏 -->
                 <div class="col-md-2 col-sm-3">
                     {% block right %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion"  href="#p1">
-                                设备维修管理
+                    <div id="leftmenu">
+                        <div style="margin-top:10px">
+                            <a href="#p1" class="list-group-item menu-color" data-toggle="collapse">
+                                <div class="glyphicon glyphicon-wrench"></div>设备维修管理
+                                <span class="glyphicon glyphicon-chevron-down pull-right"></span>
                             </a>
+                            <div class="collapse" id="p1">
+                                <a class="list-group-item" href="{{ url_for('repairs_registration') }}">&#12288;&#12288;报修登记管理</a>
+                                <a class="list-group-item" href="{{ url_for('repairs_confirmed') }}">&#12288;&#12288;维修确认管理</a>
+                                <a class="list-group-item" href="{{ url_for('repairs_return') }}">&#12288;&#12288;设备归还管理</a>
+                            </div>
                         </div>
-                        <div class="panel-body panel-collapse in collapse" id="p1">
-                            <li class="active"><a href="{{ url_for('repairs_registration') }}">报修登记管理</a></li>
-                            <li><a href="{{ url_for('repairs_confirmed') }}">维修确认管理</a></li>
-                            <li><a href="{{ url_for('repairs_return') }}">设备归还管理</a></li>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion"  href="#p2">
-                                维修数据报表
+                        <div style="margin-top:10px">
+                            <a href="#p2" class="list-group-item menu-color" data-toggle="collapse">
+                                <div class="glyphicon glyphicon-floppy-disk"></div>维修数据报表
+                                <span class="glyphicon glyphicon-chevron-down pull-right"></span>
                             </a>
+                            <div class="collapse" id="p2">
+                                <a class="list-group-item" href="{{url_for('show_repair_detail')}}">&#12288;&#12288;维修数据查询</a>
+                                <a class="list-group-item" href="{{url_for('show_repair_workload')}}">&#12288;&#12288;维修工作量统计分析</a>
+                                <a class="list-group-item" href="{{url_for('show_repair_fault')}}">&#12288;&#12288;设备故障统计分析</a>
+                                <a class="list-group-item" href="{{url_for('show_repair_fault')}}">&#12288;&#12288;设备维修耗时统计</a>
+                            </div>
                         </div>
-                        <div class="panel-body panel-collapse in collapse" id="p2">
-                            <li><a href="{{url_for('show_repair_detail')}}">维修数据查询</a></li>
-                            <li><a href="{{url_for('show_repair_workload')}}">维修工作量统计分析</a></li>
-                            <li><a href="{{url_for('show_repair_fault')}}">设备故障统计分析</a></li>
-                            <li><a href="#">设备维修耗时统计</a></li>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion"  href="#p3">
-                                基础数据维护
+                        <div style="margin-top:10px">
+                            <a class="list-group-item menu-color" data-toggle="collapse" href="#p3">
+                                <div class="glyphicon glyphicon-asterisk"></div>基础数据维护
+                                <span class="glyphicon glyphicon-chevron-down pull-right"></span>
                             </a>
-                        </div>
-                        <div class="panel-body panel-collapse in collapse" id="p3">
-                            <li><a href="{{ url_for('show_departments')}}">科室维护</a></li>
-                            <li><a href="{{ url_for('show_equipment_brands')}}">设备品牌维护</a></li>
-                            <li><a href="{{ url_for('show_equipment_types')}}">设备类型维护</a></li>
-                            <li><a href="{{ url_for('show_equipment_faults')}}">设备故障字典维护</a></li>
-                            <li><a href="{{ url_for('show_repair_companys')}}">维修公司维护</a></li>
-                            <li><a href="{{ url_for('show_repair_staff')}}">人员信息维护</a></li>
-                            <li><a href="{{ url_for('show_repair_result')}}">维修结果维护</a></li>
+                            <div class="collapse" id="p3">
+                                <a class="list-group-item" href="{{ url_for('show_departments')}}">&#12288;&#12288;科室维护</a>
+                                <a class="list-group-item" href="{{ url_for('show_equipment_brands')}}">&#12288;&#12288;设备品牌维护</a>
+                                <a class="list-group-item" href="{{ url_for('show_equipment_types')}}">&#12288;&#12288;设备类型维护</a>
+                                <a class="list-group-item" href="{{ url_for('show_equipment_faults')}}">&#12288;&#12288;设备故障字典维护</a>
+                                <a class="list-group-item" href="{{ url_for('show_repair_companys')}}">&#12288;&#12288;维修公司维护</a>
+                                <a class="list-group-item" href="{{ url_for('show_repair_staff')}}">&#12288;&#12288;人员信息维护</a>
+                                <a class="list-group-item" href="{{ url_for('show_repair_result')}}">&#12288;&#12288;维修结果维护</a>
+                            </div>
                         </div>
                     </div>
                     {% endblock %}
@@ -136,7 +135,7 @@
                 <!-- 右侧内容页 -->
                 <div class="col-md-10 col-sm-9">
                     <ul class="breadcrumb">
-                        <li><a href="{{ url_for('index') }}">首页</a></li>
+                        <li><a href="{{ url_for('show_home') }}" id="r_home">首页</a></li>
                         <li class="active" id="top_title"></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -167,19 +166,58 @@
 
 {% block script %}
 <script>
-    $(".panel-body li a").click(function(e){
+    $("#show_page").load('/repair/index');
+    $("div.collapse a.list-group-item").click(function(e){
         e.preventDefault();
         //alert($(this).attr('href'));
-        $("#top_title").text(this.text);
+        $("#top_title").text($.trim(this.text));
         $(this).addClass("active");
         $("#show_page").load($(this).attr('href'));
     });
     $(".dropdown-menu li a").click(function(e){
         e.preventDefault();
         //alert($(this).attr('href'));
-        $("#top_title").text(this.text);
+        $("#top_title").text($.trim(this.text));
         $("#show_page").load($(this).attr('href'));
+
+        //清楚所有项目的选中状态
+        $("#leftmenu .list-group-item").each(function () {
+            $(this).removeClass('active');
+             //alert(flag);
+        });
     });
+$("#t_home").click(function(e){
+    e.preventDefault();
+    //alert($(this).attr('href'));
+    $("#show_page").load($(this).attr('href'));
+});
+$("#r_home").click(function(e){
+    e.preventDefault();
+    //alert($(this).attr('href'));
+    $("#show_page").load($(this).attr('href'));
+});
+$("#leftmenu .list-group-item").click(function(){
+    setActiveMenu(this);
+});
+//设置菜单选中状态
+function setActiveMenu(item){
+    //清楚所有项目的选中状态
+    $("#leftmenu .list-group-item").each(function () {
+        $(this).removeClass('active');
+         //alert(flag);
+    });
+    /*切换折叠指示图标*/
+    //if (flag == '0'){
+        $(item).find("span").toggleClass("glyphicon-chevron-down");
+        $(item).find("span").toggleClass("glyphicon-chevron-up");
+    //};
+    //设置当前菜单为选中状态
+    $(item).addClass("active");
+};
+</script>
+
+<script>
+
 function showTabs(tabsId,url,flag) {
     //显示标签
     if (flag == 1){
@@ -191,9 +229,6 @@ function showTabs(tabsId,url,flag) {
         };
     };
 };
-</script>
-
-<script>
     /**
   * 增加标签页
   */
