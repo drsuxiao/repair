@@ -36,22 +36,22 @@ class EquipmentRepair(db.Model):
     repair_date = db.Column(db.String(20), default=datetime.now().strftime("%Y-%m-%d %H:%M"))
     # 外键，和department表对应
     dept_code = db.Column(db.String(10), db.ForeignKey('department.code'))   # 报修科室
-    repair_registrant = db.Column(db.String(10))  # 报修人
+    repair_registrant = db.Column(db.String(50))  # 报修人
     # equipment_brand = db.Column(db.String(10))  # 设备品牌
     brand_code = db.Column(db.String(10), db.ForeignKey('equipment_brand.code'))  # 设备品牌
     # equipment_type = db.Column(db.String(10))   # 设备类型
     type_code = db.Column(db.String(10), db.ForeignKey('equipment_type.code'))   # 设备类型
-    equipment_code = db.Column(db.String(10))   # 设备编号
+    equipment_code = db.Column(db.String(50))   # 设备编号
     # equipment_fault = db.Column(db.String(50))  # 设备故障
     fault_code = db.Column(db.String(10), db.ForeignKey('equipment_fault.code'))  # 设备故障
     # repair_company = db.Column(db.String(30))  # 维修公司
     com_code = db.Column(db.String(20), db.ForeignKey('repair_company.code'))  # 维修公司
-    repair_man = db.Column(db.String(20))  # 维修人
+    repair_man = db.Column(db.String(50))  # 维修人
     repair_confirm_date = db.Column(db.String(20))  # 维修确认日期
     repair_return_date = db.Column(db.String(20))  # 维修归还日期
-    repair_return_man = db.Column(db.String(10))  # 维修归还人
+    repair_return_man = db.Column(db.String(50))  # 维修归还人
     equipment_return_date = db.Column(db.String(20))  # 设备归还科室日期
-    equipment_return_man = db.Column(db.String(10))  # 设备归还科室人
+    equipment_return_man = db.Column(db.String(50))  # 设备归还科室人
     repair_status = db.Column(db.Integer)  # 维修进度
     # 新增字段
     repair_priority = db.Column(db.String(10))  # 维修优先级
