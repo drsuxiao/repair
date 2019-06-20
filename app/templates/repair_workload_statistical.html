@@ -74,10 +74,10 @@
         var starttime = $("#query_repair_date").val();
         var endtime = $("#query_repair_date_end").val();
         if (starttime && endtime){
-            querystr = 'repair_date >= "' + starttime + '" and repair_date <= "' + endtime + '"'
+            querystr = 'repair_date >= "' + starttime + '" and repair_date <= "' + endtime + '" and repair_status = 3 '
         }
         else{
-            querystr = '1=1';
+            querystr = 'repair_status = 3';
         }
         //表格初始化
         initTable('/repair/api/v1.0/equipment_repairs/statistical');
@@ -215,7 +215,7 @@ function initTable(url) {
             queryParams: function queryParams(params){
                 var param = {
                     //parentid: parentid,
-                    querystr: 'left(repair_date, 4) = "' + parentid + '"',
+                    querystr: 'left(repair_date, 4) = "' + parentid + '" and repair_status = 3 ',
                     selectfield: 'left(repair_date, 7)',
                     groupbystr: 'left(repair_date, 7)',
                     limit: params.limit,
@@ -262,7 +262,7 @@ function initTable(url) {
             queryParams: function queryParams(params){
                 var param = {
                     //parentid: parentid,
-                    querystr: 'left(repair_date, 7) = "' + parentid + '"',
+                    querystr: 'left(repair_date, 7) = "' + parentid + '" and repair_status = 3 ',
                     tablename: 'department',
                     selectfield: 'code, name',
                     groupbystr: 'dept_code',
