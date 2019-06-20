@@ -198,11 +198,12 @@ function initTable(url) {
         }
     });
 };
-
+var querystr_1 = '';
 //初始化子表格(无线循环)
     InitSubTable = function (index, row, $detail) {
         var parentid = row.item;
         var cur_table = $detail.html('<table></table>').find('table');
+        querystr_1 = querystr + ' and ' + 'left(repair_date, 4) = "' + parentid + '"';
         $(cur_table).bootstrapTable({
             url: '/repair/api/v1.0/equipment_repairs/statistical',
             method: 'get',
@@ -215,7 +216,7 @@ function initTable(url) {
             queryParams: function queryParams(params){
                 var param = {
                     //parentid: parentid,
-                    querystr: 'left(repair_date, 4) = "' + parentid + '" and repair_status = 3 ',
+                    querystr: querystr_1,
                     selectfield: 'left(repair_date, 7)',
                     groupbystr: 'left(repair_date, 7)',
                     limit: params.limit,
@@ -246,10 +247,12 @@ function initTable(url) {
             }
         });
     };
+    var querystr_2 = '';
     //初始化子表格(无线循环)
     InitSubTable_1 = function (index, row, $detail) {
         var parentid = row.item;
         var cur_table = $detail.html('<table></table>').find('table');
+        querystr_2 = querystr_1 + ' and ' + 'left(repair_date, 7) = "' + parentid + '"';
         $(cur_table).bootstrapTable({
             url: '/repair/api/v1.0/equipment_repairs/statistical/basedata',
             method: 'get',
@@ -262,7 +265,7 @@ function initTable(url) {
             queryParams: function queryParams(params){
                 var param = {
                     //parentid: parentid,
-                    querystr: 'left(repair_date, 7) = "' + parentid + '" and repair_status = 3 ',
+                    querystr: querystr_2,
                     tablename: 'department',
                     selectfield: 'code, name',
                     groupbystr: 'dept_code',
